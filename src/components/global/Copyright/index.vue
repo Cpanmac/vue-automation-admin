@@ -1,5 +1,5 @@
 <template>
-    <footer class="copyright">Copyright © 2020 浙江易网科技股份有限公司</footer>
+    <footer class="copyright">Copyright © 2020 <a href="http://1one.cn/" target="_blank">浙江易网科技股份有限公司</a></footer>
 </template>
 
 <script>
@@ -14,5 +14,12 @@ footer {
     text-align: center;
     color: #808695;
     font-size: 14px;
+    a {
+        text-decoration: none;
+        color: #808695;
+        &:hover {
+            color: #3d4047;
+        }
+    }
 }
 </style>
