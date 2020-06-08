@@ -11,6 +11,11 @@
 - 依据路由轻松配置导航栏
 - 支持全方位权限验证
 
+## 预览
+
+![](http://eoner.gitee.io/vue-automation-admin/images/layout1.png)
+![](http://eoner.gitee.io/vue-automation-admin/images/layout2.png)
+
 ## 文档
 
 [在线文档](http://eoner.gitee.io/vue-automation-admin)
@@ -27,10 +32,6 @@
 
 <img src="http://eoner.gitee.io/vue-automation/images/reward-wechat.jpg" width="200" height="200" />
 <img src="http://eoner.gitee.io/vue-automation/images/reward-alipay.jpg" width="200" height="200" />
-
-## 交流群
-
-如果我们有群的话~
 
 ## 特别感谢
 
