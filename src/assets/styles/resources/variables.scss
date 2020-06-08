@@ -1,0 +1,31 @@
+// 全局变量
+
+// 头部高度
+$g-header-height: 70px;
+// 面包屑高度（同时也是侧边栏Logo区域的高度）
+$g-breadcrumb-height: 50px;
+// 侧边栏宽度
+$g-sidebar-width: 220px;
+
+// 头部背景色
+$g-header-bg: #736477;
+// 头部导航选中颜色
+$g-header-nav-active-bg: $g-header-bg + 20;
+// 侧边栏背景色
+$g-sidebar-bg: #ddcdcd;
+// 侧边栏Logo区域背景色
+$g-sidebar-title-bg: $g-header-bg;
+// 侧边栏菜单文字颜色
+$g-sidebar-menu-color: #89768f;
+// 侧边栏菜单文字选中颜色
+$g-sidebar-menu-active-color: $g-sidebar-menu-color - 50;
+
+// 输出给js使用
+:export {
+    g_header_bg: $g-header-bg;
+    g_header_nav_active_bg: $g-header-nav-active-bg;
+    g_sidebar_bg: $g-sidebar-bg;
+    g_sidebar_title_bg: $g-sidebar-title-bg;
+    g_sidebar_menu_color: $g-sidebar-menu-color;
+    g_sidebar_menu_active_color: $g-sidebar-menu-active-color;
+}
