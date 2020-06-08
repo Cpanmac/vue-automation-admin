@@ -37,7 +37,7 @@
                         <RouterView />
                     </transition>
                 </div>
-                <Copyright />
+                <Copyright v-if="$store.state.global.showCopyright" />
             </div>
         </div>
     </div>

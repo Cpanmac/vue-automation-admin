@@ -8,5 +8,7 @@ export default {
      */
     openPermission: false,
     // 是否显示头部
-    showHeader: false
+    showHeader: false,
+    // 是否显示版权信息
+    showCopyright: true
 }

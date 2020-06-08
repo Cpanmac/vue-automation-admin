@@ -36,6 +36,7 @@ function filterAsyncRoutes(routes, permissions) {
 const state = {
     openPermission: setting.openPermission,
     showHeader: setting.showHeader,
+    showCopyright: setting.showCopyright,
     // 如果未开启 openPermission 则 permissionInit 和 permissions 参数不会使用到
     permissionInit: false,
     permissions: [],
