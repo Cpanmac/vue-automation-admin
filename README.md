@@ -13,7 +13,7 @@
 
 ## 文档
 
-准备中...
+[在线文档](http://eoner.gitee.io/vue-automation-admin)
 
 ## 支持
 
