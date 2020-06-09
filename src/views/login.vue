@@ -32,7 +32,7 @@
                 </div>
                 <el-checkbox v-model="form.remember">记住我</el-checkbox>
                 <el-button :loading="loading" type="primary" style="width: 100%;" @click.native.prevent="handleLogin">登录</el-button>
-                <div style="margin-top: 20px; color: #999; font-size: 14px; text-align: center;">演示用户名 / 密码：yiwang / 123456</div>
+                <div style="margin-top: 20px; color: #999; font-size: 14px; text-align: center;">演示用户名 / 密码：yiwang / 随意</div>
             </el-form>
         </div>
         <Copyright />
