@@ -26,13 +26,6 @@
 
 [![star](https://gitee.com/eoner/vue-automation-admin/badge/star.svg?theme=dark)](https://gitee.com/eoner/vue-automation-admin/stargazers)
 
-## 捐助
-
-微信 & 支付宝
-
-<img src="http://eoner.gitee.io/vue-automation/images/reward-wechat.jpg" width="200" height="200" />
-<img src="http://eoner.gitee.io/vue-automation/images/reward-alipay.jpg" width="200" height="200" />
-
 ## 特别感谢
 
 Shout out to [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin), Respect!
