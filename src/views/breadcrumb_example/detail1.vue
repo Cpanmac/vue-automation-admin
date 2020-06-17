@@ -1,5 +1,5 @@
 <template>
     <div>
-        news_category/detail
+        注意看面包屑导航的变化
     </div>
 </template>

@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             form: {
-                content: ''
+                content: '<p>初始化文字</p>'
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
     <div>
-        brand/detail
+        多级导航2-1
     </div>
 </template>

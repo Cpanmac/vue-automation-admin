@@ -61,44 +61,36 @@ const constantRoutes = [
     }
 ]
 
-import Banner from './modules/banner'
-import News from './modules/news'
-import Brand from './modules/brand'
-import Log from './modules/log'
+import MultilevelMenuExample from './modules/multilevel.menu.example'
+import BreadcrumbExample from './modules/breadcrumb.example'
+import ComponentExample from './modules/component.example'
+// eslint-disable-next-line no-unused-vars
+import HeaderExample from './modules/header.example'
 
 const asyncRoutes = [
-    Banner,
-    News,
-    Brand,
-    Log
+    MultilevelMenuExample,
+    BreadcrumbExample,
+    ComponentExample
 ]
 
 // const asyncRoutes = [
 //     {
 //         meta: {
-//             title: '主导航1',
-//             icon: 'brand'
+//             title: '演示'
 //         },
 //         children: [
-//             Banner
+//             MultilevelMenuExample,
+//             BreadcrumbExample,
+//             ComponentExample
 //         ]
 //     },
 //     {
 //         meta: {
-//             title: '主导航2',
-//             icon: 'brand'
+//             title: '头部导航2',
+//             icon: 'layout'
 //         },
 //         children: [
-//             News,
-//             Brand
-//         ]
-//     },
-//     {
-//         meta: {
-//             title: '主导航3'
-//         },
-//         children: [
-//             Log
+//             HeaderExample
 //         ]
 //     }
 // ]
