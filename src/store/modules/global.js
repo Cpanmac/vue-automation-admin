@@ -49,9 +49,13 @@ const state = {
 
 const getters = {
     hasPermission: state => permissions => {
-        return state.permissions.some(v => {
-            return v === permissions
-        })
+        if (state.openPermission) {
+            return state.permissions.some(v => {
+                return v === permissions
+            })
+        } else {
+            return true
+        }
     }
 }
 
@@ -63,20 +67,14 @@ const actions = {
             let permissions
             if (rootState.token.account == 'yiwang') {
                 permissions = [
-                    'banner.browse',
-                    'banner.create',
-                    'banner.edit',
-                    'news.browse',
-                    'news.create',
-                    'news_category.browse'
+                    'permission.browse'
                 ]
             } else {
                 permissions = [
-                    'brand.browse',
-                    'brand.create',
-                    'brand.edit',
-                    'login_log.browse',
-                    'operating_log.browse'
+                    'permission.browse',
+                    'permission.create',
+                    'permission.edit',
+                    'permission.remove'
                 ]
             }
             commit('setPermissions', permissions)

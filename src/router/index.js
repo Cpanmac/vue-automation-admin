@@ -64,13 +64,15 @@ const constantRoutes = [
 import MultilevelMenuExample from './modules/multilevel.menu.example'
 import BreadcrumbExample from './modules/breadcrumb.example'
 import ComponentExample from './modules/component.example'
+import PermissionExample from './modules/permission.example'
 // eslint-disable-next-line no-unused-vars
 import HeaderExample from './modules/header.example'
 
 const asyncRoutes = [
     MultilevelMenuExample,
     BreadcrumbExample,
-    ComponentExample
+    ComponentExample,
+    PermissionExample
 ]
 
 // const asyncRoutes = [
@@ -81,7 +83,8 @@ const asyncRoutes = [
 //         children: [
 //             MultilevelMenuExample,
 //             BreadcrumbExample,
-//             ComponentExample
+//             ComponentExample,
+//             PermissionExample
 //         ]
 //     },
 //     {

@@ -1,7 +1,7 @@
 // import {api} from '@/api'
 
 const state = {
-    account: '',
+    account: localStorage.account,
     token: localStorage.token,
     failure_time: localStorage.failure_time
 }
@@ -49,6 +49,7 @@ const actions = {
 
 const mutations = {
     setData(state, data) {
+        localStorage.setItem('account', data.account)
         localStorage.setItem('token', data.token)
         localStorage.setItem('failure_time', data.failure_time)
         state.account = data.account
@@ -56,8 +57,10 @@ const mutations = {
         state.failure_time = data.failure_time
     },
     removeData(state) {
+        localStorage.removeItem('account')
         localStorage.removeItem('token')
         localStorage.removeItem('failure_time')
+        state.account = ''
         state.token = ''
         state.failure_time = ''
     }
