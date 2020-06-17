@@ -1,5 +1,17 @@
 <template>
     <div>
-        news/detail
+        <editor v-model="form.content" />
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            form: {
+                content: ''
+            }
+        }
+    }
+}
+</script>
