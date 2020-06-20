@@ -33,7 +33,7 @@ export default {
 <style lang="scss" scoped>
 .search-container {
     position: relative;
-    margin: 15px 0;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: #f7f8fa;
     /deep/ .el-form {

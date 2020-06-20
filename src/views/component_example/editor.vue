@@ -1,6 +1,8 @@
 <template>
     <div>
-        <editor v-model="form.content" />
+        <page-main>
+            <editor v-model="form.content" />
+        </page-main>
     </div>
 </template>
 

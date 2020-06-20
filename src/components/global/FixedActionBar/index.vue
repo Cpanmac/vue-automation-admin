@@ -1,12 +1,36 @@
 <template>
-    <div class="actionbar">
+    <div :class="`actionbar ${isBottom ? '' : 'shadow'}`">
         <slot />
     </div>
 </template>
 
 <script>
 export default {
-    name: 'FixedActionBar'
+    name: 'FixedActionBar',
+    data() {
+        return {
+            isBottom: false
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.onScroll)
+    },
+    methods: {
+        onScroll() {
+            // 变量scrollTop是滚动条滚动时，滚动条上端距离顶部的距离
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+            // 变量windowHeight是可视区的高度
+            var windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+            // 变量scrollHeight是滚动条的总高度（当前可滚动的页面的总高度）
+            var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+            // 滚动条到底部
+            if (scrollTop + windowHeight >= scrollHeight) {
+                this.isBottom = true
+            } else {
+                this.isBottom = false
+            }
+        }
+    }
 }
 </script>
 
@@ -20,7 +44,11 @@ export default {
     padding: 20px;
     text-align: center;
     background-color: #fff;
-    box-shadow: 0 -1px 4px rgba(0, 21, 41, 0.08);
+    transition: box-shadow 0.5s;
+    box-shadow: 0 0 1px 0 #ccc;
+    &.shadow {
+        box-shadow: 0 -10px 10px -10px #ccc;
+    }
 }
 /deep/ .el-form-item {
     margin-bottom: 0;

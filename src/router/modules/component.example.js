@@ -3,13 +3,29 @@ import Layout from '@/layout'
 export default {
     path: '/component_example',
     component: Layout,
-    redirect: '/component_example/editor',
+    redirect: '/component_example/pagemain',
     name: 'componentExample',
     meta: {
         title: '组件演示',
         icon: 'component'
     },
     children: [
+        {
+            path: 'pagemain',
+            name: 'componentExamplePagemain',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/pagemain'),
+            meta: {
+                title: '空白页'
+            }
+        },
+        {
+            path: 'pageheader',
+            name: 'componentExamplePageheader',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/pageheader'),
+            meta: {
+                title: '页头'
+            }
+        },
         {
             path: 'editor',
             name: 'componentExampleEditor',

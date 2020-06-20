@@ -24,7 +24,7 @@
                 </el-menu>
             </div>
             <div class="main-container">
-                <div class="breadcrumb-container">
+                <div :class="`breadcrumb-container ${scrollTop ? 'shadow' : ''}`">
                     <el-breadcrumb separator-class="el-icon-arrow-right">
                         <transition-group name="breadcrumb">
                             <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="item.path">{{ item.meta.title }}</el-breadcrumb-item>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="main">
                     <transition name="main" mode="out-in">
-                        <RouterView class="main-wrap" />
+                        <RouterView />
                     </transition>
                 </div>
                 <Copyright v-if="$store.state.global.showCopyright" />
@@ -54,12 +54,16 @@ export default {
     data() {
         return {
             breadcrumbList: [],
-            routePath: ''
+            routePath: '',
+            scrollTop: 0
         }
     },
     computed: {
         variables() {
             return variables
+        },
+        shadowClass() {
+            return this.scrollTop ? 'shadow' : ''
         }
     },
     watch: {
@@ -69,6 +73,7 @@ export default {
     },
     mounted() {
         this.getBreadcrumb()
+        window.addEventListener('scroll', this.onScroll)
     },
     methods: {
         // 根据路由匹配规则，显示面包屑导航
@@ -78,6 +83,10 @@ export default {
                 matched = [{ path: '/dashboard', meta: { title: '控制台' }}].concat(matched)
             }
             this.breadcrumbList = matched
+        },
+        onScroll() {
+            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            console.log(document.body.clientHeight)
         }
     }
 }
@@ -183,7 +192,11 @@ header {
             padding: 0 20px;
             height: $g-breadcrumb-height;
             background-color: #fff;
-            box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+            transition: box-shadow 0.5s;
+            box-shadow: 0 0 1px 0 #ccc;
+            &.shadow {
+                box-shadow: 0 10px 10px -10px #ccc;
+            }
             /deep/ .el-breadcrumb {
                 .el-breadcrumb__item {
                     span {
@@ -199,12 +212,8 @@ header {
             height: 100%;
             flex: auto;
             position: relative;
-            padding: calc(#{$g_breadcrumb_height} + 20px) 20px 20px;
+            padding: $g_breadcrumb_height 0 0;
             overflow: hidden;
-            .main-wrap {
-                padding: 20px;
-                background-color: #fff;
-            }
         }
     }
 }
