@@ -9,10 +9,11 @@ export default {
     name: 'FixedActionBar',
     data() {
         return {
-            isBottom: false
+            isBottom: true
         }
     },
     mounted() {
+        this.onScroll()
         window.addEventListener('scroll', this.onScroll)
     },
     destroyed() {
