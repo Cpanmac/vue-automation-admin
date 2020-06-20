@@ -15,6 +15,9 @@ export default {
     mounted() {
         window.addEventListener('scroll', this.onScroll)
     },
+    destroyed() {
+        window.removeEventListener('scroll', this.onScroll)
+    },
     methods: {
         onScroll() {
             // 变量scrollTop是滚动条滚动时，滚动条上端距离顶部的距离

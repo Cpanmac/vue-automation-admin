@@ -75,6 +75,9 @@ export default {
         this.getBreadcrumb()
         window.addEventListener('scroll', this.onScroll)
     },
+    destroyed() {
+        window.removeEventListener('scroll', this.onScroll)
+    },
     methods: {
         // 根据路由匹配规则，显示面包屑导航
         getBreadcrumb() {
@@ -85,8 +88,7 @@ export default {
             this.breadcrumbList = matched
         },
         onScroll() {
-            this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-            console.log(document.body.clientHeight)
+            this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         }
     }
 }
