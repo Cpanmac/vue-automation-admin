@@ -19,6 +19,8 @@ $g-sidebar-title-bg: $g-header-bg;
 $g-sidebar-menu-color: #89768f;
 // 侧边栏菜单文字选中颜色
 $g-sidebar-menu-active-color: $g-sidebar-menu-color - 50;
+// 侧边栏菜单选中背景色
+$g-sidebar-menu-active-bg: #b5a5a5;
 
 // 输出给js使用
 :export {
@@ -28,4 +30,5 @@ $g-sidebar-menu-active-color: $g-sidebar-menu-color - 50;
     g_sidebar_title_bg: $g-sidebar-title-bg;
     g_sidebar_menu_color: $g-sidebar-menu-color;
     g_sidebar_menu_active_color: $g-sidebar-menu-active-color;
+    g_sidebar_menu_active_bg: $g-sidebar-menu-active-bg;
 }

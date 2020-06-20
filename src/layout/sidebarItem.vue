@@ -97,7 +97,13 @@ export default {
             &:hover {
                 background-color: $g_sidebar_bg - 40 !important;
             }
+            &.is-active {
+                background-color: $g-sidebar-menu-active-bg !important;
+            }
         }
+    }
+    &.is-active {
+        background-color: $g-sidebar-menu-active-bg !important;
     }
     .svg-icon {
         font-size: 20px;

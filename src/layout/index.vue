@@ -17,7 +17,7 @@
         <div class="wrapper">
             <div class="sidebar-container">
                 <Logo />
-                <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="activeMenu">
+                <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
                     <transition-group name="sidebar">
                         <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
                     </transition-group>
@@ -60,9 +60,6 @@ export default {
     computed: {
         variables() {
             return variables
-        },
-        activeMenu() {
-            return this.$route.meta.activeMenu ? this.$route.meta.activeMenu : this.$route.path
         }
     },
     watch: {
@@ -198,6 +195,7 @@ header {
             }
         }
         .main {
+            height: 100%;
             flex: auto;
             position: relative;
             padding: calc(#{$g_breadcrumb_height} + 20px) 20px 20px;
@@ -259,10 +257,10 @@ header + .wrapper {
 }
 .main-enter {
     opacity: 0;
-    transform: translateX(-20px);
+    margin-left: -20px;
 }
 .main-leave-to {
     opacity: 0;
-    transform: translateX(20px);
+    margin-left: 20px;
 }
 </style>

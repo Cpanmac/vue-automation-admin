@@ -25,6 +25,22 @@ export default {
             meta: {
                 title: '处理结果'
             }
+        },
+        {
+            path: 'actionbar',
+            name: 'componentExampleActionbar',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/actionbar'),
+            meta: {
+                title: '固定底部操作栏'
+            }
+        },
+        {
+            path: 'searchbar',
+            name: 'componentExampleSearchbar',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/searchbar'),
+            meta: {
+                title: '搜索栏'
+            }
         }
     ]
 }
