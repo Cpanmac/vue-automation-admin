@@ -34,7 +34,7 @@
                 </div>
                 <div class="main">
                     <transition name="main" mode="out-in">
-                        <RouterView />
+                        <RouterView class="main-wrap" />
                     </transition>
                 </div>
                 <Copyright v-if="$store.state.global.showCopyright" />
@@ -170,6 +170,7 @@ header {
         flex-direction: column;
         min-height: 100%;
         margin-left: $g-sidebar-width;
+        background-color: #f5f7f9;
         .breadcrumb-container {
             position: fixed;
             z-index: 1000;
@@ -200,6 +201,10 @@ header {
             position: relative;
             padding: calc(#{$g_breadcrumb_height} + 20px) 20px 20px;
             overflow: hidden;
+            .main-wrap {
+                padding: 20px;
+                background-color: #fff;
+            }
         }
     }
 }
