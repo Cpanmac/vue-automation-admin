@@ -1,21 +1,33 @@
 <template>
     <div>
-        <ImageUpload
-            v-for="(item, index) in images"
-            :key="index"
-            :url.sync="images[index]"
-            :name="name"
+        <div v-for="(item, index) in url" :key="index" class="images">
+            <el-image :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+        </div>
+        <el-upload
+            v-show="url.length < max"
+            :show-file-list="false"
+            :headers="headers"
+            :action="action"
             :data="data"
-            :module="module"
-            :size="size"
-            :width="width"
-            :height="height"
-            :placeholder="placeholder"
-            :ext="ext"
-            notip
-            @onSuccess="onSuccess($event, index)"
-        />
-        <div v-if="!notip" class="tip">只能上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
+            :name="name"
+            :before-upload="beforeUpload"
+            :on-progress="onProgress"
+            :on-success="onSuccess"
+            drag
+            multiple
+            class="images-upload"
+        >
+            <el-image :src="placeholder" :style="`width:${width}px;height:${height}px;`" fit="fill">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-plus" />
+                </div>
+            </el-image>
+            <div v-show="progress.percent" class="progress" :style="`width:${width}px;height:${height}px;`">
+                <el-image :src="progress.preview" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+                <el-progress type="circle" :width="Math.min(width, height) * 0.8" :percentage="progress.percent" />
+            </div>
+        </el-upload>
+        <div v-if="!notip" class="el-upload__tip">支持上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
     </div>
 </template>
 
@@ -23,23 +35,21 @@
 export default {
     name: 'ImagesUpload',
     props: {
+        action: {
+            type: String,
+            required: true
+        },
         name: {
             type: String,
             default: 'file'
         },
-        module: {
-            type: String,
-            default: 'MEMBER'
-        },
-        size: {
-            type: Number,
-            default: 2
-        },
-        images: {
+        url: {
             type: Array,
-            default: () => {
-                return []
-            }
+            default: () => []
+        },
+        max: {
+            type: Number,
+            default: 3
         },
         width: {
             type: Number,
@@ -53,6 +63,12 @@ export default {
             type: String,
             default: ''
         },
+        headers: {
+            type: Object,
+            default: () => {
+                return {}
+            }
+        },
         data: {
             type: Object,
             default: () => {
@@ -63,28 +79,110 @@ export default {
             type: Boolean,
             default: false
         },
+        size: {
+            type: Number,
+            default: 2
+        },
         ext: {
             type: Array,
             default: () => {
-                return ['jpg', 'png']
+                return ['jpg', 'png', 'gif', 'bmp']
+            }
+        }
+    },
+    data() {
+        return {
+            progress: {
+                preview: '',
+                percent: 0
             }
         }
     },
     methods: {
-        onSuccess(res, index) {
-            this.$emit('onSuccess', res, index)
+        beforeUpload(file) {
+            const fileName = file.name.split('.')
+            const fileExt = fileName[fileName.length - 1]
+            const isTypeOk = this.ext.indexOf(fileExt) >= 0
+            const isSizeOk = file.size / 1024 / 1024 < this.size
+            if (!isTypeOk) {
+                this.$message.error('请上传图片类型文件！')
+            }
+            if (!isSizeOk) {
+                this.$message.error(`上传图片大小不能超过 ${this.size}MB！`)
+            }
+            if (isTypeOk && isSizeOk) {
+                this.progress.preview = URL.createObjectURL(file)
+            }
+            return isTypeOk && isSizeOk
+        },
+        onProgress(file) {
+            this.progress.percent = ~~file.percent
+            if (this.progress.percent == 100) {
+                setTimeout(() => {
+                    this.progress.preview = ''
+                    this.progress.percent = 0
+                }, 1000)
+            }
+        },
+        onSuccess(res) {
+            this.url.push(res.data.url[0])
+            this.$emit('update:url', this.url)
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.image-uploader {
-    margin-right: 20px;
+.images {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    overflow: hidden;
+    .el-image {
+        display: block;
+    }
 }
-.tip {
-    font-size: 12px;
-    color: #606266;
-    line-height: 40px;
+.images-upload {
+    display: inline-block;
+}
+/deep/ .el-upload {
+    .el-upload-dragger {
+        width: auto;
+        height: auto;
+        .el-image {
+            display: block;
+            .image-slot {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                color: #909399;
+                font-size: 30px;
+                background-color: transparent;
+            }
+        }
+        .progress {
+            position: absolute;
+            top: 0;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+            .el-progress {
+                z-index: 1;
+                @include position-center(xy);
+                .el-progress__text {
+                    color: #fff;
+                }
+            }
+        }
+    }
 }
 </style>
