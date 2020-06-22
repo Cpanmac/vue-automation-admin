@@ -1,50 +1,43 @@
 <template>
-    <el-upload
-        :show-file-list="false"
-        :headers="headers"
-        :action="action"
-        :data="myData"
-        :name="name"
-        :before-upload="beforeUpload"
-        :on-progress="onProgress"
-        :on-success="onSuccess"
-        drag
-        class="image-uploader"
-    >
-        <el-image :src="url === '' ? placeholder : url" :style="`width:${width}px;height:${height}px;`" fit="fill">
-            <div slot="error" class="image-slot">
-                <i class="el-icon-plus" />
+    <div>
+        <el-upload
+            :show-file-list="false"
+            :headers="headers"
+            :action="action"
+            :data="data"
+            :name="name"
+            :before-upload="beforeUpload"
+            :on-progress="onProgress"
+            :on-success="onSuccess"
+            drag
+        >
+            <el-image :src="url === '' ? placeholder : url" :style="`width:${width}px;height:${height}px;`" fit="fill">
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-plus" />
+                </div>
+            </el-image>
+            <div v-show="progress.percent" class="progress" :style="`width:${width}px;height:${height}px;`">
+                <el-image :src="progress.preview" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+                <el-progress type="circle" :width="Math.min(width, height) * 0.8" :percentage="progress.percent" />
             </div>
-        </el-image>
-        <div v-show="progress.percent" class="progress" :style="`width:${width}px;height:${height}px;`">
-            <el-image :src="progress.preview" :style="`width:${width}px;height:${height}px;`" fit="fill" />
-            <el-progress type="circle" :width="Math.min(width, height) * 0.8" :percentage="progress.percent" />
-        </div>
-        <div v-if="!notip" slot="tip" class="el-upload__tip">支持上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
-    </el-upload>
+        </el-upload>
+        <div v-if="!notip" class="el-upload__tip">支持上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'ImageUpload',
     props: {
+        action: {
+            type: String,
+            required: true
+        },
         name: {
             type: String,
             default: 'file'
         },
-        module: {
-            type: String,
-            default: 'MEMBER'
-        },
-        size: {
-            type: Number,
-            default: 2
-        },
         url: {
-            type: String,
-            default: ''
-        },
-        view: {
             type: String,
             default: ''
         },
@@ -76,6 +69,10 @@ export default {
             type: Boolean,
             default: false
         },
+        size: {
+            type: Number,
+            default: 2
+        },
         ext: {
             type: Array,
             default: () => {
@@ -85,20 +82,10 @@ export default {
     },
     data() {
         return {
-            action: `${process.env.VUE_APP_API_ROOT}upload/upload`,
             progress: {
                 preview: '',
                 percent: 0
             }
-        }
-    },
-    computed: {
-        myData() {
-            return Object.assign({
-                module: this.module,
-                type: 'IMAGE',
-                token: 'TKD622955070740951'
-            }, this.data)
         }
     },
     methods: {
@@ -136,45 +123,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.image-uploader {
-    line-height: normal;
-    display: inline-block;
-    vertical-align: top;
-    /deep/ .el-upload {
-        .el-upload-dragger {
-            width: auto;
-            height: auto;
-            .el-image {
-                display: block;
-                .image-slot {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-                    height: 100%;
-                    color: #909399;
-                    font-size: 30px;
-                    background-color: transparent;
-                }
+/deep/ .el-upload {
+    .el-upload-dragger {
+        width: auto;
+        height: auto;
+        .el-image {
+            display: block;
+            .image-slot {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                color: #909399;
+                font-size: 30px;
+                background-color: transparent;
             }
-            .progress {
+        }
+        .progress {
+            position: absolute;
+            top: 0;
+            &::after {
+                content: '';
                 position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
                 top: 0;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    left: 0;
-                    top: 0;
-                    background-color: rgba(0, 0, 0, 0.2);
-                }
-                .el-progress {
-                    z-index: 1;
-                    @include position-center(xy);
-                    .el-progress__text {
-                        color: #fff;
-                    }
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+            .el-progress {
+                z-index: 1;
+                @include position-center(xy);
+                .el-progress__text {
+                    color: #fff;
                 }
             }
         }
