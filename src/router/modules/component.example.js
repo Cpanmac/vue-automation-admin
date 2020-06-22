@@ -57,6 +57,14 @@ export default {
             meta: {
                 title: '搜索栏'
             }
+        },
+        {
+            path: 'upload',
+            name: 'componentExampleUpload',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/upload'),
+            meta: {
+                title: '上传'
+            }
         }
     ]
 }
