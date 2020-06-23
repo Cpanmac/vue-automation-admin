@@ -1,7 +1,15 @@
 <template>
     <div>
         <div v-for="(item, index) in url" :key="index" class="images">
-            <el-image :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+            <el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+            <div class="mask">
+                <span title="预览" @click="preview(index)">
+                    <i class="el-icon-zoom-in" />
+                </span>
+                <span title="删除" @click="remove(index)">
+                    <i class="el-icon-delete" />
+                </span>
+            </div>
         </div>
         <el-upload
             v-show="url.length < max"
@@ -14,20 +22,20 @@
             :on-progress="onProgress"
             :on-success="onSuccess"
             drag
-            multiple
             class="images-upload"
         >
-            <el-image :src="placeholder" :style="`width:${width}px;height:${height}px;`" fit="fill">
-                <div slot="error" class="image-slot">
-                    <i class="el-icon-plus" />
-                </div>
-            </el-image>
+            <div class="image-slot" :style="`width:${width}px;height:${height}px;`">
+                <i class="el-icon-plus" />
+            </div>
             <div v-show="progress.percent" class="progress" :style="`width:${width}px;height:${height}px;`">
                 <el-image :src="progress.preview" :style="`width:${width}px;height:${height}px;`" fit="fill" />
                 <el-progress type="circle" :width="Math.min(width, height) * 0.8" :percentage="progress.percent" />
             </div>
         </el-upload>
         <div v-if="!notip" class="el-upload__tip">支持上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
+        <el-dialog :visible.sync="dialogVisible" title="预览" width="800px">
+            <img :src="dialogImageUrl" style="display: block; max-width: 100%; margin: 0 auto;">
+        </el-dialog>
     </div>
 </template>
 
@@ -92,6 +100,8 @@ export default {
     },
     data() {
         return {
+            dialogImageUrl: '',
+            dialogVisible: false,
             progress: {
                 preview: '',
                 percent: 0
@@ -99,6 +109,14 @@ export default {
         }
     },
     methods: {
+        preview(index) {
+            this.dialogImageUrl = this.url[index]
+            this.dialogVisible = true
+        },
+        remove(index) {
+            this.url.splice(index, 1)
+            this.$emit('update:url', this.url)
+        },
         beforeUpload(file) {
             const fileName = file.name.split('.')
             const fileExt = fileName[fileName.length - 1]
@@ -125,8 +143,12 @@ export default {
             }
         },
         onSuccess(res) {
-            this.url.push(res.data.url[0])
-            this.$emit('update:url', this.url)
+            if (res.error == '') {
+                this.url.push(res.data.url[0])
+                this.$emit('update:url', this.url)
+            } else {
+                this.$message.warning(res.error)
+            }
         }
     }
 }
@@ -134,6 +156,7 @@ export default {
 
 <style lang="scss" scoped>
 .images {
+    position: relative;
     display: inline-block;
     margin-right: 10px;
     border: 1px dashed #d9d9d9;
@@ -141,6 +164,27 @@ export default {
     overflow: hidden;
     .el-image {
         display: block;
+    }
+    .mask {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    }
+    &:hover .mask {
+        opacity: 1;
     }
 }
 .images-upload {
@@ -150,18 +194,15 @@ export default {
     .el-upload-dragger {
         width: auto;
         height: auto;
-        .el-image {
-            display: block;
-            .image-slot {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                height: 100%;
-                color: #909399;
-                font-size: 30px;
-                background-color: transparent;
-            }
+        .image-slot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            color: #909399;
+            font-size: 30px;
+            background-color: transparent;
         }
         .progress {
             position: absolute;

@@ -115,8 +115,12 @@ export default {
             }
         },
         onSuccess(res) {
-            this.$emit('update:url', res.data.url[0])
-            this.$emit('onSuccess', res)
+            if (res.error == '') {
+                this.$emit('update:url', res.data.url[0])
+                this.$emit('onSuccess', res)
+            } else {
+                this.$message.warning(res.error)
+            }
         }
     }
 }
