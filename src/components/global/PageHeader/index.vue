@@ -32,6 +32,7 @@ export default {
         margin-bottom: 16px;
     }
     .content {
+        color: #909399;
         font-size: 14px;
         margin-bottom: 16px;
     }

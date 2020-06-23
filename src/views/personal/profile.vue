@@ -1,39 +1,41 @@
 <template>
-    <div class="app-container">
-        <el-row>
-            <el-col :md="24" :lg="12">
-                <el-form ref="form" :model="form" label-width="120px">
-                    <el-form-item label="头像">
-                        <el-avatar :src="form.headimg" />
-                        <el-button size="small" style="margin-left: 10px;" @click="avatarUploadView = true">上传头像</el-button>
-                        <avatarUpload
-                            v-model="avatarUploadView"
-                            field="file"
-                            :url="avatarUrl"
-                            :params="avatarParams"
-                            :width="100"
-                            :height="100"
-                            @crop-upload-success="avatarUploadSuccess"
-                        />
-                    </el-form-item>
-                    <el-form-item label="账号">
-                        {{ form.account }}
-                    </el-form-item>
-                    <el-form-item label="名称">
-                        <el-input v-model="form.name" />
-                    </el-form-item>
-                    <el-form-item label="手机号">
-                        <el-input v-model="form.mobile" />
-                    </el-form-item>
-                    <el-form-item label="QQ">
-                        <el-input v-model="form.qq" />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="onSubmit">提交</el-button>
-                    </el-form-item>
-                </el-form>
-            </el-col>
-        </el-row>
+    <div>
+        <page-main>
+            <el-row>
+                <el-col :md="24" :lg="12">
+                    <el-form ref="form" :model="form" label-width="120px">
+                        <el-form-item label="头像">
+                            <el-avatar :src="form.headimg" />
+                            <el-button size="small" style="margin-left: 10px;" @click="avatarUploadView = true">上传头像</el-button>
+                            <avatarUpload
+                                v-model="avatarUploadView"
+                                field="file"
+                                :url="avatarUrl"
+                                :params="avatarParams"
+                                :width="100"
+                                :height="100"
+                                @crop-upload-success="avatarUploadSuccess"
+                            />
+                        </el-form-item>
+                        <el-form-item label="账号">
+                            {{ form.account }}
+                        </el-form-item>
+                        <el-form-item label="名称">
+                            <el-input v-model="form.name" />
+                        </el-form-item>
+                        <el-form-item label="手机号">
+                            <el-input v-model="form.mobile" />
+                        </el-form-item>
+                        <el-form-item label="QQ">
+                            <el-input v-model="form.qq" />
+                        </el-form-item>
+                    </el-form>
+                </el-col>
+            </el-row>
+        </page-main>
+        <fixed-action-bar>
+            <el-button type="primary" @click="onSubmit">提交</el-button>
+        </fixed-action-bar>
     </div>
 </template>
 
