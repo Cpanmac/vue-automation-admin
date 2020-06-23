@@ -6,29 +6,34 @@
                     <el-row>
                         <el-col :span="12">
                             <el-form-item label="姓名 / 手机号">
-                                <el-input v-model="search.name" placeholder="请输入姓名或者手机号，支持模糊查询" clearable @keyup.enter.native="getDataList" @clear="getDataList" />
+                                <el-input v-model="search.name" placeholder="请输入姓名或者手机号，支持模糊查询" clearable />
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
                         <el-col :span="6">
                             <el-form-item v-auth="'supplay.department.browse'" label="部门">
-                                <el-select v-model="search.department_id" clearable placeholder="请选择部门" @change="onDepartmentChange">
-                                    <el-option v-for="item in departmentList" :key="item.value" :label="item.label" :value="item.value" />
+                                <el-select v-model="search.department_id" clearable placeholder="请选择部门">
+                                    <el-option label="技术部" :value="1" />
+                                    <el-option label="设计部" :value="2" />
+                                    <el-option label="行政部" :value="3" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
                             <el-form-item v-auth="'supplay.department_job.browse'" label="职位">
-                                <el-select v-model="search.department_job_id" clearable placeholder="请选择职位" no-data-text="请先选择部门">
-                                    <el-option v-for="item in departmentJobList" :key="item.value" :label="item.label" :value="item.value" />
+                                <el-select v-model="search.department_job_id" clearable placeholder="请选择职位">
+                                    <el-option label="程序员" :value="1" />
+                                    <el-option label="设计师" :value="2" />
+                                    <el-option label="人事" :value="3" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="6">
                             <el-form-item v-auth="'supplay.role.browse'" label="角色">
                                 <el-select v-model="search.role_id" clearable placeholder="请选择角色">
-                                    <el-option v-for="item in roleList" :key="item.value" :label="item.label" :value="item.value" />
+                                    <el-option label="主管" :value="1" />
+                                    <el-option label="普通职员" :value="2" />
                                 </el-select>
                             </el-form-item>
                         </el-col>
@@ -36,8 +41,8 @@
                     <el-row v-show="searchMore">
                         <el-col :span="24">
                             <el-form-item label="角色">
-                                <el-checkbox v-model="checked">备选项</el-checkbox>
-                                <el-checkbox v-model="checked">备选项</el-checkbox>
+                                <el-checkbox :value="true">备选项</el-checkbox>
+                                <el-checkbox :value="false">备选项</el-checkbox>
                             </el-form-item>
                         </el-col>
                     </el-row>
