@@ -40,6 +40,7 @@
                 <Copyright v-if="$store.state.global.showCopyright" />
             </div>
         </div>
+        <el-backtop />
     </div>
 </template>
 

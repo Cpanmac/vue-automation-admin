@@ -28,7 +28,7 @@ export default {
             // 变量scrollHeight是滚动条的总高度（当前可滚动的页面的总高度）
             var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
             // 滚动条到底部
-            if (scrollTop + windowHeight >= scrollHeight) {
+            if (Math.ceil(scrollTop + windowHeight) >= scrollHeight) {
                 this.isBottom = true
             } else {
                 this.isBottom = false
