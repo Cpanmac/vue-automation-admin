@@ -16,7 +16,7 @@
         </div>
         <div v-if="!notip" slot="tip" class="el-upload__tip">
             <div style="display: inline-block;">
-                <el-alert :title="`上传文件支持 ${ ext.join(' / ') } 格式，且单个文件大小不超过 ${ size }MB`" type="info" show-icon :closable="false" />
+                <el-alert :title="`上传文件支持 ${ ext.join(' / ') } 格式，单个文件大小不超过 ${ size }MB，且文件数量不超过 ${ max } 个`" type="info" show-icon :closable="false" />
             </div>
         </div>
     </el-upload>

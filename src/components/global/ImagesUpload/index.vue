@@ -42,7 +42,7 @@
         </el-upload>
         <div v-if="!notip" class="el-upload__tip">
             <div style="display: inline-block;">
-                <el-alert :title="`上传图片支持 ${ ext.join(' / ') } 格式，且单张图片大小不超过 ${ size }MB`" type="info" show-icon :closable="false" />
+                <el-alert :title="`上传图片支持 ${ ext.join(' / ') } 格式，单张图片大小不超过 ${ size }MB，且图片数量不超过 ${ max } 张`" type="info" show-icon :closable="false" />
             </div>
         </div>
         <el-dialog :visible.sync="dialogVisible" title="预览" width="800px">
