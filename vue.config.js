@@ -39,6 +39,7 @@ fs.readdirSync('src/assets/sprites').map(dirname => {
 const isCDN = process.env.VUE_APP_CDN == 'ON'
 const cdn = {
     css: [
+        'https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css',
         'https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/theme-chalk/index.css'
     ],
     js: [
@@ -47,6 +48,9 @@ const cdn = {
         'https://cdn.jsdelivr.net/npm/vuex@3.4.0/dist/vuex.min.js',
         'https://cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js',
         'https://cdn.jsdelivr.net/npm/qs@6.9.3/dist/qs.js',
+        'https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js',
+        'https://cdn.jsdelivr.net/npm/vue-meta@2.4.0/dist/vue-meta.min.js',
+        'https://cdn.jsdelivr.net/npm/dayjs@1.8.28/dayjs.min.js',
         'https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js'
     ]
 }
@@ -56,6 +60,9 @@ const externals = {
     'vuex': 'Vuex',
     'axios': 'axios',
     'qs': 'Qs',
+    'nprogress': 'NProgress',
+    'vue-meta': 'VueMeta',
+    'dayjs': 'dayjs',
     'element-ui': 'ELEMENT'
 }
 
