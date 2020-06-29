@@ -3,12 +3,20 @@
         <div v-for="(item, index) in url" :key="index" class="images">
             <el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
             <div class="mask">
-                <span title="预览" @click="preview(index)">
-                    <i class="el-icon-zoom-in" />
-                </span>
-                <span title="删除" @click="remove(index)">
-                    <i class="el-icon-delete" />
-                </span>
+                <div class="actions">
+                    <span title="预览" @click="preview(index)">
+                        <i class="el-icon-zoom-in" />
+                    </span>
+                    <span title="移除" @click="remove(index)">
+                        <i class="el-icon-delete" />
+                    </span>
+                    <span v-show="url.length > 1" title="左移" :class="{'disabled': index == 0}" @click="move(index, 'left')">
+                        <i class="el-icon-back" />
+                    </span>
+                    <span v-show="url.length > 1" title="右移" :class="{'disabled': index == url.length - 1}" @click="move(index, 'right')">
+                        <i class="el-icon-right" />
+                    </span>
+                </div>
             </div>
         </div>
         <el-upload
@@ -32,7 +40,11 @@
                 <el-progress type="circle" :width="Math.min(width, height) * 0.8" :percentage="progress.percent" />
             </div>
         </el-upload>
-        <div v-if="!notip" class="el-upload__tip">支持上传 {{ ext.join(' / ') }} 文件，且不超过 {{ size }}MB</div>
+        <div v-if="!notip" class="el-upload__tip">
+            <div style="display: inline-block;">
+                <el-alert :title="`上传图片支持 ${ ext.join(' / ') } 格式，且单张图片大小不超过 ${ size }MB`" type="info" show-icon :closable="false" />
+            </div>
+        </div>
         <el-dialog :visible.sync="dialogVisible" title="预览" width="800px">
             <img :src="dialogImageUrl" style="display: block; max-width: 100%; margin: 0 auto;">
         </el-dialog>
@@ -47,6 +59,18 @@ export default {
             type: String,
             required: true
         },
+        headers: {
+            type: Object,
+            default: () => {
+                return {}
+            }
+        },
+        data: {
+            type: Object,
+            default: () => {
+                return {}
+            }
+        },
         name: {
             type: String,
             default: 'file'
@@ -58,6 +82,10 @@ export default {
         max: {
             type: Number,
             default: 3
+        },
+        size: {
+            type: Number,
+            default: 2
         },
         width: {
             type: Number,
@@ -71,25 +99,9 @@ export default {
             type: String,
             default: ''
         },
-        headers: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
-        data: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
         notip: {
             type: Boolean,
             default: false
-        },
-        size: {
-            type: Number,
-            default: 2
         },
         ext: {
             type: Array,
@@ -109,13 +121,24 @@ export default {
         }
     },
     methods: {
+        // 预览
         preview(index) {
             this.dialogImageUrl = this.url[index]
             this.dialogVisible = true
         },
+        // 移除
         remove(index) {
             this.url.splice(index, 1)
             this.$emit('update:url', this.url)
+        },
+        // 移动
+        move(index, type) {
+            if (type == 'left' && index != 0) {
+                this.url[index] = this.url.splice(index - 1, 1, this.url[index])[0]
+            }
+            if (type == 'right' && index != this.url.length - 1) {
+                this.url[index] = this.url.splice(index + 1, 1, this.url[index])[0]
+            }
         },
         beforeUpload(file) {
             const fileName = file.name.split('.')
@@ -123,7 +146,7 @@ export default {
             const isTypeOk = this.ext.indexOf(fileExt) >= 0
             const isSizeOk = file.size / 1024 / 1024 < this.size
             if (!isTypeOk) {
-                this.$message.error('请上传图片类型文件！')
+                this.$message.error(`上传图片只支持 ${ this.ext.join(' / ') } 格式！`)
             }
             if (!isSizeOk) {
                 this.$message.error(`上传图片大小不能超过 ${this.size}MB！`)
@@ -136,19 +159,12 @@ export default {
         onProgress(file) {
             this.progress.percent = ~~file.percent
             if (this.progress.percent == 100) {
-                setTimeout(() => {
-                    this.progress.preview = ''
-                    this.progress.percent = 0
-                }, 1000)
+                this.progress.preview = ''
+                this.progress.percent = 0
             }
         },
         onSuccess(res) {
-            if (res.error == '') {
-                this.url.push(res.data.url[0])
-                this.$emit('update:url', this.url)
-            } else {
-                this.$message.warning(res.error)
-            }
+            this.$emit('onSuccess', res)
         }
     }
 }
@@ -171,16 +187,31 @@ export default {
         top: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         font-size: 24px;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.5);
         transition: all 0.3s;
-        span {
-            margin: 0 10px;
-            cursor: pointer;
+        .actions {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            @include position-center(xy);
+            span {
+                width: 50%;
+                text-align: center;
+                color: #fff;
+                cursor: pointer;
+                transition: all 0.1s;
+                &.disabled {
+                    color: #999;
+                    cursor: not-allowed;
+                }
+                &:hover:not(.disabled) {
+                    transform: scale(1.5);
+                }
+            }
         }
     }
     &:hover .mask {
@@ -194,6 +225,9 @@ export default {
     .el-upload-dragger {
         width: auto;
         height: auto;
+        &.is-dragover {
+            border-width: 1px;
+        }
         .image-slot {
             display: flex;
             justify-content: center;
