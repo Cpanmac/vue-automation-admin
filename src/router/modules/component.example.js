@@ -65,6 +65,14 @@ export default {
             meta: {
                 title: '上传'
             }
+        },
+        {
+            path: 'trend',
+            name: 'componentExampleTrend',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/trend'),
+            meta: {
+                title: '趋势标记'
+            }
         }
     ]
 }
