@@ -2,6 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import router from '@/router/index'
 import store from '@/store/index'
+import { Message } from 'element-ui'
 
 const toLogin = () => {
     router.push({
@@ -58,13 +59,7 @@ api.interceptors.response.use(
                 toLogin()
                 return false
             }
-            // swal({
-            // 	icon: 'error',
-            // 	title: '系统错误',
-            // 	text: response.data.error,
-            // 	timer: 2000,
-            // 	button: false
-            // });
+            Message.error(response.data.error)
             return Promise.reject(response.data)
         }
         return Promise.resolve(response.data)
