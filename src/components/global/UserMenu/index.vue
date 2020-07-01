@@ -9,7 +9,8 @@
             <el-dropdown-item command="dashboard">控制台</el-dropdown-item>
             <el-dropdown-item command="profile">个人资料</el-dropdown-item>
             <el-dropdown-item command="password">修改密码</el-dropdown-item>
-            <el-dropdown-item divided command="logout">登出</el-dropdown-item>
+            <el-dropdown-item command="setting">个人设置</el-dropdown-item>
+            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
     </el-dropdown>
 </template>
@@ -27,12 +28,17 @@ export default {
                     break
                 case 'profile':
                     this.$router.push({
-                        name: 'prosonalProfile'
+                        name: 'personalProfile'
                     })
                     break
                 case 'password':
                     this.$router.push({
-                        name: 'prosonalEditPassword'
+                        name: 'personalEditPassword'
+                    })
+                    break
+                case 'setting':
+                    this.$router.push({
+                        name: 'personalSetting'
                     })
                     break
                 case 'logout':

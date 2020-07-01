@@ -7,6 +7,7 @@ import 'nprogress/nprogress.css' // progress bar style
 Vue.use(Router)
 
 import Layout from '@/layout'
+import KeepAliveLayout from '@/layout/keepAlive'
 
 const constantRoutes = [
     {
@@ -32,7 +33,7 @@ const constantRoutes = [
             },
             {
                 path: 'personal',
-                component: { render: h => h('router-view') },
+                component: KeepAliveLayout,
                 redirect: '/personal/profile',
                 meta: {
                     title: '个人中心',
@@ -41,7 +42,7 @@ const constantRoutes = [
                 children: [
                     {
                         path: 'profile',
-                        name: 'prosonalProfile',
+                        name: 'personalProfile',
                         component: () => import('@/views/personal/profile'),
                         meta: {
                             title: '个人资料'
@@ -49,10 +50,18 @@ const constantRoutes = [
                     },
                     {
                         path: 'edit/password',
-                        name: 'prosonalEditPassword',
+                        name: 'personalEditPassword',
                         component: () => import('@/views/personal/edit.password'),
                         meta: {
                             title: '修改密码'
+                        }
+                    },
+                    {
+                        path: 'setting',
+                        name: 'personalSetting',
+                        component: () => import('@/views/personal/setting'),
+                        meta: {
+                            title: '个人设置'
                         }
                     }
                 ]

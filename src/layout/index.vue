@@ -34,7 +34,9 @@
                 </div>
                 <div class="main">
                     <transition name="main" mode="out-in">
-                        <RouterView />
+                        <keep-alive :include="keepAliveList">
+                            <RouterView />
+                        </keep-alive>
                     </transition>
                 </div>
                 <Copyright v-if="$store.state.global.showCopyright" />
@@ -65,11 +67,17 @@ export default {
         },
         shadowClass() {
             return this.scrollTop ? 'shadow' : ''
+        },
+        keepAliveList() {
+            return this.$store.state.keepAlive.list
         }
     },
     watch: {
         $route() {
             this.getBreadcrumb()
+        },
+        keepAliveList: val => {
+            process.env.NODE_ENV == 'development' && console.log(`[ keepAliveList ] ${val}`)
         }
     },
     mounted() {
