@@ -17,11 +17,7 @@ export default {
         },
         type: {
             type: String,
-            validator(value) {
-                return ['up', 'down'].some(item => {
-                    return item === value
-                })
-            },
+            validator: val => ['up', 'down'].includes(val),
             default: 'up'
         },
         prefix: {

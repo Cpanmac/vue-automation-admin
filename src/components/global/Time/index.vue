@@ -12,11 +12,7 @@ export default {
         },
         cutOff: {
             type: String,
-            validator(value) {
-                return ['', 'minute', 'hour', 'day', 'month', 'year'].some(item => {
-                    return item === value
-                })
-            },
+            validator: val => ['', 'minute', 'hour', 'day', 'month', 'year'].includes(val),
             default: ''
         }
     },

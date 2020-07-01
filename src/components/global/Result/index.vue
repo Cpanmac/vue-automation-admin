@@ -26,11 +26,7 @@ export default {
     props: {
         type: {
             type: String,
-            validator(value) {
-                return ['success', 'warning', 'error'].some(item => {
-                    return item === value
-                })
-            },
+            validator: val => ['success', 'warning', 'error'].includes(val),
             required: true
         },
         title: {
