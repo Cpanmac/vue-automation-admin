@@ -83,9 +83,7 @@ export default {
         }
     },
     created() {},
-    mounted() {
-        console.log('mounted')
-    },
+    mounted() {},
     methods: {
         handleSuccess(res) {
             if (res.error == '') {
