@@ -17,7 +17,10 @@ export default {
         }
     },
     watch: {
-        $route: 'routeChange'
+        $route: 'routeChange',
+        '$store.state.keepAlive.list': val => {
+            process.env.NODE_ENV == 'development' && console.log(`[ keepAliveList ] ${val}`)
+        }
     },
     methods: {
         reload() {

@@ -34,18 +34,18 @@ const constantRoutes = [
             {
                 path: 'personal',
                 component: KeepAliveLayout,
-                redirect: '/personal/profile',
+                redirect: '/personal/setting',
                 meta: {
                     title: '个人中心',
                     breadcrumb: false
                 },
                 children: [
                     {
-                        path: 'profile',
-                        name: 'personalProfile',
-                        component: () => import('@/views/personal/profile'),
+                        path: 'setting',
+                        name: 'personalSetting',
+                        component: () => import('@/views/personal/setting'),
                         meta: {
-                            title: '个人资料'
+                            title: '个人设置'
                         }
                     },
                     {
@@ -54,14 +54,6 @@ const constantRoutes = [
                         component: () => import('@/views/personal/edit.password'),
                         meta: {
                             title: '修改密码'
-                        }
-                    },
-                    {
-                        path: 'setting',
-                        name: 'personalSetting',
-                        component: () => import('@/views/personal/setting'),
-                        meta: {
-                            title: '个人设置'
                         }
                     }
                 ]
@@ -72,6 +64,7 @@ const constantRoutes = [
 
 import MultilevelMenuExample from './modules/multilevel.menu.example'
 import BreadcrumbExample from './modules/breadcrumb.example'
+import KeepAliveExample from './modules/keep.alive.example'
 import ComponentExample from './modules/component.example'
 import PermissionExample from './modules/permission.example'
 // eslint-disable-next-line no-unused-vars
@@ -80,6 +73,7 @@ import HeaderExample from './modules/header.example'
 const asyncRoutes = [
     MultilevelMenuExample,
     BreadcrumbExample,
+    KeepAliveExample,
     ComponentExample,
     PermissionExample
 ]

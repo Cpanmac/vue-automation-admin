@@ -98,14 +98,9 @@ export default {
             })
         }
     },
-    beforeRouteEnter(to, from, next) {
-        next(vm => {
-            vm.$store.commit('keepAlive/add', 'PersonalSetting')
-        })
-    },
     beforeRouteLeave(to, from, next) {
-        if (!['personalEditPassword'].includes(to.name)) {
-            this.$store.commit('keepAlive/remove', 'PersonalSetting')
+        if (['personalEditPassword'].includes(to.name)) {
+            this.$store.commit('keepAlive/add', 'PersonalSetting')
         }
         next()
     }

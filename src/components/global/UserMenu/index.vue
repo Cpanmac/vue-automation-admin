@@ -7,8 +7,6 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
             <el-dropdown-item command="dashboard">控制台</el-dropdown-item>
-            <el-dropdown-item command="profile">个人资料</el-dropdown-item>
-            <el-dropdown-item command="password">修改密码</el-dropdown-item>
             <el-dropdown-item command="setting">个人设置</el-dropdown-item>
             <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
@@ -24,16 +22,6 @@ export default {
                 case 'dashboard':
                     this.$router.push({
                         name: 'dashboard'
-                    })
-                    break
-                case 'profile':
-                    this.$router.push({
-                        name: 'personalProfile'
-                    })
-                    break
-                case 'password':
-                    this.$router.push({
-                        name: 'personalEditPassword'
                     })
                     break
                 case 'setting':

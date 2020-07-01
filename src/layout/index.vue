@@ -51,6 +51,7 @@ import SidebarItem from './sidebarItem'
 import variables from '@/assets/styles/resources/variables.scss'
 
 export default {
+    name: 'Layout',
     components: {
         SidebarItem
     },
@@ -75,9 +76,6 @@ export default {
     watch: {
         $route() {
             this.getBreadcrumb()
-        },
-        keepAliveList: val => {
-            process.env.NODE_ENV == 'development' && console.log(`[ keepAliveList ] ${val}`)
         }
     },
     mounted() {

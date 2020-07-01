@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import KeepAliveLayout from '@/layout/keepAlive'
 
 export default {
     path: '/breadcrumb_example',
@@ -31,7 +32,7 @@ export default {
         {
             path: 'list2',
             name: 'breadcrumbExampleList2',
-            component: { render: h => h('router-view') },
+            component: KeepAliveLayout,
             redirect: '/breadcrumb_example/list2',
             meta: {
                 title: '列表2（层级模式）'
