@@ -70,47 +70,6 @@ export default {
                     ]
                 }
             ]
-        },
-        {
-            path: 'level2',
-            name: 'keepAliveExample2',
-            component: KeepAliveLayout,
-            redirect: '/keep_alive_example/level2/page',
-            meta: {
-                title: '上级路由',
-                sidebar: false
-            },
-            children: [
-                {
-                    path: 'page',
-                    name: 'keepAliveExamplePage1',
-                    component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/level2/page'),
-                    meta: {
-                        title: '上级路由',
-                        sidebar: false,
-                        breadcrumb: false,
-                        activeMenu: '/keep_alive_example/level2/level3/page'
-                    }
-                },
-                {
-                    path: 'level3',
-                    component: { render: h => h('router-view') },
-                    redirect: '/keep_alive_example/level2/level3/page',
-                    meta: {
-                        title: '子路由'
-                    },
-                    children: [
-                        {
-                            path: 'page',
-                            name: 'keepAliveExamplePage2',
-                            component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/level2/level3/page'),
-                            meta: {
-                                title: '点我'
-                            }
-                        }
-                    ]
-                }
-            ]
         }
     ]
 }
