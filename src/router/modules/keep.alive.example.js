@@ -16,7 +16,9 @@ export default {
             name: 'keepAliveExamplePage',
             component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/page'),
             meta: {
-                title: '同级/下级路由'
+                title: '演示',
+                sidebar: false,
+                activeMenu: '/keep_alive_example'
             }
         },
         {
@@ -36,17 +38,36 @@ export default {
             meta: {
                 title: '下级路由',
                 sidebar: false,
-                breadcrumb: false,
                 activeMenu: '/keep_alive_example/page'
             },
             children: [
                 {
                     path: '',
                     name: 'keepAliveExampleDetail2',
-                    component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/detail2'),
+                    component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/detail'),
                     meta: {
                         title: '下级路由'
                     }
+                },
+                {
+                    path: 'detail3',
+                    component: KeepAliveLayout,
+                    redirect: '/keep_alive_example/detail2/detail3',
+                    meta: {
+                        title: '下下级路由',
+                        sidebar: false,
+                        activeMenu: '/keep_alive_example/page'
+                    },
+                    children: [
+                        {
+                            path: '',
+                            name: 'keepAliveExampleDetail3',
+                            component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/detail'),
+                            meta: {
+                                title: '下下级路由'
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -56,15 +77,19 @@ export default {
             component: KeepAliveLayout,
             redirect: '/keep_alive_example/level2/page',
             meta: {
-                title: '层级路由'
+                title: '上级路由',
+                sidebar: false
             },
             children: [
                 {
                     path: 'page',
-                    name: 'keepAliveExample2-1',
+                    name: 'keepAliveExamplePage1',
                     component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/level2/page'),
                     meta: {
-                        title: '页面1'
+                        title: '上级路由',
+                        sidebar: false,
+                        breadcrumb: false,
+                        activeMenu: '/keep_alive_example/level2/level3/page'
                     }
                 },
                 {
@@ -80,7 +105,7 @@ export default {
                             name: 'keepAliveExamplePage2',
                             component: () => import(/* webpackChunkName: 'keep_alive_example' */ '@/views/keep_alive_example/level2/level3/page'),
                             meta: {
-                                title: '页面2'
+                                title: '点我'
                             }
                         }
                     ]

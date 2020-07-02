@@ -1,8 +1,7 @@
 <template>
     <div>
         <page-main>
-            <el-input-number v-model="num" />
-            <el-button @click="go">进入同级其它路由页面</el-button>
+            <el-button @click="$router.go(-1)">返回</el-button>
         </page-main>
     </div>
 </template>
@@ -12,28 +11,11 @@ export default {
     name: 'KeepAliveExamplePage1',
     props: {},
     data() {
-        return {
-            num: 1
-        }
-    },
-    beforeRouteLeave(to, from, next) {
-        if (['keepAliveExamplePage2'].includes(to.name)) {
-            this.$store.commit('keepAlive/add', 'KeepAliveExamplePage1')
-        }
-        if (['keepAliveExamplePage'].includes(to.name)) {
-            this.$store.commit('keepAlive/add', 'KeepAliveLayout')
-        }
-        next()
+        return {}
     },
     created() {},
     mounted() {},
-    methods: {
-        go() {
-            this.$router.push({
-                name: 'keepAliveExamplePage2'
-            })
-        }
-    }
+    methods: {}
 }
 </script>
 
