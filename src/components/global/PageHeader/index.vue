@@ -1,7 +1,12 @@
 <template>
     <div class="header">
-        <div class="title">{{ title }}</div>
-        <div v-if="content" class="content">{{ content }}</div>
+        <div>
+            <div class="title">{{ title }}</div>
+            <div v-if="content" class="content">{{ content }}</div>
+        </div>
+        <div v-if="$slots.default">
+            <slot />
+        </div>
     </div>
 </template>
 
@@ -23,18 +28,20 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
-    padding: 16px 20px 0;
+    padding: 16px 20px;
     background: #fff;
     border-bottom: 1px solid #e8eaec;
     .title {
         font-size: 22px;
-        margin-bottom: 16px;
     }
     .content {
         color: #909399;
         font-size: 14px;
-        margin-bottom: 16px;
+        margin-top: 10px;
     }
 }
 </style>
