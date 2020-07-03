@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="page-main">
         <slot />
     </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
+.page-main {
     margin: 20px;
     padding: 20px;
     background-color: #fff;

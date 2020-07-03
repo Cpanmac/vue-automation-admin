@@ -67,6 +67,14 @@ export default {
             }
         },
         {
+            path: 'imagepreview',
+            name: 'componentExampleImagePreview',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/image.preview'),
+            meta: {
+                title: '图片预览'
+            }
+        },
+        {
             path: 'trend',
             name: 'componentExampleTrend',
             component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/trend'),
