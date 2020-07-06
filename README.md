@@ -15,6 +15,8 @@
 
 ![](http://eoner.gitee.io/vue-automation-admin/images/layout1.png)
 ![](http://eoner.gitee.io/vue-automation-admin/images/layout2.png)
+![](http://eoner.gitee.io/vue-automation-admin/images/layout3.png)
+![](http://eoner.gitee.io/vue-automation-admin/images/layout4.png)
 
 ## 文档
 
