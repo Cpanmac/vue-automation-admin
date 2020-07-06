@@ -67,39 +67,43 @@ import BreadcrumbExample from './modules/breadcrumb.example'
 import KeepAliveExample from './modules/keep.alive.example'
 import ComponentExample from './modules/component.example'
 import PermissionExample from './modules/permission.example'
-// eslint-disable-next-line no-unused-vars
 import HeaderExample from './modules/header.example'
 
-const asyncRoutes = [
-    MultilevelMenuExample,
-    BreadcrumbExample,
-    KeepAliveExample,
-    ComponentExample,
-    PermissionExample
-]
-
-// const asyncRoutes = [
-//     {
-//         meta: {
-//             title: '演示'
-//         },
-//         children: [
-//             MultilevelMenuExample,
-//             BreadcrumbExample,
-//             ComponentExample,
-//             PermissionExample
-//         ]
-//     },
-//     {
-//         meta: {
-//             title: '头部导航2',
-//             icon: 'layout'
-//         },
-//         children: [
-//             HeaderExample
-//         ]
-//     }
-// ]
+// 此处的代码仅作演示用，实际开发中，头部只会保留一种展示形式，要么显示，要么不显示，所以只需保留 if-else 条件里的其中一段即可
+let asyncRoutes
+if (store.state.global.showHeader) {
+    asyncRoutes = [
+        {
+            meta: {
+                title: '演示'
+            },
+            children: [
+                MultilevelMenuExample,
+                BreadcrumbExample,
+                KeepAliveExample,
+                ComponentExample,
+                PermissionExample
+            ]
+        },
+        {
+            meta: {
+                title: '头部导航2',
+                icon: 'layout'
+            },
+            children: [
+                HeaderExample
+            ]
+        }
+    ]
+} else {
+    asyncRoutes = [
+        MultilevelMenuExample,
+        BreadcrumbExample,
+        KeepAliveExample,
+        ComponentExample,
+        PermissionExample
+    ]
+}
 
 const lastRoute = [{
     path: '*',

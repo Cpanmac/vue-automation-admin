@@ -2,17 +2,19 @@
     <div id="app-main">
         <header v-if="$store.state.global.showHeader">
             <div class="header-container">
-                <Logo />
-                <div class="nav">
-                    <template v-for="(item, index) in $store.state.global.allRoutes">
-                        <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
-                            <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
-                            <span>{{ item.meta.title }}</span>
-                        </div>
-                    </template>
+                <div class="main">
+                    <Logo />
+                    <div class="nav">
+                        <template v-for="(item, index) in $store.state.global.allRoutes">
+                            <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
+                                <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                                <span>{{ item.meta.title }}</span>
+                            </div>
+                        </template>
+                    </div>
                 </div>
+                <UserMenu />
             </div>
-            <UserMenu />
         </header>
         <div class="wrapper">
             <div class="sidebar-container">
@@ -103,8 +105,19 @@ export default {
 
 <style lang="scss" scoped>
 #app-main {
-    min-width: 1000px;
+    width: $g-app-width;
     height: 100%;
+    margin: 0 auto;
+    @if ($g-app-width == 100%) {
+        @if ($g-app-min-width != 100%) {
+            min-width: $g-app-min-width;
+        }
+    }
+    @else {
+        @if ($g-app-max-width) {
+            max-width: 100%;
+        }
+    }
 }
 header {
     position: fixed;
@@ -114,14 +127,25 @@ header {
     right: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 20px;
     height: $g-header-height;
     background-color: $g-header-bg;
     color: #fff;
     .header-container {
+        width: $g-header-width;
+        margin: 0 auto;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        .main {
+            display: flex;
+            align-items: center;
+        }
+    }
+    @media screen and (max-width: $g-header-width) {
+        .header-container {
+            width: 100%;
+        }
     }
     /deep/ .title {
         position: relative;
@@ -189,12 +213,18 @@ header {
         min-height: 100%;
         margin-left: $g-sidebar-width;
         background-color: #f5f7f9;
+        box-shadow: 1px 0 0 0 $g-main-bg - 20;
         .breadcrumb-container {
+            $translate-x: $g-sidebar-width * -1 / 2;
+
             position: fixed;
-            z-index: 1000;
+            z-index: 999;
             top: 0;
-            left: $g-sidebar-width;
             right: 0;
+            left: 50%;
+            width: calc(#{$g_app_width} - #{$g_sidebar_width});
+            margin-left: $g-sidebar-width;
+            transform: translateX(-50%) translateX($translate-x);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -215,6 +245,11 @@ header {
                         color: #97a8be;
                     }
                 }
+            }
+        }
+        @media screen and (max-width: $g_app_width) {
+            .breadcrumb-container {
+                width: calc(100% - #{$g_sidebar_width});
             }
         }
         .main {

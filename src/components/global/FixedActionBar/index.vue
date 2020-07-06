@@ -40,11 +40,16 @@ export default {
 
 <style lang="scss" scoped>
 .actionbar {
+    $translate-x: $g-sidebar-width * -1 / 2;
+
     position: fixed;
-    left: $g-sidebar-width;
+    z-index: 4;
     right: 0;
     bottom: 0;
-    z-index: 4;
+    left: 50%;
+    width: calc(#{$g_app_width} - #{$g_sidebar_width});
+    margin-left: $g-sidebar-width;
+    transform: translateX(-50%) translateX($translate-x);
     padding: 20px;
     text-align: center;
     background-color: #fff;
@@ -52,6 +57,11 @@ export default {
     box-shadow: 0 0 1px 0 #ccc;
     &.shadow {
         box-shadow: 0 -10px 10px -10px #ccc;
+    }
+}
+@media screen and (max-width: $g_app_width) {
+    .actionbar {
+        width: calc(100% - #{$g_sidebar_width});
     }
 }
 /deep/ .el-form-item {
