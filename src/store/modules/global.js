@@ -26,8 +26,10 @@ function filterAsyncRoutes(routes, permissions) {
         if (hasPermission(permissions, tmp)) {
             if (tmp.children) {
                 tmp.children = filterAsyncRoutes(tmp.children, permissions)
+                tmp.children.length && res.push(tmp)
+            } else {
+                res.push(tmp)
             }
-            res.push(tmp)
         }
     })
     return res
@@ -90,11 +92,6 @@ const actions = {
             if (state.openPermission) {
                 const permissions = await dispatch('getPermissions')
                 accessedRoutes = filterAsyncRoutes(data.asyncRoutes, permissions)
-                for (let i in accessedRoutes) {
-                    if (!accessedRoutes[i].children.length) {
-                        accessedRoutes.splice(i, 1)
-                    }
-                }
             } else {
                 accessedRoutes = data.asyncRoutes
             }
