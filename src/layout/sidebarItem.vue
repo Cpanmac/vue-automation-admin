@@ -2,12 +2,12 @@
     <div v-if="item.meta.sidebar !== false">
         <!-- eslint-disable-next-line vue/require-component-is -->
         <component v-if="!hasChildren" v-bind="linkProps(resolvePath(item.path))">
-            <el-menu-item :index="resolvePath(item.path)">
+            <el-menu-item :title="item.meta.title" :index="resolvePath(item.path)">
                 <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
                 <span slot="title">{{ item.meta.title }}</span>
             </el-menu-item>
         </component>
-        <el-submenu v-else :index="resolvePath(item.path)">
+        <el-submenu v-else :title="item.meta.title" :index="resolvePath(item.path)">
             <template slot="title">
                 <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
                 <span>{{ item.meta.title }}</span>
