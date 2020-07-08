@@ -59,6 +59,14 @@ export default {
             }
         },
         {
+            path: 'batchactionbar',
+            name: 'componentExampleBatchactionbar',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/batchactionbar'),
+            meta: {
+                title: '批量操作栏'
+            }
+        },
+        {
             path: 'upload',
             name: 'componentExampleUpload',
             component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/upload'),

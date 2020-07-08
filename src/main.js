@@ -35,7 +35,7 @@ import '@/assets/styles/reset.scss'
 
 Vue.config.productionTip = false
 
-new Vue({
+Vue.prototype.$eventBus = new Vue({
     router,
     store,
     render: h => h(App)
