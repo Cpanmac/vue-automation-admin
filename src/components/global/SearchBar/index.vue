@@ -33,9 +33,12 @@ export default {
 <style lang="scss" scoped>
 .search-container {
     position: relative;
-    margin-bottom: 20px;
+    margin: 20px 0;
     padding: 20px;
     background-color: #f7f8fa;
+    &:first-child {
+        margin-top: 0;
+    }
     /deep/ .el-form {
         margin-bottom: -18px;
         .el-select {
