@@ -40,8 +40,6 @@ export default {
 
 <style lang="scss" scoped>
 .actionbar {
-    $translate-x: $g-sidebar-width * -1 / 2;
-
     position: fixed;
     z-index: 4;
     right: 0;
@@ -49,7 +47,7 @@ export default {
     left: 50%;
     width: calc(#{$g_app_width} - #{$g_sidebar_width});
     margin-left: $g-sidebar-width;
-    transform: translateX(-50%) translateX($translate-x);
+    transform: translateX(-50%) translateX($g-sidebar-width * -1 / 2);
     padding: 20px;
     text-align: center;
     background-color: #fff;
@@ -59,7 +57,7 @@ export default {
         box-shadow: 0 -10px 10px -10px #ccc;
     }
 }
-@media screen and (max-width: $g_app_width) {
+@media screen and (max-width: $g-app-width) {
     .actionbar {
         width: calc(100% - #{$g_sidebar_width});
     }

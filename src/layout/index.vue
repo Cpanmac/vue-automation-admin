@@ -215,8 +215,6 @@ header {
         background-color: #f5f7f9;
         box-shadow: 1px 0 0 0 $g-main-bg - 20;
         .breadcrumb-container {
-            $translate-x: $g-sidebar-width * -1 / 2;
-
             position: fixed;
             z-index: 999;
             top: 0;
@@ -224,7 +222,7 @@ header {
             left: 50%;
             width: calc(#{$g_app_width} - #{$g_sidebar_width});
             margin-left: $g-sidebar-width;
-            transform: translateX(-50%) translateX($translate-x);
+            transform: translateX(-50%) translateX($g-sidebar-width * -1 / 2);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -247,7 +245,7 @@ header {
                 }
             }
         }
-        @media screen and (max-width: $g_app_width) {
+        @media screen and (max-width: $g-app-width) {
             .breadcrumb-container {
                 width: calc(100% - #{$g_sidebar_width});
             }
