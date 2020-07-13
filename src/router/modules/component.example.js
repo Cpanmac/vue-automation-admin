@@ -91,6 +91,14 @@ export default {
             }
         },
         {
+            path: 'area',
+            name: 'componentExampleArea',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/area'),
+            meta: {
+                title: '省市区联动'
+            }
+        },
+        {
             path: 'amap',
             name: 'componentExampleAmap',
             component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/amap'),
