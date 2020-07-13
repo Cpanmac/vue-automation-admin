@@ -15,7 +15,7 @@ export default {
     props: {},
     data() {
         return {
-            lnglat: [120.14053, 30.2705]
+            lnglat: [120.068384, 30.290939]
         }
     },
     created() {},

@@ -53,7 +53,7 @@ export default {
         if (typeof AMap === 'undefined') {
             var script = document.createElement('script')
             script.charset = 'utf-8'
-            script.src = `https://webapi.amap.com/maps?v=${this.v}&key=${this.appkey}&plugin=AMap.Autocomplete,AMap.PlaceSearch`
+            script.src = `https://webapi.amap.com/maps?v=${this.v}&key=${this.appkey}&plugin=AMap.Autocomplete`
             document.head.appendChild(script)
             script.onload = () => {
                 this.init()
@@ -75,8 +75,10 @@ export default {
                 draggable: true,
                 cursor: 'move'
             })
+            this.marker.on('dragend', e => {
+                this.$emit('update:lnglat', [e.lnglat.lng, e.lnglat.lat])
+            })
             this.autoComplete = new AMap.Autocomplete()
-            this.placeSearch = new AMap.PlaceSearch()
             this.map.on('click', e => {
                 this.addMarket(e.lnglat.getLng(), e.lnglat.getLat())
             })
