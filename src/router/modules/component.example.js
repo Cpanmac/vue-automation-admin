@@ -89,6 +89,14 @@ export default {
             meta: {
                 title: '趋势标记'
             }
+        },
+        {
+            path: 'amap',
+            name: 'componentExampleAmap',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/amap'),
+            meta: {
+                title: '高德地图点标记'
+            }
         }
     ]
 }

@@ -6,7 +6,8 @@ module.exports = {
     },
     globals: {
         process: true,
-        require: true
+        require: true,
+        AMap: true
     },
     extends: [
         'plugin:vue/strongly-recommended',
