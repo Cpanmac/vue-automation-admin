@@ -124,7 +124,9 @@ export default {
         z-index: 1;
         left: 72px;
         top: 15px;
-        box-shadow: 0 0 5px #999;
+        /deep/ .el-input input {
+            box-shadow: 0 0 5px #999;
+        }
     }
 }
 </style>
