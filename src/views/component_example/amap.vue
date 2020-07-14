@@ -3,7 +3,7 @@
         <page-main>
             <div>经纬度：{{ lnglat }}</div>
             <!-- 注意这里替换高德地图的appkey -->
-            <amap-market appkey="8f7844cc502e17bb549c04c9aaadaf94" :lnglat.sync="lnglat" :height="600" />
+            <amap-marker appkey="8f7844cc502e17bb549c04c9aaadaf94" :lnglat.sync="lnglat" :height="600" />
         </page-main>
     </div>
 </template>

@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: 'AmapMarket',
+    name: 'AmapMarker',
     props: {
         v: {
             type: String,
