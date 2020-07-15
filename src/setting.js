@@ -10,5 +10,7 @@ export default {
     // 是否显示头部
     showHeader: false,
     // 是否显示版权信息
-    showCopyright: true
+    showCopyright: true,
+    // 是否开启动态标题
+    dynamicTitle: false
 }

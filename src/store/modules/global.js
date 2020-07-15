@@ -39,6 +39,7 @@ const state = {
     openPermission: setting.openPermission,
     showHeader: setting.showHeader,
     showCopyright: setting.showCopyright,
+    dynamicTitle: setting.dynamicTitle,
     // 如果未开启 openPermission 则 permissionInit 和 permissions 参数不会使用到
     permissionInit: false,
     permissions: [],
@@ -46,7 +47,9 @@ const state = {
     allRoutes: [],
     headerNavActive: 0,
     // 侧边栏导航，通过路由自动生成
-    sidebarRoutes: []
+    sidebarRoutes: [],
+    // 页面标题
+    title: ''
 }
 
 const getters = {
@@ -137,6 +140,9 @@ const mutations = {
     },
     invalidRoutes(state) {
         state.permissionInit = false
+    },
+    setTitle(state, title) {
+        state.title = title
     }
 }
 

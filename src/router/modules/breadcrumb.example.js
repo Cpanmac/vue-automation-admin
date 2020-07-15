@@ -42,6 +42,7 @@ export default {
                     path: '',
                     component: () => import(/* webpackChunkName: 'breadcrumb_example' */ '@/views/breadcrumb_example/list2'),
                     meta: {
+                        title: '列表2（层级模式）',
                         sidebar: false,
                         breadcrumb: false
                     }
