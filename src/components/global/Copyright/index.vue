@@ -1,10 +1,30 @@
 <template>
-    <footer class="copyright">Copyright © 2020 <a href="http://1one.cn/" target="_blank">浙江易网科技股份有限公司</a></footer>
+    <footer class="copyright">
+        Copyright © {{ $store.state.global.copyrightDates }}
+        <!-- eslint-disable-next-line vue/require-component-is -->
+        <component v-bind="linkProps()">{{ $store.state.global.copyrightCompany }}</component>
+    </footer>
 </template>
 
 <script>
 export default {
-    name: 'Copyright'
+    name: 'Copyright',
+    methods: {
+        linkProps() {
+            if (this.$store.state.global.copyrightWebsite) {
+                return {
+                    is: 'a',
+                    href: this.$store.state.global.copyrightWebsite,
+                    target: '_blank',
+                    rel: 'noopener'
+                }
+            } else {
+                return {
+                    is: 'span'
+                }
+            }
+        }
+    }
 }
 </script>
 

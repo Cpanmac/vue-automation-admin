@@ -11,6 +11,10 @@ export default {
     showHeader: false,
     // 是否显示版权信息
     showCopyright: true,
+    // 版权信息配置，格式为：Copyright © [dates] <company>
+    copyrightDates: '2020',
+    copyrightCompany: '浙江易网科技股份有限公司',
+    copyrightWebsite: 'http://1one.cn/',
     // 是否开启动态标题
     dynamicTitle: false
 }
