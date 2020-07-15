@@ -53,6 +53,14 @@ export default {
             type: String,
             required: true
         },
+        headers: {
+            type: Object,
+            default: () => {}
+        },
+        data: {
+            type: Object,
+            default: () => {}
+        },
         name: {
             type: String,
             default: 'file'
@@ -60,6 +68,10 @@ export default {
         url: {
             type: String,
             default: ''
+        },
+        size: {
+            type: Number,
+            default: 2
         },
         width: {
             type: Number,
@@ -73,31 +85,13 @@ export default {
             type: String,
             default: ''
         },
-        headers: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
-        data: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        },
         notip: {
             type: Boolean,
             default: false
         },
-        size: {
-            type: Number,
-            default: 2
-        },
         ext: {
             type: Array,
-            default: () => {
-                return ['jpg', 'png', 'gif', 'bmp']
-            }
+            default: () => ['jpg', 'png', 'gif', 'bmp']
         }
     },
     data() {

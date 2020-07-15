@@ -32,15 +32,11 @@ export default {
         },
         headers: {
             type: Object,
-            default: () => {
-                return {}
-            }
+            default: () => {}
         },
         data: {
             type: Object,
-            default: () => {
-                return {}
-            }
+            default: () => {}
         },
         name: {
             type: String,

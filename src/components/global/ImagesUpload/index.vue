@@ -61,15 +61,11 @@ export default {
         },
         headers: {
             type: Object,
-            default: () => {
-                return {}
-            }
+            default: () => {}
         },
         data: {
             type: Object,
-            default: () => {
-                return {}
-            }
+            default: () => {}
         },
         name: {
             type: String,
@@ -105,9 +101,7 @@ export default {
         },
         ext: {
             type: Array,
-            default: () => {
-                return ['jpg', 'png', 'gif', 'bmp']
-            }
+            default: () => ['jpg', 'png', 'gif', 'bmp']
         }
     },
     data() {

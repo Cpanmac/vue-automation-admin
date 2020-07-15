@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-main>
-            <search-bar show-more @toggle="searchMore = !searchMore">
+            <search-bar show-more @toggle="searchMore = $event">
                 <el-form :model="search" size="small" label-width="120px">
                     <el-row>
                         <el-col :span="12">

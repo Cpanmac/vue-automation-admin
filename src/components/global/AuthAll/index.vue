@@ -13,9 +13,7 @@ export default {
     props: {
         value: {
             type: Array,
-            default: () => {
-                return []
-            }
+            default: () => []
         }
     },
     methods: {
