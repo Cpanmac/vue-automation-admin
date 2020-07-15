@@ -109,7 +109,7 @@ const lastRoute = [{
     path: '*',
     component: () => import('@/views/404'),
     meta: {
-        title: '找不到页面',
+        title: '404',
         sidebar: false
     }
 }]

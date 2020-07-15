@@ -33,11 +33,14 @@ export default {
             }
         }
     },
-    metaInfo: {
-        titleTemplate: title => {
-            return title
-                ? `${title} - ${process.env.VUE_APP_TITLE}`
-                : process.env.VUE_APP_TITLE
+    metaInfo() {
+        return {
+            title: this.$store.state.global.title,
+            titleTemplate: title => {
+                return title
+                    ? `${title} - ${process.env.VUE_APP_TITLE}`
+                    : process.env.VUE_APP_TITLE
+            }
         }
     }
 }

@@ -57,11 +57,6 @@ export default {
     components: {
         SidebarItem
     },
-    metaInfo() {
-        return {
-            title: this.$store.state.global.title
-        }
-    },
     data() {
         return {
             breadcrumbList: [],
