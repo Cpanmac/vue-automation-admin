@@ -68,9 +68,6 @@ export default {
         variables() {
             return variables
         },
-        shadowClass() {
-            return this.scrollTop ? 'shadow' : ''
-        },
         keepAliveList() {
             return this.$store.state.keepAlive.list
         }
