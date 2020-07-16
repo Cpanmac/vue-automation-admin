@@ -9,9 +9,9 @@ $g-app-width: 100%;
 //   固定宽度：小于固定宽度时，出现横向滚动条
 $g-app-min-width: 100%;
 // 应用最大宽度（当应用宽度为固定宽度时生效），可设置 true / false：
-//   true(默认)：自适应
-//   false：小于应用宽度时，出现横向滚动条
-$g-app-max-width: true;
+//   true：自适应
+//   false(默认)：小于应用宽度时，出现横向滚动条
+$g-app-max-width: false;
 // 头部宽度（默认自适应宽度，可固定宽度，固定宽度后为居中显示）
 $g-header-width: 100%;
 // 头部高度
