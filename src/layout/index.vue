@@ -36,7 +36,7 @@
                 </div>
                 <div class="main">
                     <transition name="main" mode="out-in">
-                        <keep-alive :include="keepAliveList">
+                        <keep-alive :include="$store.state.keepAlive.list">
                             <RouterView />
                         </keep-alive>
                     </transition>
@@ -73,9 +73,6 @@ export default {
                 matched = [{ path: '/dashboard', meta: { title: '控制台' }}].concat(matched)
             }
             return matched
-        },
-        keepAliveList() {
-            return this.$store.state.keepAlive.list
         }
     },
     mounted() {
