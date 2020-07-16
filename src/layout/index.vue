@@ -59,7 +59,6 @@ export default {
     },
     data() {
         return {
-            breadcrumbList: [],
             routePath: '',
             scrollTop: 0
         }
@@ -68,31 +67,24 @@ export default {
         variables() {
             return variables
         },
+        breadcrumbList() {
+            let matched = this.$route.matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+            if (!(matched[0].name == 'dashboard' && matched[0].path == '/dashboard')) {
+                matched = [{ path: '/dashboard', meta: { title: '控制台' }}].concat(matched)
+            }
+            return matched
+        },
         keepAliveList() {
             return this.$store.state.keepAlive.list
         }
     },
-    watch: {
-        $route() {
-            this.getBreadcrumb()
-        }
-    },
     mounted() {
-        this.getBreadcrumb()
         window.addEventListener('scroll', this.onScroll)
     },
     destroyed() {
         window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
-        // 根据路由匹配规则，显示面包屑导航
-        getBreadcrumb() {
-            let matched = this.$route.matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
-            if (!(matched[0].name == 'dashboard' && matched[0].path == '/dashboard')) {
-                matched = [{ path: '/dashboard', meta: { title: '控制台' }}].concat(matched)
-            }
-            this.breadcrumbList = matched
-        },
         onScroll() {
             this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         }
