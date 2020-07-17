@@ -1,7 +1,7 @@
 <template>
     <div>
         <transition name="main" mode="out-in">
-            <keep-alive :include="keepAliveList">
+            <keep-alive :include="$store.state.keepAlive.list">
                 <RouterView />
             </keep-alive>
         </transition>
@@ -14,11 +14,6 @@ export default {
     props: {},
     data() {
         return {}
-    },
-    computed: {
-        keepAliveList() {
-            return this.$store.state.keepAlive.list
-        }
     },
     created() {},
     mounted() {},
