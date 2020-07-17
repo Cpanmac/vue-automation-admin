@@ -29,7 +29,7 @@ export default {
     position: fixed;
     z-index: 1000;
     top: 0;
-    width: $g_sidebar_width;
+    width: inherit;
     padding: 0 10px;
     display: flex;
     align-items: center;
