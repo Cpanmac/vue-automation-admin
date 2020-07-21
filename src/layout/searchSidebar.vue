@@ -2,7 +2,7 @@
     <div id="search" ref="search" :class="{'searching': $store.state.global.openSearch}" @click="exit">
         <div class="container">
             <div class="search-box" @click.stop>
-                <el-input v-model="search" prefix-icon="el-icon-search" placeholder="搜索页面" clearable />
+                <el-input ref="input" v-model="search" prefix-icon="el-icon-search" placeholder="搜索页面" clearable />
             </div>
             <div class="result">
                 <router-link v-for="item in resultList" :key="item.path" :to="item.path" tag="div" class="item">
@@ -45,6 +45,9 @@ export default {
             if (val) {
                 document.querySelector('body').setAttribute('style', 'overflow: hidden;')
                 this.$refs.search.scrollTop = 0
+                setTimeout(() => {
+                    this.$refs.input.$el.children[0].focus()
+                }, 100)
             } else {
                 document.querySelector('body').setAttribute('style', 'overflow: auto;')
                 setTimeout(() => {
