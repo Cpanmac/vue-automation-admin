@@ -17,6 +17,7 @@
         "core-js": "^3.6.4",
         "dayjs": "^1.8.28",
         "element-ui": "^2.13.2",
+        "hotkeys-js": "^3.8.1",
         "nprogress": "^0.2.0",
         "swiper": "^5.4.5",
         "tinymce": "^5.3.2",

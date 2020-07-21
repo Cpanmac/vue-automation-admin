@@ -23,6 +23,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
+import hotkeys from 'hotkeys-js'
+Vue.prototype.$hotkeys = hotkeys
+
 // 全局组件自动注册
 import '@/components/autoRegister'
 

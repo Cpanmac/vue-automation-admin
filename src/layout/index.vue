@@ -81,6 +81,10 @@ export default {
         }
     },
     mounted() {
+        this.$hotkeys('ctrl+s', e => {
+            e.preventDefault()
+            this.$store.commit('global/toggleSearch')
+        })
         window.addEventListener('scroll', this.onScroll)
     },
     destroyed() {

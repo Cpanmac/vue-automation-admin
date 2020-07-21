@@ -1,10 +1,11 @@
 <template>
-    <div id="search" ref="search" :class="{'searching': $store.state.global.openSearch}" @click="exit">
+    <div id="search" :class="{'searching': $store.state.global.openSearch}" @click="exit">
         <div class="container">
             <div class="search-box" @click.stop>
-                <el-input ref="input" v-model="search" prefix-icon="el-icon-search" placeholder="搜索页面" clearable />
+                <el-input ref="input" v-model="search" prefix-icon="el-icon-search" placeholder="搜索页面" clearable @keydown.esc.native="$store.commit('global/toggleSearch')" />
+                <div class="tips">你可以使用快捷键<span>ctrl</span>+<span>s</span>唤醒搜索面板，按<span>esc</span>退出</div>
             </div>
-            <div class="result">
+            <div ref="search" class="result">
                 <router-link v-for="item in resultList" :key="item.path" :to="item.path" tag="div" class="item">
                     <div class="icon">
                         <svg-icon :name="item.icon" />
@@ -111,7 +112,6 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba($color: #000, $alpha: 0.5);
     transition: all 0.2s;
     opacity: 0;
@@ -123,22 +123,36 @@ export default {
         transform: initial;
     }
     .container {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
+        width: 800px;
+        height: 100%;
         margin: 0 auto;
         .search-box {
-            position: fixed;
-            z-index: 1;
-            width: inherit;
-            top: 30px;
+            margin-top: 50px;
             /deep/ .el-input__inner {
                 height: 52px;
                 line-height: 52px;
             }
+            .tips {
+                margin: 20px 0 40px;
+                line-height: 24px;
+                font-size: 14px;
+                text-align: center;
+                color: #fff;
+                span {
+                    margin: 0 5px;
+                    padding: 1px 5px 2px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    background-color: rgba($color: #000, $alpha: 0.5);
+                }
+            }
         }
         .result {
-            margin: 120px 0 50px;
+            max-height: calc(100% - 250px);
             border-radius: 5px;
-            overflow: hidden;
+            overflow: auto;
             background-color: #fff;
             .item {
                 display: flex;
