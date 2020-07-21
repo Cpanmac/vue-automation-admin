@@ -12,7 +12,12 @@
                     </div>
                     <div class="info">
                         <div class="title">{{ item.title }}</div>
-                        <div class="breadcrumb">{{ item.breadcrumb }}</div>
+                        <div class="breadcrumb">
+                            <span v-for="(bc, index) in item.breadcrumb" :key="index">
+                                {{ bc }}
+                                <i class="el-icon-arrow-right" />
+                            </span>
+                        </div>
                         <div class="path">{{ item.path }}</div>
                     </div>
                 </router-link>
@@ -33,10 +38,14 @@ export default {
         resultList() {
             let result = []
             result = this.sourceList.filter(item => {
-                if (item.title.indexOf(this.search) >= 0 || item.breadcrumb.indexOf(this.search) >= 0 || item.path.indexOf(this.search) >= 0) {
-                    return true
+                let flag = false
+                if (item.title.indexOf(this.search) >= 0 || item.path.indexOf(this.search) >= 0) {
+                    flag = true
                 }
-                return false
+                flag = item.breadcrumb.some(b => {
+                    return b.indexOf(this.search) >= 0
+                })
+                return flag
             })
             return result
         }
@@ -71,18 +80,22 @@ export default {
         getSourceList(arr) {
             arr.map(item => {
                 if (item.children) {
+                    let baseBreadcrumb = item.meta.baseBreadcrumb ? this.deepCopy(item.meta.baseBreadcrumb) : []
+                    baseBreadcrumb.push(item.meta.title)
                     let child = this.deepCopy(item.children)
                     child.map(c => {
                         c.meta.baseIcon = item.meta.icon || item.meta.baseIcon
-                        c.meta.baseBreadcrumb = item.meta.baseBreadcrumb ? [item.meta.baseBreadcrumb, item.meta.title].join(' - ') : item.meta.title
+                        c.meta.baseBreadcrumb = baseBreadcrumb
                         c.meta.basePath = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
                     })
                     this.getSourceList(child)
                 } else {
+                    let breadcrumb = item.meta.baseBreadcrumb ? this.deepCopy(item.meta.baseBreadcrumb) : []
+                    breadcrumb.push(item.meta.title)
                     this.sourceList.push({
                         icon: item.meta.icon || item.meta.baseIcon,
                         title: item.meta.title,
-                        breadcrumb: item.meta.baseBreadcrumb ? [item.meta.baseBreadcrumb, item.meta.title].join(' - ') : item.meta.title,
+                        breadcrumb: breadcrumb,
                         path: item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
                     })
                 }
@@ -178,15 +191,18 @@ export default {
                     }
                 }
                 .icon {
-                    width: 60px;
+                    width: 66px;
                     text-align: center;
                     color: #999;
+                    .svg-icon {
+                        font-size: 20px;
+                    }
                 }
                 .info {
                     border-left: 1px solid #ebeef5;
-                    padding: 5px 10px;
+                    padding: 7px 10px;
                     .title {
-                        margin-bottom: 5px;
+                        margin-bottom: 4px;
                         font-size: 18px;
                         font-weight: bold;
                         color: #666;
@@ -196,6 +212,11 @@ export default {
                         line-height: 14px;
                         font-size: 12px;
                         color: #c0c4cc;
+                    }
+                    .breadcrumb {
+                        span:last-child i {
+                            display: none;
+                        }
                     }
                 }
             }
