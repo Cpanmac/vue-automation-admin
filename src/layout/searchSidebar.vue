@@ -57,13 +57,17 @@ export default {
         }
     },
     mounted() {
-        this.getSourceList(this.$store.state.global.sidebarRoutes)
+        this.sourceList = []
+        if (this.$store.state.global.showHeader) {
+            this.$store.state.global.allRoutes.map(item => {
+                this.getSourceList(item.children)
+            })
+        } else {
+            this.getSourceList(this.$store.state.global.sidebarRoutes)
+        }
     },
     methods: {
-        getSourceList(arr, reset = false) {
-            if (reset) {
-                this.sourceList = []
-            }
+        getSourceList(arr) {
             arr.map(item => {
                 if (item.children) {
                     let child = this.deepCopy(item.children)
