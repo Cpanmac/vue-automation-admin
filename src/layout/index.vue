@@ -1,61 +1,66 @@
 <template>
-    <div id="app-main">
-        <header v-if="$store.state.global.showHeader">
-            <div class="header-container">
-                <div class="main">
-                    <Logo />
-                    <div class="nav">
-                        <template v-for="(item, index) in $store.state.global.allRoutes">
-                            <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
-                                <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
-                                <span>{{ item.meta.title }}</span>
-                            </div>
-                        </template>
+    <div class="layout">
+        <div id="app-main">
+            <header v-if="$store.state.global.showHeader">
+                <div class="header-container">
+                    <div class="main">
+                        <Logo />
+                        <div class="nav">
+                            <template v-for="(item, index) in $store.state.global.allRoutes">
+                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
+                                    <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                                    <span>{{ item.meta.title }}</span>
+                                </div>
+                            </template>
+                        </div>
                     </div>
-                </div>
-                <UserMenu />
-            </div>
-        </header>
-        <div class="wrapper">
-            <div class="sidebar-container">
-                <Logo />
-                <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
-                    <transition-group name="sidebar">
-                        <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
-                    </transition-group>
-                </el-menu>
-            </div>
-            <div class="main-container">
-                <div :class="`breadcrumb-container ${scrollTop ? 'shadow' : ''}`">
-                    <el-breadcrumb separator-class="el-icon-arrow-right">
-                        <transition-group name="breadcrumb">
-                            <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="item.path">{{ item.meta.title }}</el-breadcrumb-item>
-                        </transition-group>
-                    </el-breadcrumb>
                     <UserMenu />
                 </div>
-                <div class="main">
-                    <transition name="main" mode="out-in">
-                        <keep-alive :include="$store.state.keepAlive.list">
-                            <RouterView />
-                        </keep-alive>
-                    </transition>
+            </header>
+            <div class="wrapper">
+                <div class="sidebar-container">
+                    <Logo />
+                    <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
+                        <transition-group name="sidebar">
+                            <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
+                        </transition-group>
+                    </el-menu>
                 </div>
-                <Copyright v-if="$store.state.global.showCopyright" />
+                <div class="main-container">
+                    <div :class="`breadcrumb-container ${scrollTop ? 'shadow' : ''}`">
+                        <el-breadcrumb separator-class="el-icon-arrow-right">
+                            <transition-group name="breadcrumb">
+                                <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="item.path">{{ item.meta.title }}</el-breadcrumb-item>
+                            </transition-group>
+                        </el-breadcrumb>
+                        <UserMenu />
+                    </div>
+                    <div class="main">
+                        <transition name="main" mode="out-in">
+                            <keep-alive :include="$store.state.keepAlive.list">
+                                <RouterView />
+                            </keep-alive>
+                        </transition>
+                    </div>
+                    <Copyright v-if="$store.state.global.showCopyright" />
+                </div>
             </div>
+            <el-backtop />
         </div>
-        <el-backtop />
+        <SearchSidebar />
     </div>
 </template>
 
 <script>
 import SidebarItem from './sidebarItem'
+import SearchSidebar from './searchSidebar'
 import variables from '@/assets/styles/resources/variables.scss'
 
 export default {
     name: 'Layout',
     components: {
-        SidebarItem
+        SidebarItem,
+        SearchSidebar
     },
     data() {
         return {
@@ -90,10 +95,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.layout {
+    height: 100%;
+}
 #app-main {
     width: $g-app-width;
     height: 100%;
     margin: 0 auto;
+    transition: all 0.2s;
     @if ($g-app-width == 100%) {
         @if ($g-app-min-width != 100%) {
             min-width: $g-app-min-width;
@@ -167,9 +176,11 @@ header {
             }
         }
     }
-    .user-container {
-        color: #fff;
-        font-size: 16px;
+    /deep/ .user {
+        .user-container {
+            color: #fff;
+            font-size: 16px;
+        }
     }
 }
 .wrapper {
@@ -259,7 +270,7 @@ header + .wrapper {
     .main-container {
         .breadcrumb-container {
             top: $g-header-height;
-            .user-container {
+            .user {
                 display: none;
             }
         }

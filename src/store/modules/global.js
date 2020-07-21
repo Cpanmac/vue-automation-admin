@@ -46,7 +46,9 @@ const state = {
     // 侧边栏导航，通过路由自动生成
     sidebarRoutes: [],
     // 页面标题
-    title: ''
+    title: '',
+    // 是否显示搜索
+    openSearch: false
 }
 
 const getters = {
@@ -140,6 +142,9 @@ const mutations = {
     },
     setTitle(state, title) {
         state.title = title
+    },
+    toggleSearch(state) {
+        state.openSearch = !state.openSearch
     }
 }
 

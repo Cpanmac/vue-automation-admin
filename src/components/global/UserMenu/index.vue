@@ -1,16 +1,25 @@
 <template>
-    <el-dropdown class="user-container" trigger="click" @command="handleCommand">
-        <div class="user-wrapper">
-            <el-avatar size="medium" />
-            Hooray
-            <i class="el-icon-caret-bottom" />
+    <div class="user">
+        <div class="tools">
+            <el-tooltip effect="dark" content="搜索页面" placement="bottom">
+                <span class="item" @click="$store.commit('global/toggleSearch')">
+                    <i class="el-icon-search" />
+                </span>
+            </el-tooltip>
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-            <el-dropdown-item command="dashboard">控制台</el-dropdown-item>
-            <el-dropdown-item command="setting">个人设置</el-dropdown-item>
-            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
-        </el-dropdown-menu>
-    </el-dropdown>
+        <el-dropdown class="user-container" trigger="click" @command="handleCommand">
+            <div class="user-wrapper">
+                <el-avatar size="medium" />
+                Hooray
+                <i class="el-icon-caret-bottom" />
+            </div>
+            <el-dropdown-menu slot="dropdown" class="user-dropdown">
+                <el-dropdown-item command="dashboard">控制台</el-dropdown-item>
+                <el-dropdown-item command="setting">个人设置</el-dropdown-item>
+                <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+        </el-dropdown>
+    </div>
 </template>
 
 <script>
@@ -43,6 +52,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.user {
+    display: flex;
+    align-items: center;
+}
+.tools {
+    margin-right: 20px;
+    .item {
+        padding: 6px 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba($color: #000, $alpha: 0.2);
+        }
+    }
+}
 .user-container {
     display: inline-block;
     height: 50px;
