@@ -126,14 +126,17 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba($color: #000, $alpha: 0.5);
-    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
     opacity: 0;
     visibility: hidden;
-    transform: scale(1.1);
     &.searching {
         opacity: 1;
         visibility: visible;
-        transform: initial;
+        .container {
+            transform: initial;
+            filter: initial;
+        }
     }
     .container {
         display: flex;
@@ -141,6 +144,9 @@ export default {
         width: 800px;
         height: 100%;
         margin: 0 auto;
+        transition: all 0.3s;
+        transform: scale(1.1);
+        filter: blur(10px);
         .search-box {
             margin-top: 50px;
             /deep/ .el-input__inner {
