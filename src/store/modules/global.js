@@ -123,15 +123,18 @@ const mutations = {
         state.permissionInit = true
         if (state.showHeader) {
             state.allRoutes = JSON.parse(JSON.stringify(data.routes))
-            data.routes.map((item, index) => {
-                if (item.children.some(r => data.currentPath.indexOf(r.path) === 0)) {
-                    state.headerNavActive = index
-                }
-            })
-            state.sidebarRoutes = state.allRoutes[state.headerNavActive].children
+            this.commit('global/setHeaderActive', data.currentPath)
         } else {
             state.sidebarRoutes = JSON.parse(JSON.stringify(data.routes))
         }
+    },
+    setHeaderActive(state, currentPath) {
+        state.allRoutes.map((item, index) => {
+            if (item.children.some(r => currentPath.indexOf(r.path) === 0)) {
+                state.headerNavActive = index
+            }
+        })
+        state.sidebarRoutes = state.allRoutes[state.headerNavActive].children
     },
     switchHeader(state, index) {
         state.headerNavActive = index
