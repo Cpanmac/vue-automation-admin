@@ -7,7 +7,7 @@
             </div>
             <div ref="search" class="result">
                 <!-- eslint-disable-next-line vue/require-component-is -->
-                <component v-for="item in resultList" :key="item.path" v-bind="linkProps(item.path)">
+                <component v-for="item in resultList" :key="item.path" v-bind="linkProps(item.path)" class="item">
                     <div class="icon">
                         <svg-icon :name="item.icon" />
                     </div>
@@ -32,6 +32,8 @@
 
 <script>
 export default {
+    name: 'SearchSidebar',
+    props: {},
     data() {
         return {
             search: '',
@@ -73,6 +75,7 @@ export default {
             }
         }
     },
+    created() {},
     mounted() {
         this.sourceList = []
         if (this.$store.state.global.showHeader) {
@@ -93,14 +96,12 @@ export default {
                     is: 'a',
                     href: url,
                     target: '_blank',
-                    rel: 'noopener',
-                    class: 'item'
+                    rel: 'noopener'
                 }
             }
             return {
                 is: 'router-link',
-                to: url,
-                class: 'item'
+                to: url
             }
         },
         getSourceList(arr) {

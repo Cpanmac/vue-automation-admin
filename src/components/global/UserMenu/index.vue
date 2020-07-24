@@ -62,6 +62,7 @@ export default {
         padding: 6px 8px;
         border-radius: 5px;
         cursor: pointer;
+        transition: all 0.3s;
         &:hover {
             background-color: rgba($color: #000, $alpha: 0.2);
         }

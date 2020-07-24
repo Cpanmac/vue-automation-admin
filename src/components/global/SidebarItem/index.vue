@@ -19,13 +19,9 @@
 
 <script>
 import path from 'path'
-import SidebarItem from './sidebarItem'
 
 export default {
     name: 'SidebarItem',
-    components: {
-        SidebarItem
-    },
     props: {
         item: {
             type: Object,
@@ -35,6 +31,9 @@ export default {
             type: String,
             default: ''
         }
+    },
+    data() {
+        return {}
     },
     computed: {
         hasChildren() {
@@ -49,6 +48,8 @@ export default {
             return flag
         }
     },
+    created() {},
+    mounted() {},
     methods: {
         isExternal(path) {
             return /^(https?:|mailto:|tel:)/.test(path)

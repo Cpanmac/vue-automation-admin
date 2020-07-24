@@ -52,16 +52,10 @@
 </template>
 
 <script>
-import SidebarItem from './sidebarItem'
-import SearchSidebar from './searchSidebar'
 import variables from '@/assets/styles/resources/variables.scss'
 
 export default {
     name: 'Layout',
-    components: {
-        SidebarItem,
-        SearchSidebar
-    },
     data() {
         return {
             routePath: '',
