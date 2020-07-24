@@ -68,6 +68,7 @@ import KeepAliveExample from './modules/keep.alive.example'
 import ComponentExample from './modules/component.example'
 import PermissionExample from './modules/permission.example'
 import HeaderExample from './modules/header.example'
+import ExTernalLinkExample from './modules/external.link.example'
 
 // 此处的代码仅作演示用，实际开发中，头部只会保留一种展示形式，要么显示，要么不显示，所以只需保留 if-else 条件里的其中一段即可
 let asyncRoutes
@@ -82,7 +83,8 @@ if (store.state.global.showHeader) {
                 BreadcrumbExample,
                 KeepAliveExample,
                 ComponentExample,
-                PermissionExample
+                PermissionExample,
+                ExTernalLinkExample
             ]
         },
         {
@@ -101,7 +103,8 @@ if (store.state.global.showHeader) {
         BreadcrumbExample,
         KeepAliveExample,
         ComponentExample,
-        PermissionExample
+        PermissionExample,
+        ExTernalLinkExample
     ]
 }
 

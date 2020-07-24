@@ -6,12 +6,16 @@
                 <div class="tips">你可以使用快捷键<span>ctrl</span>+<span>s</span>唤醒搜索面板，按<span>esc</span>退出</div>
             </div>
             <div ref="search" class="result">
-                <router-link v-for="item in resultList" :key="item.path" :to="item.path" tag="div" class="item">
+                <!-- eslint-disable-next-line vue/require-component-is -->
+                <component v-for="item in resultList" :key="item.path" v-bind="linkProps(item.path)">
                     <div class="icon">
                         <svg-icon :name="item.icon" />
                     </div>
                     <div class="info">
-                        <div class="title">{{ item.title }}</div>
+                        <div class="title">
+                            {{ item.title }}
+                            <svg-icon v-if="item.isExternal" name="external-link" />
+                        </div>
                         <div class="breadcrumb">
                             <span v-for="(bc, index) in item.breadcrumb" :key="index">
                                 {{ bc }}
@@ -20,7 +24,7 @@
                         </div>
                         <div class="path">{{ item.path }}</div>
                     </div>
-                </router-link>
+                </component>
             </div>
         </div>
     </div>
@@ -39,12 +43,15 @@ export default {
             let result = []
             result = this.sourceList.filter(item => {
                 let flag = false
-                if (item.title.indexOf(this.search) >= 0 || item.path.indexOf(this.search) >= 0) {
+                if (item.title.indexOf(this.search) >= 0) {
                     flag = true
                 }
-                flag = item.breadcrumb.some(b => {
-                    return b.indexOf(this.search) >= 0
-                })
+                if (item.path.indexOf(this.search) >= 0) {
+                    flag = true
+                }
+                if (item.breadcrumb.some(b => b.indexOf(this.search) >= 0)) {
+                    flag = true
+                }
                 return flag
             })
             return result
@@ -77,6 +84,25 @@ export default {
         }
     },
     methods: {
+        isExternal(path) {
+            return /^(https?:|mailto:|tel:)/.test(path)
+        },
+        linkProps(url) {
+            if (this.isExternal(url)) {
+                return {
+                    is: 'a',
+                    href: url,
+                    target: '_blank',
+                    rel: 'noopener',
+                    class: 'item'
+                }
+            }
+            return {
+                is: 'router-link',
+                to: url,
+                class: 'item'
+            }
+        },
         getSourceList(arr) {
             arr.map(item => {
                 if (item.children) {
@@ -90,13 +116,23 @@ export default {
                     })
                     this.getSourceList(child)
                 } else {
-                    let breadcrumb = item.meta.baseBreadcrumb ? this.deepCopy(item.meta.baseBreadcrumb) : []
+                    let breadcrumb = []
+                    if (item.meta.baseBreadcrumb) {
+                        breadcrumb = this.deepCopy(item.meta.baseBreadcrumb)
+                    }
                     breadcrumb.push(item.meta.title)
+                    let path = ''
+                    if (this.isExternal(item.path)) {
+                        path = item.path
+                    } else {
+                        path = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
+                    }
                     this.sourceList.push({
                         icon: item.meta.icon || item.meta.baseIcon,
                         title: item.meta.title,
                         breadcrumb: breadcrumb,
-                        path: item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
+                        path: path,
+                        isExternal: this.isExternal(item.path)
                     })
                 }
             })
@@ -176,6 +212,7 @@ export default {
             .item {
                 display: flex;
                 align-items: center;
+                text-decoration: none;
                 cursor: pointer;
                 &:hover {
                     transition: all 0.3s;
@@ -205,13 +242,20 @@ export default {
                     }
                 }
                 .info {
+                    flex: 1;
+                    height: 70px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
                     border-left: 1px solid #ebeef5;
-                    padding: 7px 10px;
+                    padding: 5px 10px 7px;
                     .title {
-                        margin-bottom: 4px;
                         font-size: 18px;
                         font-weight: bold;
                         color: #666;
+                        .svg-icon {
+                            font-size: 14px;
+                        }
                     }
                     .breadcrumb,
                     .path {
