@@ -104,37 +104,50 @@ export default {
                 to: url
             }
         },
+        hasChildren(item) {
+            let flag = true
+            if (item.children) {
+                if (item.children.every(i => i.meta.sidebar === false)) {
+                    flag = false
+                }
+            } else {
+                flag = false
+            }
+            return flag
+        },
         getSourceList(arr) {
             arr.map(item => {
-                if (item.children) {
-                    let baseBreadcrumb = item.meta.baseBreadcrumb ? this.deepCopy(item.meta.baseBreadcrumb) : []
-                    baseBreadcrumb.push(item.meta.title)
-                    let child = this.deepCopy(item.children)
-                    child.map(c => {
-                        c.meta.baseIcon = item.meta.icon || item.meta.baseIcon
-                        c.meta.baseBreadcrumb = baseBreadcrumb
-                        c.meta.basePath = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
-                    })
-                    this.getSourceList(child)
-                } else {
-                    let breadcrumb = []
-                    if (item.meta.baseBreadcrumb) {
-                        breadcrumb = this.deepCopy(item.meta.baseBreadcrumb)
-                    }
-                    breadcrumb.push(item.meta.title)
-                    let path = ''
-                    if (this.isExternal(item.path)) {
-                        path = item.path
+                if (item.meta.sidebar !== false) {
+                    if (this.hasChildren(item)) {
+                        let baseBreadcrumb = item.meta.baseBreadcrumb ? this.deepCopy(item.meta.baseBreadcrumb) : []
+                        baseBreadcrumb.push(item.meta.title)
+                        let child = this.deepCopy(item.children)
+                        child.map(c => {
+                            c.meta.baseIcon = item.meta.icon || item.meta.baseIcon
+                            c.meta.baseBreadcrumb = baseBreadcrumb
+                            c.meta.basePath = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
+                        })
+                        this.getSourceList(child)
                     } else {
-                        path = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
+                        let breadcrumb = []
+                        if (item.meta.baseBreadcrumb) {
+                            breadcrumb = this.deepCopy(item.meta.baseBreadcrumb)
+                        }
+                        breadcrumb.push(item.meta.title)
+                        let path = ''
+                        if (this.isExternal(item.path)) {
+                            path = item.path
+                        } else {
+                            path = item.meta.basePath ? [item.meta.basePath, item.path].join('/') : item.path
+                        }
+                        this.sourceList.push({
+                            icon: item.meta.icon || item.meta.baseIcon,
+                            title: item.meta.title,
+                            breadcrumb: breadcrumb,
+                            path: path,
+                            isExternal: this.isExternal(item.path)
+                        })
                     }
-                    this.sourceList.push({
-                        icon: item.meta.icon || item.meta.baseIcon,
-                        title: item.meta.title,
-                        breadcrumb: breadcrumb,
-                        path: path,
-                        isExternal: this.isExternal(item.path)
-                    })
                 }
             })
         },
