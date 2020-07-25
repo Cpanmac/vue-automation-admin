@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import area from './area'
+import area from '@/util/area'
 
 export default {
     name: 'CascaderArea',

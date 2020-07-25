@@ -2,6 +2,8 @@ const area = [
     {
         'name': '北京市',
         'code': '110000',
+        'region': 'north',
+        'provinceLevelCity': true,
         'children': [
             {
                 'name': '市辖区',
@@ -78,6 +80,8 @@ const area = [
     {
         'name': '天津市',
         'code': '120000',
+        'region': 'north',
+        'provinceLevelCity': true,
         'children': [
             {
                 'name': '市辖区',
@@ -154,6 +158,7 @@ const area = [
     {
         'name': '河北省',
         'code': '130000',
+        'region': 'north',
         'children': [
             {
                 'name': '石家庄市',
@@ -898,6 +903,7 @@ const area = [
     {
         'name': '山西省',
         'code': '140000',
+        'region': 'north',
         'children': [
             {
                 'name': '太原市',
@@ -1438,6 +1444,8 @@ const area = [
     {
         'name': '内蒙古自治区',
         'code': '150000',
+        'region': 'north',
+        'autonomousRegion': true,
         'children': [
             {
                 'name': '呼和浩特市',
@@ -1928,6 +1936,7 @@ const area = [
     {
         'name': '辽宁省',
         'code': '210000',
+        'region': 'northeast',
         'children': [
             {
                 'name': '沈阳市',
@@ -2418,6 +2427,7 @@ const area = [
     {
         'name': '吉林省',
         'code': '220000',
+        'region': 'northeast',
         'children': [
             {
                 'name': '长春市',
@@ -2718,6 +2728,7 @@ const area = [
     {
         'name': '黑龙江省',
         'code': '230000',
+        'region': 'northeast',
         'children': [
             {
                 'name': '哈尔滨市',
@@ -3314,6 +3325,8 @@ const area = [
     {
         'name': '上海市',
         'code': '310000',
+        'region': 'east',
+        'provinceLevelCity': true,
         'children': [
             {
                 'name': '市辖区',
@@ -3390,6 +3403,7 @@ const area = [
     {
         'name': '江苏省',
         'code': '320000',
+        'region': 'east',
         'children': [
             {
                 'name': '南京市',
@@ -3858,6 +3872,7 @@ const area = [
     {
         'name': '浙江省',
         'code': '330000',
+        'region': 'east',
         'children': [
             {
                 'name': '杭州市',
@@ -4286,6 +4301,7 @@ const area = [
     {
         'name': '安徽省',
         'code': '340000',
+        'region': 'east',
         'children': [
             {
                 'name': '合肥市',
@@ -4808,6 +4824,7 @@ const area = [
     {
         'name': '福建省',
         'code': '350000',
+        'region': 'east',
         'children': [
             {
                 'name': '福州市',
@@ -5208,6 +5225,7 @@ const area = [
     {
         'name': '江西省',
         'code': '360000',
+        'region': 'east',
         'children': [
             {
                 'name': '南昌市',
@@ -5680,6 +5698,7 @@ const area = [
     {
         'name': '山东省',
         'code': '370000',
+        'region': 'east',
         'children': [
             {
                 'name': '济南市',
@@ -6330,6 +6349,7 @@ const area = [
     {
         'name': '河南省',
         'code': '410000',
+        'region': 'central',
         'children': [
             {
                 'name': '郑州市',
@@ -7076,6 +7096,7 @@ const area = [
     {
         'name': '湖北省',
         'code': '420000',
+        'region': 'central',
         'children': [
             {
                 'name': '武汉市',
@@ -7578,6 +7599,7 @@ const area = [
     {
         'name': '湖南省',
         'code': '430000',
+        'region': 'central',
         'children': [
             {
                 'name': '长沙市',
@@ -8156,6 +8178,7 @@ const area = [
     {
         'name': '广东省',
         'code': '440000',
+        'region': 'south',
         'children': [
             {
                 'name': '广州市',
@@ -8774,6 +8797,8 @@ const area = [
     {
         'name': '广西壮族自治区',
         'code': '450000',
+        'region': 'south',
+        'autonomousRegion': true,
         'children': [
             {
                 'name': '南宁市',
@@ -9308,6 +9333,7 @@ const area = [
     {
         'name': '海南省',
         'code': '460000',
+        'region': 'south',
         'children': [
             {
                 'name': '海口市',
@@ -9434,6 +9460,8 @@ const area = [
     {
         'name': '重庆市',
         'code': '500000',
+        'region': 'southwest',
+        'provinceLevelCity': true,
         'children': [
             {
                 'name': '市辖区',
@@ -9604,6 +9632,7 @@ const area = [
     {
         'name': '四川省',
         'code': '510000',
+        'region': 'southwest',
         'children': [
             {
                 'name': '成都市',
@@ -10468,6 +10497,7 @@ const area = [
     {
         'name': '贵州省',
         'code': '520000',
+        'region': 'southwest',
         'children': [
             {
                 'name': '贵阳市',
@@ -10880,6 +10910,7 @@ const area = [
     {
         'name': '云南省',
         'code': '530000',
+        'region': 'southwest',
         'children': [
             {
                 'name': '昆明市',
@@ -11498,6 +11529,8 @@ const area = [
     {
         'name': '西藏自治区',
         'code': '540000',
+        'region': 'southwest',
+        'autonomousRegion': true,
         'children': [
             {
                 'name': '拉萨市',
@@ -11842,6 +11875,7 @@ const area = [
     {
         'name': '陕西省',
         'code': '610000',
+        'region': 'northwest',
         'children': [
             {
                 'name': '西安市',
@@ -12336,6 +12370,7 @@ const area = [
     {
         'name': '甘肃省',
         'code': '620000',
+        'region': 'northwest',
         'children': [
             {
                 'name': '兰州市',
@@ -12769,6 +12804,7 @@ const area = [
     {
         'name': '青海省',
         'code': '630000',
+        'region': 'northwest',
         'children': [
             {
                 'name': '西宁市',
@@ -12999,6 +13035,8 @@ const area = [
     {
         'name': '宁夏回族自治区',
         'code': '640000',
+        'region': 'northwest',
+        'autonomousRegion': true,
         'children': [
             {
                 'name': '银川市',
@@ -13123,6 +13161,8 @@ const area = [
     {
         'name': '新疆维吾尔自治区',
         'code': '650000',
+        'region': 'northwest',
+        'autonomousRegion': true,
         'children': [
             {
                 'name': '乌鲁木齐市',
