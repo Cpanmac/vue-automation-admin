@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <TinymceEditor v-model="value" :init="completeSetting" :disabled="disabled" />
+        <TinymceEditor v-model="myValue" :init="completeSetting" :disabled="disabled" />
     </div>
 </template>
 
@@ -71,7 +71,8 @@ export default {
                     const img = 'data:image/jpeg;base64,' + blobInfo.base64()
                     success(img)
                 }
-            }
+            },
+            myValue: this.value
         }
     },
     computed: {
@@ -80,8 +81,11 @@ export default {
         }
     },
     watch: {
-        value(newValue) {
+        myValue(newValue) {
             this.$emit('input', newValue)
+        },
+        value(newValue) {
+            this.myValue = newValue
         }
     },
     mounted() {
