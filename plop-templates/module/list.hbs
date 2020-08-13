@@ -154,19 +154,6 @@ export default {
                     })
                 })
             }).catch(() => {})
-        },
-        onDetailFormDialogSubmit() {
-            // submit() 为组件内部方法
-            this.$refs['detailFormDialog'].submit(() => {
-                this.onDetailFormDialogCancel()
-                this.getDataList()
-            })
-        },
-        onDetailFormDialogCancel() {
-            // reset() 为组件内部方法
-            this.$refs['detailFormDialog'].reset()
-            this.detailFormDialog.visible = false
-            this.detailFormDialog.id = ''
         }
     }
 }
