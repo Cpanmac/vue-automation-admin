@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-dialog :visible.sync="visible" :title="id == '' ? '新增{{ cname }}' : '编辑{{ cname }}'" width="600px" :close-on-click-modal="false">
-            <DetailForm :id="id" ref="form" />
+            <DetailForm ref="form" v-bind="$props" />
             <div slot="footer">
                 <el-button @click="onCancel">取 消</el-button>
                 <el-button type="primary" @click="onSubmit">确 定</el-button>
@@ -18,13 +18,10 @@ export default {
         DetailForm
     },
     props: {
+        ...DetailForm.props,
         visible: {
             type: Boolean,
             default: false
-        },
-        id: {
-            type: [Number, String],
-            default: ''
         }
     },
     methods: {
