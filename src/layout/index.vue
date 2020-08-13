@@ -42,7 +42,8 @@
                             </keep-alive>
                         </transition>
                     </div>
-                    <Copyright v-if="$store.state.global.showCopyright" />
+                    <!-- Copyright 组件始终占据空间，避免因编辑页的 FixedActionBar 组件导致内容可能被遮挡的情况 -->
+                    <Copyright :style="{'visibility': $store.state.global.showCopyright ? 'visible' : 'hidden'}" />
                 </div>
             </div>
             <el-backtop />
