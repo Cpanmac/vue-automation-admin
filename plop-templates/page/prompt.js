@@ -20,22 +20,28 @@ module.exports = {
         {
             type: 'list',
             name: 'path',
-            message: '请选择模块创建目录',
+            message: '请选择页面创建目录',
             choices: getFolder('src/views')
         },
         {
             type: 'input',
             name: 'name',
-            message: '请输入页面名称',
+            message: '请输入文件名',
             validate: v => {
                 if (!v || v.trim === '') {
-                    return '页面名称不能为空'
+                    return '文件名不能为空'
                 } else if (v == 'list' || v == 'detail') {
                     return 'list 和 detail 为保留关键字，无法直接创建，请通过创建标准模块进行生成'
                 } else {
                     return true
                 }
             }
+        },
+        {
+            type: 'input',
+            name: 'cname',
+            message: '请输入页面中文名称',
+            default: '默认页面'
         }
     ],
     actions: data => {

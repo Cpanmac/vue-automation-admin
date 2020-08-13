@@ -55,11 +55,7 @@ module.exports = {
             {
                 type: 'add',
                 path: path,
-                templateFile: 'plop-templates/component/index.hbs',
-                data: {
-                    name: data.name,
-                    isGlobal: data.isGlobal
-                }
+                templateFile: 'plop-templates/component/index.hbs'
             }
         ]
         return actions

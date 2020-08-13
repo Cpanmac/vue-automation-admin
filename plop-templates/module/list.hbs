@@ -50,7 +50,6 @@ export default {
         FormDialog
     },
     mixins: [paginationMixin],
-    props: {},
     data() {
         return {
             // 是否开启详情弹框模式
@@ -92,7 +91,6 @@ export default {
         }
         next()
     },
-    created() {},
     mounted() {
         this.getDataList()
         if (!this.dialogMode) {
