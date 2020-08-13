@@ -1,6 +1,6 @@
 <template>
     <div class="title" :title="title" @click="$router.push({name: 'dashboard'})">
-        <img src="../../../assets/images/logo.png" class="logo">
+        <img :src="logo" class="logo">
         <span>{{ title }}</span>
     </div>
 </template>
@@ -10,7 +10,8 @@ export default {
     name: 'Logo',
     data() {
         return {
-            title: process.env.VUE_APP_TITLE
+            title: process.env.VUE_APP_TITLE,
+            logo: require('@/assets/images/logo.png')
         }
     }
 }

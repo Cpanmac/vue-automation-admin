@@ -1,10 +1,27 @@
+const path = require('path')
+const fs = require('fs')
+
+function getFolder(path) {
+    let components = []
+    const files = fs.readdirSync(path)
+    files.forEach(function(item) {
+        let stat = fs.lstatSync(path + '/' + item)
+        if (stat.isDirectory() === true && item != 'components') {
+            components.push(path + '/' + item)
+            components.push.apply(components, getFolder(path + '/' + item))
+        }
+    })
+    return components
+}
+
 module.exports = {
     description: '创建页面',
     prompts: [
         {
-            type: 'input',
-            name: 'moduleName',
-            message: '请输入模块名(./views/???)'
+            type: 'list',
+            name: 'path',
+            message: '请选择模块创建目录',
+            choices: getFolder('src/views')
         },
         {
             type: 'input',
@@ -13,6 +30,8 @@ module.exports = {
             validate: v => {
                 if (!v || v.trim === '') {
                     return '页面名称不能为空'
+                } else if (v == 'list' || v == 'detail') {
+                    return 'list 和 detail 为保留关键字，无法直接创建，请通过创建标准模块进行生成'
                 } else {
                     return true
                 }
@@ -20,13 +39,14 @@ module.exports = {
         }
     ],
     actions: data => {
+        let relativePath = path.relative('src/views', data.path)
         const actions = [
             {
                 type: 'add',
-                path: `src/views/${data.moduleName}/${data.name}.vue`,
+                path: `${data.path}/{{dotCase name}}.vue`,
                 templateFile: 'plop-templates/page/index.hbs',
                 data: {
-                    componentName: `${data.moduleName}/${data.name}`
+                    componentName: `${relativePath} ${data.name}`
                 }
             }
         ]
