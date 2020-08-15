@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-dialog :visible.sync="visible" :title="id == '' ? '新增{{ cname }}' : '编辑{{ cname }}'" width="600px" :close-on-click-modal="false">
+        <el-dialog :visible.sync="myVisible" :title="id == '' ? '新增{{ cname }}' : '编辑{{ cname }}'" width="600px" :close-on-click-modal="false">
             <DetailForm ref="form" v-bind="$props" />
             <div slot="footer">
                 <el-button @click="onCancel">取 消</el-button>
@@ -22,6 +22,16 @@ export default {
         visible: {
             type: Boolean,
             default: false
+        }
+    },
+    computed: {
+        myVisible: {
+            get: function() {
+                return this.visible
+            },
+            set: function(val) {
+                this.$emit('update:visible', val)
+            }
         }
     },
     methods: {
