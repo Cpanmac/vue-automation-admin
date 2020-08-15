@@ -94,9 +94,9 @@ export default {
     .el-menu {
         .el-submenu .el-submenu__title,
         .el-menu-item {
-            background-color: $g_sidebar_bg - 20 !important;
+            background-color: $g-sidebar-bg - 20 !important;
             &:hover {
-                background-color: $g_sidebar_bg - 40 !important;
+                background-color: $g-sidebar-bg - 40 !important;
             }
             &.is-active {
                 background-color: $g-sidebar-menu-active-bg !important;
