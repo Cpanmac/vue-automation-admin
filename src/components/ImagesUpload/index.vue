@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="upload-container">
         <div v-for="(item, index) in url" :key="index" class="images">
             <el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
             <div class="mask">
@@ -165,6 +165,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.upload-container {
+    line-height: initial;
+}
 .images {
     position: relative;
     display: inline-block;

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="upload-container">
         <el-upload
             :show-file-list="false"
             :headers="headers"
@@ -141,6 +141,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.upload-container {
+    line-height: initial;
+}
 .image {
     position: relative;
     .mask {
