@@ -5,7 +5,8 @@
                 <div class="header-container">
                     <div class="main">
                         <Logo />
-                        <div class="nav">
+                        <!-- 当头部导航大于 1 个的时候才会显示 -->
+                        <div v-if="$store.state.global.allRoutes.length > 1" class="nav">
                             <template v-for="(item, index) in $store.state.global.allRoutes">
                                 <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
                                     <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />

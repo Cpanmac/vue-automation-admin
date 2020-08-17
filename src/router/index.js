@@ -146,9 +146,6 @@ router.beforeEach(async(to, from, next) => {
         router.addRoutes(lastRoute)
         next({ ...to, replace: true })
     }
-    if (store.state.global.showHeader) {
-        store.commit('global/setHeaderActive', to.path)
-    }
     if (store.state.global.dynamicTitle) {
         to.meta.title && store.commit('global/setTitle', to.meta.title)
     }
