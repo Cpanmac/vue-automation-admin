@@ -19,9 +19,9 @@ $g-header-height: 70px;
 // 面包屑高度（同时也是侧边栏Logo区域的高度）
 $g-breadcrumb-height: 50px;
 // 侧边栏宽度
-$g-main-sidebar-width: 70px;
+$g-main-sidebar-width: 60px;
 $g-sub-sidebar-width: 200px;
-$g-sidebar-width: $g-main-sidebar-width + $g-sub-sidebar-width;
+$g-sidebar-width: var(--real-sidebar-width);
 
 // 应用背景色
 $g-app-bg: #fff;
@@ -33,8 +33,6 @@ $g-header-bg: #736477;
 $g-header-nav-active-bg: $g-header-bg + 20;
 // 侧边栏背景色
 $g-sidebar-bg: #ddcdcd;
-// 侧边栏Logo区域背景色
-$g-sidebar-title-bg: $g-header-bg;
 // 侧边栏菜单文字颜色
 $g-sidebar-menu-color: #89768f;
 // 侧边栏菜单文字选中颜色
@@ -44,12 +42,14 @@ $g-sidebar-menu-active-bg: #b5a5a5;
 
 // 输出给js使用
 :export {
+    g_main_sidebar_width: $g-main-sidebar-width;
+    g_sub_sidebar_width: $g-sub-sidebar-width;
+    g_sidebar_width: $g-main-sidebar-width + $g-sub-sidebar-width;
     g_app_bg: $g-app-bg;
     g_main_bg: $g-main-bg;
     g_header_bg: $g-header-bg;
     g_header_nav_active_bg: $g-header-nav-active-bg;
     g_sidebar_bg: $g-sidebar-bg;
-    g_sidebar_title_bg: $g-sidebar-title-bg;
     g_sidebar_menu_color: $g-sidebar-menu-color;
     g_sidebar_menu_active_color: $g-sidebar-menu-active-color;
     g_sidebar_menu_active_bg: $g-sidebar-menu-active-bg;

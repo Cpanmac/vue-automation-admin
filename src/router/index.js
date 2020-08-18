@@ -74,7 +74,7 @@ import ExTernalLinkExample from './modules/external.link.example'
 let asyncRoutes = [
     {
         meta: {
-            title: '演示'
+            title: '默认'
         },
         children: [
             MultilevelMenuExample,
@@ -87,7 +87,7 @@ let asyncRoutes = [
     },
     {
         meta: {
-            title: '头部导航2',
+            title: '布局',
             icon: 'layout'
         },
         children: [

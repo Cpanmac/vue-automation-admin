@@ -1,5 +1,9 @@
 <template>
-    <div :class="`actionbar ${isBottom ? '' : 'shadow'}`">
+    <div :class="{
+        'actionbar': true,
+        'shadow': isBottom
+    }"
+    >
         <slot />
     </div>
 </template>
@@ -46,8 +50,8 @@ export default {
     bottom: 0;
     left: 50%;
     width: calc(#{$g_app_width} - #{$g_sidebar_width});
-    margin-left: $g-sidebar-width;
-    transform: translateX(-50%) translateX($g-sidebar-width * -1 / 2);
+    /* stylelint-disable-next-line function-calc-no-invalid */
+    transform: translateX(calc(-50% + #{$g_sidebar_width} * 0.5));
     padding: 20px;
     text-align: center;
     background-color: #fff;

@@ -1,6 +1,9 @@
 <template>
     <div class="layout">
-        <div id="app-main">
+        <div id="app-main" :style="{
+            '--real-sidebar-width': !$store.state.global.showHeader && $store.state.global.allRoutes.length > 1 ? variables.g_sidebar_width : variables.g_sub_sidebar_width
+        }"
+        >
             <header v-if="$store.state.global.showHeader">
                 <div class="header-container">
                     <div class="main">
@@ -8,7 +11,11 @@
                         <!-- 当头部导航大于 1 个的时候才会显示 -->
                         <div v-if="$store.state.global.allRoutes.length > 1" class="nav">
                             <template v-for="(item, index) in $store.state.global.allRoutes">
-                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
+                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
+                                    'item': true,
+                                    'active': index == $store.state.global.headerNavActive
+                                }" @click="$store.commit('global/switchHeader', index)"
+                                >
                                     <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
                                     <span>{{ item.meta.title }}</span>
                                 </div>
@@ -20,11 +27,15 @@
             </header>
             <div class="wrapper">
                 <div class="sidebar-container">
-                    <div v-if="!$store.state.global.showHeader" class="main-nav">
-                        <Logo :show-title="false" style="background-color: #544957;" />
-                        <div v-if="$store.state.global.allRoutes.length > 1" class="nav">
+                    <div v-if="!$store.state.global.showHeader && $store.state.global.allRoutes.length > 1" class="main-nav">
+                        <Logo :show-title="false" />
+                        <div class="nav">
                             <template v-for="(item, index) in $store.state.global.allRoutes">
-                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
+                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
+                                    'item': true,
+                                    'active': index == $store.state.global.headerNavActive
+                                }" :title="item.meta.title" @click="$store.commit('global/switchHeader', index)"
+                                >
                                     <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
                                     <span>{{ item.meta.title }}</span>
                                 </div>
@@ -32,7 +43,11 @@
                         </div>
                     </div>
                     <div class="sub-nav">
-                        <Logo :show-logo="false" />
+                        <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
+                            'sidebar-logo': true,
+                            'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
+                        }"
+                        />
                         <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
                             <transition-group name="sidebar">
                                 <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
@@ -41,7 +56,11 @@
                     </div>
                 </div>
                 <div class="main-container">
-                    <div :class="`breadcrumb-container ${scrollTop ? 'shadow' : ''}`">
+                    <div :class="{
+                        'breadcrumb-container': true,
+                        'shadow': scrollTop
+                    }"
+                    >
                         <el-breadcrumb separator-class="el-icon-arrow-right">
                             <transition-group name="breadcrumb">
                                 <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.path" :to="item.path">{{ item.meta.title }}</el-breadcrumb-item>
@@ -211,7 +230,7 @@ header {
         .main-nav {
             width: $g-main-sidebar-width;
             height: 100%;
-            background-color: #544957;
+            background-color: $g-header-bg;
             color: #fff;
             .nav {
                 display: flex;
@@ -249,6 +268,16 @@ header {
                 display: none;
             }
         }
+        .sidebar-logo {
+            &:not(.sidebar-logo-bg) {
+                /deep/ span {
+                    color: $g-sidebar-menu-color;
+                }
+            }
+            &.sidebar-logo-bg {
+                background: $g-header-bg;
+            }
+        }
         .el-menu {
             border-right: 0;
             padding-top: $g-breadcrumb-height;
@@ -268,8 +297,8 @@ header {
             right: 0;
             left: 50%;
             width: calc(#{$g_app_width} - #{$g_sidebar_width});
-            margin-left: $g-sidebar-width;
-            transform: translateX(-50%) translateX($g-sidebar-width * -1 / 2);
+            /* stylelint-disable-next-line function-calc-no-invalid */
+            transform: translateX(calc(-50% + #{$g_sidebar_width} * 0.5));
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -310,7 +339,7 @@ header + .wrapper {
     padding-top: $g-header-height;
     .sidebar-container {
         top: $g-header-height;
-        .title {
+        .sidebar-logo {
             display: none;
         }
         .el-menu {

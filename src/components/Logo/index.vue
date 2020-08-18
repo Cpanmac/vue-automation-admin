@@ -47,7 +47,6 @@ export default {
     justify-content: center;
     height: $g-breadcrumb-height;
     text-align: center;
-    background-color: $g-sidebar-title-bg;
     cursor: pointer;
     overflow: hidden;
     &:hover::before {
@@ -58,24 +57,24 @@ export default {
         top: 0;
         left: -50%;
         overflow: hidden;
-        background:
-            -webkit-gradient(
-                linear,
-                left top,
-                right top,
-                color-stop(25%, rgba($g-header-bg, 0)),
-                color-stop(50%, rgba($g-header-bg, 0.5)),
-                color-stop(75%, rgba($g-header-bg, 0))
-            );
-        background:
-            -webkit-linear-gradient(
-                left,
-                rgba($g-header-bg, 0) 25%,
-                rgba($g-header-bg, 0.5) 50%,
-                rgba($g-header-bg, 0) 75%
-            );
-        transform: skewX(-45deg);
-        animation: tolight 0.4s 1 linear;
+        // background:
+        //     -webkit-gradient(
+        //         linear,
+        //         left top,
+        //         right top,
+        //         color-stop(25%, rgba($g-header-bg, 0)),
+        //         color-stop(50%, rgba($g-header-bg, 0.5)),
+        //         color-stop(75%, rgba($g-header-bg, 0))
+        //     );
+        // background:
+        //     -webkit-linear-gradient(
+        //         left,
+        //         rgba($g-header-bg, 0) 25%,
+        //         rgba($g-header-bg, 0.5) 50%,
+        //         rgba($g-header-bg, 0) 75%
+        //     );
+        // transform: skewX(-45deg);
+        // animation: tolight 0.4s 1 linear;
     }
     .logo {
         width: 30px;
