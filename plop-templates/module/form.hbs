@@ -20,7 +20,7 @@ export default {
         return {
             loading: false,
             form: {
-                id: '',
+                id: this.id,
                 name: ''
             },
             rules: {
@@ -31,8 +31,7 @@ export default {
         }
     },
     mounted() {
-        this.form.id = this.id
-        if(this.id != ''){
+        if(this.form.id != ''){
             this.getInfo()
         }
     },
