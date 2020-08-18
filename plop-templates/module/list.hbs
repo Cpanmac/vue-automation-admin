@@ -36,7 +36,7 @@
             </el-table>
             <el-pagination :current-page="pagination.page" :total="pagination.total" :page-size="pagination.size" :page-sizes="pagination.sizes" :layout="pagination.layout" :hide-on-single-page="false" class="pagination" background @size-change="onSizeChange" @current-change="onCurrentChange" />
         </page-main>
-        <FormDialog :id.sync="detailFormDialog.id" :visible.sync="detailFormDialog.visible" @success="getDataList" />
+        <FormDialog :id="detailFormDialog.id" :visible.sync="detailFormDialog.visible" @success="getDataList" />
     </div>
 </template>
 
