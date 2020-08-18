@@ -30,23 +30,12 @@ export default {
             }
         }
     },
-    watch: {
-        id: {
-            handler(val) {
-                this.form.id = val
-            },
-            immediate: true
-        },
-        'form.id': {
-            handler(val) {
-                if (val != '') {
-                    this.getInfo()
-                }
-            },
-            immediate: true
+    mounted() {
+        this.form.id = this.id
+        if(this.id != ''){
+            this.getInfo()
         }
     },
-    mounted() {},
     methods: {
         getInfo() {
             this.loading = true
@@ -86,9 +75,6 @@ export default {
                     }
                 })
             }
-        },
-        reset() {
-            this.$refs['form'].resetFields()
         }
     }
 }
