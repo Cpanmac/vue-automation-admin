@@ -20,12 +20,25 @@
             </header>
             <div class="wrapper">
                 <div class="sidebar-container">
-                    <Logo />
-                    <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
-                        <transition-group name="sidebar">
-                            <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
-                        </transition-group>
-                    </el-menu>
+                    <div v-if="!$store.state.global.showHeader" class="main-nav">
+                        <Logo :show-title="false" style="background-color: #544957;" />
+                        <div v-if="$store.state.global.allRoutes.length > 1" class="nav">
+                            <template v-for="(item, index) in $store.state.global.allRoutes">
+                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="'item ' + (index == $store.state.global.headerNavActive ? 'active' : '')" @click="$store.commit('global/switchHeader', index)">
+                                    <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                                    <span>{{ item.meta.title }}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="sub-nav">
+                        <Logo :show-logo="false" />
+                        <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
+                            <transition-group name="sidebar">
+                                <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
+                            </transition-group>
+                        </el-menu>
+                    </div>
                 </div>
                 <div class="main-container">
                     <div :class="`breadcrumb-container ${scrollTop ? 'shadow' : ''}`">
@@ -192,12 +205,49 @@ header {
         z-index: 1000;
         top: 0;
         bottom: 0;
+        display: flex;
         width: $g-sidebar-width;
         background-color: $g-sidebar-bg;
-        overflow: auto;
-        overscroll-behavior: contain;
-        &::-webkit-scrollbar {
-            display: none;
+        .main-nav {
+            width: $g-main-sidebar-width;
+            height: 100%;
+            background-color: #544957;
+            color: #fff;
+            .nav {
+                display: flex;
+                flex-direction: column;
+                padding-top: $g-breadcrumb-height;
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 60px;
+                    padding: 0 5px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    &.active,
+                    &:hover {
+                        background-color: $g_header_nav_active_bg;
+                    }
+                    .svg-icon {
+                        margin: 0 auto;
+                        font-size: 20px;
+                    }
+                    span {
+                        text-align: center;
+                        font-size: 14px;
+                        @include text-overflow;
+                    }
+                }
+            }
+        }
+        .sub-nav {
+            width: $g-sub-sidebar-width;
+            overflow: auto;
+            overscroll-behavior: contain;
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
         .el-menu {
             border-right: 0;

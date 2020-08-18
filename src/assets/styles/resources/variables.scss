@@ -19,7 +19,9 @@ $g-header-height: 70px;
 // 面包屑高度（同时也是侧边栏Logo区域的高度）
 $g-breadcrumb-height: 50px;
 // 侧边栏宽度
-$g-sidebar-width: 220px;
+$g-main-sidebar-width: 70px;
+$g-sub-sidebar-width: 200px;
+$g-sidebar-width: $g-main-sidebar-width + $g-sub-sidebar-width;
 
 // 应用背景色
 $g-app-bg: #fff;

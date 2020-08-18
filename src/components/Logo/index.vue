@@ -1,13 +1,23 @@
 <template>
     <div class="title" :title="title" @click="$router.push({name: 'dashboard'})">
-        <img :src="logo" class="logo">
-        <span>{{ title }}</span>
+        <img v-if="showLogo" :src="logo" class="logo">
+        <span v-if="showTitle">{{ title }}</span>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Logo',
+    props: {
+        showLogo: {
+            type: Boolean,
+            default: true
+        },
+        showTitle: {
+            type: Boolean,
+            default: true
+        }
+    },
     data() {
         return {
             title: process.env.VUE_APP_TITLE,
@@ -70,7 +80,9 @@ export default {
     .logo {
         width: 30px;
         height: 30px;
-        margin-right: 10px;
+        & + span {
+            margin-left: 10px;
+        }
     }
     span {
         display: block;

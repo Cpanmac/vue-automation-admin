@@ -102,14 +102,10 @@ const actions = {
                 currentPath: data.currentPath
             })
             let routes = []
-            if (state.showHeader) {
-                accessedRoutes.map(item => {
-                    routes.push(item.children)
-                })
-                routes = routes.flat()
-            } else {
-                routes = accessedRoutes
-            }
+            accessedRoutes.map(item => {
+                routes.push(item.children)
+            })
+            routes = routes.flat()
             resolve(routes)
         })
     }
@@ -121,12 +117,8 @@ const mutations = {
     },
     setRoutes(state, data) {
         state.permissionInit = true
-        if (state.showHeader) {
-            state.allRoutes = JSON.parse(JSON.stringify(data.routes))
-            this.commit('global/setHeaderActive', data.currentPath)
-        } else {
-            state.sidebarRoutes = JSON.parse(JSON.stringify(data.routes))
-        }
+        state.allRoutes = JSON.parse(JSON.stringify(data.routes))
+        this.commit('global/setHeaderActive', data.currentPath)
     },
     setHeaderActive(state, currentPath) {
         state.allRoutes.map((item, index) => {
