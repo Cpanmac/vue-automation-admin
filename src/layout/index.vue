@@ -26,34 +26,32 @@
                 </div>
             </header>
             <div class="wrapper">
-                <div class="sidebar-container">
-                    <div v-if="!$store.state.global.showHeader && $store.state.global.allRoutes.length > 1" class="main-nav">
-                        <Logo :show-title="false" />
-                        <div class="nav">
-                            <template v-for="(item, index) in $store.state.global.allRoutes">
-                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
-                                    'item': true,
-                                    'active': index == $store.state.global.headerNavActive
-                                }" :title="item.meta.title" @click="$store.commit('global/switchHeader', index)"
-                                >
-                                    <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
-                                    <span>{{ item.meta.title }}</span>
-                                </div>
-                            </template>
-                        </div>
+                <div v-if="!$store.state.global.showHeader && $store.state.global.allRoutes.length > 1" class="main-sidebar-container">
+                    <Logo :show-title="false" class="sidebar-logo" />
+                    <div class="nav">
+                        <template v-for="(item, index) in $store.state.global.allRoutes">
+                            <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
+                                'item': true,
+                                'active': index == $store.state.global.headerNavActive
+                            }" :title="item.meta.title" @click="$store.commit('global/switchHeader', index)"
+                            >
+                                <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                                <span>{{ item.meta.title }}</span>
+                            </div>
+                        </template>
                     </div>
-                    <div class="sub-nav">
-                        <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
-                            'sidebar-logo': true,
-                            'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
-                        }"
-                        />
-                        <el-menu :background-color="variables.g_sidebar_bg" :text-color="variables.g_sidebar_menu_color" :active-text-color="variables.g_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
-                            <transition-group name="sidebar">
-                                <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
-                            </transition-group>
-                        </el-menu>
-                    </div>
+                </div>
+                <div class="sub-sidebar-container">
+                    <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
+                        'sidebar-logo': true,
+                        'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
+                    }"
+                    />
+                    <el-menu :background-color="variables.g_sub_sidebar_bg" :text-color="variables.g_sub_sidebar_menu_color" :active-text-color="variables.g_sub_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
+                        <transition-group name="sidebar">
+                            <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
+                        </transition-group>
+                    </el-menu>
                 </div>
                 <div class="main-container">
                     <div :class="{
@@ -200,7 +198,7 @@ header {
             transition: all 0.3s;
             &.active,
             &:hover {
-                background-color: $g_header_nav_active_bg;
+                background-color: $g-header-menu-active-bg;
             }
             .svg-icon {
                 font-size: 20px;
@@ -219,66 +217,77 @@ header {
     position: relative;
     width: 100%;
     height: 100%;
-    .sidebar-container {
+    .main-sidebar-container,
+    .sub-sidebar-container {
         position: fixed;
         z-index: 1000;
         top: 0;
         bottom: 0;
+        left: 0;
         display: flex;
-        width: $g-sidebar-width;
-        background-color: $g-sidebar-bg;
-        .main-nav {
-            width: $g-main-sidebar-width;
-            height: 100%;
+    }
+    .main-sidebar-container + .sub-sidebar-container {
+        left: $g-main-sidebar-width;
+    }
+    .main-sidebar-container {
+        width: $g-main-sidebar-width;
+        background-color: $g-header-bg;
+        color: #fff;
+        overflow: auto;
+        overscroll-behavior: contain;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .sidebar-logo {
             background-color: $g-header-bg;
-            color: #fff;
-            .nav {
+        }
+        .nav {
+            width: inherit;
+            padding-top: $g-breadcrumb-height;
+            .item {
                 display: flex;
                 flex-direction: column;
-                padding-top: $g-breadcrumb-height;
-                .item {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    height: 60px;
-                    padding: 0 5px;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    &.active,
-                    &:hover {
-                        background-color: $g_header_nav_active_bg;
-                    }
-                    .svg-icon {
-                        margin: 0 auto;
-                        font-size: 20px;
-                    }
-                    span {
-                        text-align: center;
-                        font-size: 14px;
-                        @include text-overflow;
-                    }
+                justify-content: center;
+                height: 60px;
+                padding: 0 5px;
+                cursor: pointer;
+                transition: all 0.3s;
+                &.active,
+                &:hover {
+                    background-color: $g-main-sidebar-menu-active-bg;
+                }
+                .svg-icon {
+                    margin: 0 auto;
+                    font-size: 20px;
+                }
+                span {
+                    text-align: center;
+                    font-size: 14px;
+                    @include text-overflow;
                 }
             }
         }
-        .sub-nav {
-            width: $g-sub-sidebar-width;
-            overflow: auto;
-            overscroll-behavior: contain;
-            &::-webkit-scrollbar {
-                display: none;
-            }
+    }
+    .sub-sidebar-container {
+        width: $g-sub-sidebar-width;
+        overflow: auto;
+        overscroll-behavior: contain;
+        &::-webkit-scrollbar {
+            display: none;
         }
         .sidebar-logo {
+            background: $g-sub-sidebar-bg;
             &:not(.sidebar-logo-bg) {
                 /deep/ span {
-                    color: $g-sidebar-menu-color;
+                    color: $g-sub-sidebar-menu-color;
                 }
             }
             &.sidebar-logo-bg {
-                background: $g-header-bg;
+                background: $g-main-sidebar-bg;
             }
         }
         .el-menu {
+            width: inherit;
             border-right: 0;
             padding-top: $g-breadcrumb-height;
         }
@@ -337,7 +346,7 @@ header {
 }
 header + .wrapper {
     padding-top: $g-header-height;
-    .sidebar-container {
+    .sub-sidebar-container {
         top: $g-header-height;
         .sidebar-logo {
             display: none;

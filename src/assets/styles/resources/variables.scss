@@ -27,18 +27,29 @@ $g-sidebar-width: var(--real-sidebar-width);
 $g-app-bg: #fff;
 // 主区域背景色
 $g-main-bg: #f5f7f9;
+
 // 头部背景色
 $g-header-bg: #736477;
+// 头部导航文字颜色
+$g-header-menu-color: #fff;
 // 头部导航选中颜色
-$g-header-nav-active-bg: $g-header-bg + 20;
-// 侧边栏背景色
-$g-sidebar-bg: #ddcdcd;
-// 侧边栏菜单文字颜色
-$g-sidebar-menu-color: #89768f;
-// 侧边栏菜单文字选中颜色
-$g-sidebar-menu-active-color: $g-sidebar-menu-color - 50;
-// 侧边栏菜单选中背景色
-$g-sidebar-menu-active-bg: #b5a5a5;
+$g-header-menu-active-bg: $g-header-bg + 20;
+
+// 主侧边栏背景色
+$g-main-sidebar-bg: #736477;
+// 主侧边栏文字颜色
+$g-main-sidebar-menu-color: #fff;
+// 主侧边栏菜单选中背景色
+$g-main-sidebar-menu-active-bg: $g-main-sidebar-bg + 20;
+
+// 次侧边栏背景色
+$g-sub-sidebar-bg: #ddcdcd;
+// 次侧边栏菜单文字颜色
+$g-sub-sidebar-menu-color: #89768f;
+// 次侧边栏菜单文字选中颜色
+$g-sub-sidebar-menu-active-color: $g-sub-sidebar-menu-color - 50;
+// 次侧边栏菜单选中背景色
+$g-sub-sidebar-menu-active-bg: #b5a5a5;
 
 // 输出给js使用
 :export {
@@ -48,9 +59,13 @@ $g-sidebar-menu-active-bg: #b5a5a5;
     g_app_bg: $g-app-bg;
     g_main_bg: $g-main-bg;
     g_header_bg: $g-header-bg;
-    g_header_nav_active_bg: $g-header-nav-active-bg;
-    g_sidebar_bg: $g-sidebar-bg;
-    g_sidebar_menu_color: $g-sidebar-menu-color;
-    g_sidebar_menu_active_color: $g-sidebar-menu-active-color;
-    g_sidebar_menu_active_bg: $g-sidebar-menu-active-bg;
+    g_header_menu_color: $g-header-menu-color;
+    g_header_menu_active_bg: $g-header-menu-active-bg;
+    g_main_sidebar_bg: $g-main-sidebar-bg;
+    g_main_sidebar_menu_color: $g-main-sidebar-menu-color;
+    g_main_sidebar_menu_active_bg: $g-main-sidebar-menu-active-bg;
+    g_sub_sidebar_bg: $g-sub-sidebar-bg;
+    g_sub_sidebar_menu_color: $g-sub-sidebar-menu-color;
+    g_sub_sidebar_menu_active_color: $g-sub-sidebar-menu-active-color;
+    g_sub_sidebar_menu_active_bg: $g-sub-sidebar-menu-active-bg;
 }

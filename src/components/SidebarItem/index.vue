@@ -94,17 +94,17 @@ export default {
     .el-menu {
         .el-submenu .el-submenu__title,
         .el-menu-item {
-            background-color: $g-sidebar-bg - 20 !important;
+            background-color: $g-sub-sidebar-bg - 20 !important;
             &:hover {
-                background-color: $g-sidebar-bg - 40 !important;
+                background-color: $g-sub-sidebar-bg - 40 !important;
             }
             &.is-active {
-                background-color: $g-sidebar-menu-active-bg !important;
+                background-color: $g-sub-sidebar-menu-active-bg !important;
             }
         }
     }
     &.is-active {
-        background-color: $g-sidebar-menu-active-bg !important;
+        background-color: $g-sub-sidebar-menu-active-bg !important;
     }
     .svg-icon {
         font-size: 20px;
