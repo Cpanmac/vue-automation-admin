@@ -8,7 +8,7 @@ export default {
     name: 'keepAliveExample',
     meta: {
         title: '页面缓存演示',
-        icon: 'keep-alive'
+        icon: 'sidebar-keep-alive'
     },
     children: [
         {

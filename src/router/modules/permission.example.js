@@ -7,7 +7,7 @@ export default {
     name: 'permissionExample',
     meta: {
         title: '权限演示',
-        icon: 'permission'
+        icon: 'sidebar-permission'
     },
     children: [
         {

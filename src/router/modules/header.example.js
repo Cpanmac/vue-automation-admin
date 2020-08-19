@@ -7,7 +7,7 @@ export default {
     name: 'headerExample',
     meta: {
         title: '布局',
-        icon: 'layout'
+        icon: 'sidebar-layout'
     },
     children: [
         {

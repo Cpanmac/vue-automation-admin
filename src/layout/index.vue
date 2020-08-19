@@ -26,32 +26,34 @@
                 </div>
             </header>
             <div class="wrapper">
-                <div v-if="!$store.state.global.showHeader && $store.state.global.allRoutes.length > 1" class="main-sidebar-container">
-                    <Logo :show-title="false" class="sidebar-logo" />
-                    <div class="nav">
-                        <template v-for="(item, index) in $store.state.global.allRoutes">
-                            <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
-                                'item': true,
-                                'active': index == $store.state.global.headerNavActive
-                            }" :title="item.meta.title" @click="$store.commit('global/switchHeader', index)"
-                            >
-                                <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
-                                <span>{{ item.meta.title }}</span>
-                            </div>
-                        </template>
+                <div class="sidebar-container">
+                    <div v-if="!$store.state.global.showHeader && $store.state.global.allRoutes.length > 1" class="main-sidebar-container">
+                        <Logo :show-title="false" class="sidebar-logo" />
+                        <div class="nav">
+                            <template v-for="(item, index) in $store.state.global.allRoutes">
+                                <div v-if="item.children && item.children.length !== 0" :key="index" :class="{
+                                    'item': true,
+                                    'active': index == $store.state.global.headerNavActive
+                                }" :title="item.meta.title" @click="$store.commit('global/switchHeader', index)"
+                                >
+                                    <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                                    <span>{{ item.meta.title }}</span>
+                                </div>
+                            </template>
+                        </div>
                     </div>
-                </div>
-                <div class="sub-sidebar-container">
-                    <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
-                        'sidebar-logo': true,
-                        'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
-                    }"
-                    />
-                    <el-menu :background-color="variables.g_sub_sidebar_bg" :text-color="variables.g_sub_sidebar_menu_color" :active-text-color="variables.g_sub_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
-                        <transition-group name="sidebar">
-                            <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
-                        </transition-group>
-                    </el-menu>
+                    <div class="sub-sidebar-container">
+                        <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
+                            'sidebar-logo': true,
+                            'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
+                        }"
+                        />
+                        <el-menu :background-color="variables.g_sub_sidebar_bg" :text-color="variables.g_sub_sidebar_menu_color" :active-text-color="variables.g_sub_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
+                            <transition-group name="sidebar">
+                                <SidebarItem v-for="route in $store.state.global.sidebarRoutes" :key="route.path" :item="route" :base-path="route.path" />
+                            </transition-group>
+                        </el-menu>
+                    </div>
                 </div>
                 <div class="main-container">
                     <div :class="{
@@ -217,29 +219,27 @@ header {
     position: relative;
     width: 100%;
     height: 100%;
-    .main-sidebar-container,
-    .sub-sidebar-container {
+    .sidebar-container {
         position: fixed;
         z-index: 1000;
         top: 0;
         bottom: 0;
-        left: 0;
         display: flex;
     }
-    .main-sidebar-container + .sub-sidebar-container {
-        left: $g-main-sidebar-width;
-    }
-    .main-sidebar-container {
-        width: $g-main-sidebar-width;
-        background-color: $g-header-bg;
-        color: #fff;
+    .main-sidebar-container,
+    .sub-sidebar-container {
         overflow: auto;
         overscroll-behavior: contain;
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+    .main-sidebar-container {
+        width: $g-main-sidebar-width;
+        background-color: $g-main-sidebar-bg;
+        color: #fff;
         .sidebar-logo {
-            background-color: $g-header-bg;
+            background-color: $g-main-sidebar-bg;
         }
         .nav {
             width: inherit;
@@ -270,11 +270,7 @@ header {
     }
     .sub-sidebar-container {
         width: $g-sub-sidebar-width;
-        overflow: auto;
-        overscroll-behavior: contain;
-        &::-webkit-scrollbar {
-            display: none;
-        }
+        background-color: $g-sub-sidebar-bg;
         .sidebar-logo {
             background: $g-sub-sidebar-bg;
             &:not(.sidebar-logo-bg) {

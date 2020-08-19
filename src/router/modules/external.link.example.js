@@ -6,6 +6,6 @@ export default {
     name: 'externalLinkExample',
     meta: {
         title: '官网',
-        icon: 'external-link'
+        icon: 'sidebar-external-link'
     }
 }

@@ -8,7 +8,7 @@ export default {
     name: 'multilevelMenuExample',
     meta: {
         title: '多级导航演示',
-        icon: 'menu'
+        icon: 'sidebar-menu'
     },
     children: [
         {

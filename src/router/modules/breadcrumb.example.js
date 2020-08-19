@@ -8,7 +8,7 @@ export default {
     name: 'breadcrumbExample',
     meta: {
         title: '面包屑导航演示',
-        icon: 'breadcrumb'
+        icon: 'sidebar-breadcrumb'
     },
     children: [
         {

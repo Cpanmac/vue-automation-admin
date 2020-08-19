@@ -74,7 +74,8 @@ import ExTernalLinkExample from './modules/external.link.example'
 let asyncRoutes = [
     {
         meta: {
-            title: '默认'
+            title: '默认',
+            icon: 'sidebar-default'
         },
         children: [
             MultilevelMenuExample,
@@ -82,16 +83,16 @@ let asyncRoutes = [
             KeepAliveExample,
             ComponentExample,
             PermissionExample,
-            ExTernalLinkExample
+            HeaderExample
         ]
     },
     {
         meta: {
-            title: '布局',
-            icon: 'layout'
+            title: '其它',
+            icon: 'sidebar-other'
         },
         children: [
-            HeaderExample
+            ExTernalLinkExample
         ]
     }
 ]

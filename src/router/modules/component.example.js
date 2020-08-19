@@ -7,7 +7,7 @@ export default {
     name: 'componentExample',
     meta: {
         title: '组件演示',
-        icon: 'component'
+        icon: 'sidebar-component'
     },
     children: [
         {
