@@ -157,7 +157,7 @@ header {
     padding: 0 20px;
     height: $g-header-height;
     background-color: $g-header-bg;
-    color: #fff;
+    color: $g-header-menu-color;
     .header-container {
         width: $g-header-width;
         margin: 0 auto;
@@ -342,7 +342,7 @@ header {
 }
 header + .wrapper {
     padding-top: $g-header-height;
-    .sub-sidebar-container {
+    .sidebar-container {
         top: $g-header-height;
         .sidebar-logo {
             display: none;

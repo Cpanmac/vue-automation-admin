@@ -118,6 +118,9 @@ const mutations = {
     setRoutes(state, data) {
         state.permissionInit = true
         state.allRoutes = JSON.parse(JSON.stringify(data.routes))
+        state.allRoutes = state.allRoutes.filter(item => {
+            return item.children.length != 0
+        })
         this.commit('global/setHeaderActive', data.currentPath)
     },
     setHeaderActive(state, currentPath) {

@@ -70,7 +70,7 @@ import PermissionExample from './modules/permission.example'
 import HeaderExample from './modules/header.example'
 import ExTernalLinkExample from './modules/external.link.example'
 
-// 此处的代码仅作演示用，实际开发中，头部只会保留一种展示形式，要么显示，要么不显示，所以只需保留 if-else 条件里的其中一段即可
+// 当 children 不为空的主导航只有一项时，则隐藏
 let asyncRoutes = [
     {
         meta: {
