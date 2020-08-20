@@ -97,10 +97,8 @@ const actions = {
             } else {
                 accessedRoutes = data.asyncRoutes
             }
-            commit('setRoutes', {
-                routes: accessedRoutes,
-                currentPath: data.currentPath
-            })
+            commit('setRoutes', accessedRoutes)
+            commit('setHeaderActive', data.currentPath)
             let routes = []
             accessedRoutes.map(item => {
                 routes.push(item.children)
@@ -115,17 +113,16 @@ const mutations = {
     setPermissions(state, permissions) {
         state.permissions = permissions
     },
-    setRoutes(state, data) {
+    setRoutes(state, routes) {
         state.permissionInit = true
-        state.allRoutes = JSON.parse(JSON.stringify(data.routes))
+        state.allRoutes = JSON.parse(JSON.stringify(routes))
         state.allRoutes = state.allRoutes.filter(item => {
             return item.children.length != 0
         })
-        this.commit('global/setHeaderActive', data.currentPath)
     },
     setHeaderActive(state, currentPath) {
         state.allRoutes.map((item, index) => {
-            if (item.children.some(r => currentPath.indexOf(r.path) === 0)) {
+            if (item.children.some(r => currentPath.indexOf(r.path + '/') === 0)) {
                 state.headerNavActive = index
             }
         })
