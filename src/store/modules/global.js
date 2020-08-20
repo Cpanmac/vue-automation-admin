@@ -134,6 +134,7 @@ const mutations = {
     },
     invalidRoutes(state) {
         state.permissionInit = false
+        state.headerNavActive = 0
     },
     setTitle(state, title) {
         state.title = title
