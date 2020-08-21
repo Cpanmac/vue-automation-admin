@@ -14,6 +14,18 @@ export default {
         }
     },
     methods: {
+        getParams(params = {}) {
+            const baseParams = {
+                from: (this.pagination.page - 1) * this.pagination.size,
+                limit: this.pagination.size
+            }
+            if (this.sort && this.order) {
+                baseParams.sort = this.sort
+                baseParams.order = this.order
+            }
+            Object.assign(baseParams, params)
+            return baseParams
+        },
         onSizeChange(size) {
             this.pagination.size = size
             this.getDataList()
