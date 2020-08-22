@@ -62,9 +62,7 @@ export default {
             } else {
                 this.$refs['form'].validate(valid => {
                     if (valid) {
-                        this.$api.post('api/edit', Object.assign(this.form, {
-                            id: this.form.id
-                        })).then(() => {
+                        this.$api.post('api/edit', this.form).then(() => {
                             this.$message.success({
                                 message: '编辑成功',
                                 center: true
