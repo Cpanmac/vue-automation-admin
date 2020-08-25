@@ -78,13 +78,9 @@ export default {
     created() {},
     mounted() {
         this.sourceList = []
-        if (this.$store.state.global.showHeader) {
-            this.$store.state.global.allRoutes.map(item => {
-                this.getSourceList(item.children)
-            })
-        } else {
-            this.getSourceList(this.$store.state.global.sidebarRoutes)
-        }
+        this.$store.state.global.allRoutes.map(item => {
+            this.getSourceList(item.children)
+        })
     },
     methods: {
         isExternal(path) {
