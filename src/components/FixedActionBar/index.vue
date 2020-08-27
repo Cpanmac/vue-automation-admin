@@ -1,7 +1,7 @@
 <template>
     <div :class="{
         'actionbar': true,
-        'shadow': isBottom
+        'shadow': !isBottom
     }"
     >
         <slot />
