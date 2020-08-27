@@ -17,7 +17,9 @@ export default {
         return {
             image: '',
             images: [
-                'http://image.lookbi.com/four_season/uploads/supply//1/20200623/1592845429844750.png'
+                'https://picsum.photos/400',
+                'https://picsum.photos/600',
+                'https://picsum.photos/500'
             ],
             files: [
                 {
