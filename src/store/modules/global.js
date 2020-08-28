@@ -2,6 +2,7 @@
  * 存放全局公用状态
  */
 import setting from '@/setting'
+import {deepClone} from '@/util'
 
 function hasPermission(permissions, route) {
     if (route.meta && route.meta.auth) {
@@ -69,17 +70,19 @@ const actions = {
         return new Promise(resolve => {
             // 模拟权限数据
             let permissions
-            if (rootState.token.account == 'yiwang') {
-                permissions = [
-                    'permission.browse'
-                ]
-            } else {
+            if (rootState.token.account == 'admin') {
                 permissions = [
                     'permission.browse',
                     'permission.create',
                     'permission.edit',
                     'permission.remove'
                 ]
+            } else if (rootState.token.account == 'test') {
+                permissions = [
+                    'permission.browse'
+                ]
+            } else {
+                permissions = []
             }
             commit('setPermissions', permissions)
             resolve(permissions)
@@ -115,7 +118,7 @@ const mutations = {
     },
     setRoutes(state, routes) {
         state.permissionInit = true
-        state.allRoutes = JSON.parse(JSON.stringify(routes))
+        state.allRoutes = deepClone(routes)
         state.allRoutes = state.allRoutes.filter(item => {
             return item.children.length != 0
         })

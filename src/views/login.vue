@@ -32,7 +32,9 @@
                 </div>
                 <el-checkbox v-model="form.remember">记住我</el-checkbox>
                 <el-button :loading="loading" type="primary" style="width: 100%;" @click.native.prevent="handleLogin">登录</el-button>
-                <div style="margin-top: 20px; color: #999; font-size: 14px; text-align: center;">演示用户名 / 密码：yiwang / 随意</div>
+                <div style="margin-top: 20px; color: #999; font-size: 14px; text-align: center;">
+                    演示帐号一键登录：<span style="padding: 0 5px; cursor: pointer; color: #666;" @click="testAccount('admin')">admin</span>或<span style="padding: 0 5px; cursor: pointer; color: #666;" @click="testAccount('test')">test</span>
+                </div>
             </el-form>
         </div>
         <Copyright />
@@ -121,6 +123,11 @@ export default {
                     })
                 }
             })
+        },
+        testAccount(account) {
+            this.form.account = account
+            this.form.password = '123456'
+            this.handleLogin()
         }
     }
 }

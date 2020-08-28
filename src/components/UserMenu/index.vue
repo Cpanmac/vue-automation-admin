@@ -10,7 +10,7 @@
         <el-dropdown class="user-container" trigger="click" @command="handleCommand">
             <div class="user-wrapper">
                 <el-avatar size="medium" />
-                Hooray
+                {{ $store.state.token.account }}
                 <i class="el-icon-caret-bottom" />
             </div>
             <el-dropdown-menu slot="dropdown" class="user-dropdown">

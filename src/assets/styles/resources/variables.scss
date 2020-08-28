@@ -51,6 +51,13 @@ $g-sub-sidebar-menu-active-color: $g-sub-sidebar-menu-color - 50;
 // 次侧边栏菜单选中背景色
 $g-sub-sidebar-menu-active-bg: #b5a5a5;
 
+// 导航标记背景色
+$g-badge-bg: #f56c6c;
+// 导航标记文字颜色
+$g-badge-color: #fff;
+// 导航标记边框颜色
+$g-badge-border-color:#fff;
+
 // 输出给js使用
 :export {
     g_main_sidebar_width: $g-main-sidebar-width;
