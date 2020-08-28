@@ -12,6 +12,10 @@
 - 根据路由配置自动生成导航栏
 - 支持全方位权限验证
 
+## 演示地址
+
+[查看演示](https://eoner.gitee.io/vue-automation-admin/demo)，演示地址仅展示部分功能，推荐拉取代码到本地查看更多功能
+
 ## 预览
 
 ![](http://eoner.gitee.io/vue-automation-admin/images/layout_with_main_sidebar.png)
