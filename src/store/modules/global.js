@@ -5,8 +5,9 @@ import setting from '@/setting'
 import {deepClone} from '@/util'
 
 function hasPermission(permissions, route) {
+    let isAuth = false
     if (route.meta && route.meta.auth) {
-        return permissions.some(auth => {
+        isAuth = permissions.some(auth => {
             if (typeof route.meta.auth == 'string') {
                 return route.meta.auth === auth
             } else {
@@ -16,8 +17,9 @@ function hasPermission(permissions, route) {
             }
         })
     } else {
-        return true
+        isAuth = true
     }
+    return isAuth
 }
 
 function filterAsyncRoutes(routes, permissions) {
