@@ -22,10 +22,10 @@
 
 ## 预览
 
-![](http://eoner.gitee.io/vue-automation-admin/images/layout_with_main_sidebar.png)
-![](http://eoner.gitee.io/vue-automation-admin/images/layout_with_header.png)
-![](http://eoner.gitee.io/vue-automation-admin/images/layout_without_main_sidebar.png)
-![](http://eoner.gitee.io/vue-automation-admin/images/layout_without_header.png)
+![](docs/images/layout_with_main_sidebar.png)
+![](docs/images/layout_with_header.png)
+![](docs/images/layout_without_main_sidebar.png)
+![](docs/images/layout_without_header.png)
 
 ## 文档
 
