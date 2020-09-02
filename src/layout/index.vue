@@ -42,10 +42,11 @@
                             </template>
                         </div>
                     </div>
-                    <div class="sub-sidebar-container">
+                    <div class="sub-sidebar-container" @scroll="onSidebarScroll">
                         <Logo :show-logo="$store.state.global.allRoutes.length <= 1" :class="{
                             'sidebar-logo': true,
-                            'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1
+                            'sidebar-logo-bg': $store.state.global.allRoutes.length <= 1,
+                            'shadow': sidebarScrollTop
                         }"
                         />
                         <el-menu :background-color="variables.g_sub_sidebar_bg" :text-color="variables.g_sub_sidebar_menu_color" :active-text-color="variables.g_sub_sidebar_menu_active_color" unique-opened :default-active="$route.meta.activeMenu || $route.path">
@@ -93,6 +94,7 @@ export default {
     data() {
         return {
             routePath: '',
+            sidebarScrollTop: 0,
             scrollTop: 0
         }
     },
@@ -119,6 +121,9 @@ export default {
         window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
+        onSidebarScroll(e) {
+            this.sidebarScrollTop = e.target.scrollTop
+        },
         onScroll() {
             this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         }
@@ -273,6 +278,7 @@ header {
         background-color: $g-sub-sidebar-bg;
         .sidebar-logo {
             background: $g-sub-sidebar-bg;
+            transition: box-shadow 0.5s;
             &:not(.sidebar-logo-bg) {
                 /deep/ span {
                     color: $g-sub-sidebar-menu-color;
@@ -280,6 +286,9 @@ header {
             }
             &.sidebar-logo-bg {
                 background: $g-main-sidebar-bg;
+            }
+            &.shadow {
+                box-shadow: 0 10px 10px -10px $g-sub-sidebar-bg - 50;
             }
         }
         .el-menu {
