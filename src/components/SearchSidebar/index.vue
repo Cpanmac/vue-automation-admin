@@ -174,6 +174,7 @@ export default {
     background-color: rgba($color: #000, $alpha: 0.5);
     backdrop-filter: blur(10px);
     transition: all 0.3s;
+    transform: translateZ(0);
     opacity: 0;
     visibility: hidden;
     &.searching {
