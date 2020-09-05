@@ -235,6 +235,9 @@ header {
     .sub-sidebar-container {
         overflow: auto;
         overscroll-behavior: contain;
+        // firefox隐藏滚动条
+        scrollbar-width: none;
+        // chrome隐藏滚动条
         &::-webkit-scrollbar {
             display: none;
         }
