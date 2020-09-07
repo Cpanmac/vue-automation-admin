@@ -4,13 +4,27 @@
         <div class="content">
             <h1>404</h1>
             <div class="desc">抱歉，你访问的页面不存在</div>
-            <el-button type="primary" @click="goBack">返回首页</el-button>
+            <el-button type="primary" @click="goBack">{{ countdown }}秒后，返回首页</el-button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            countdown: 5
+        }
+    },
+    mounted() {
+        const inter = setInterval(() => {
+            this.countdown--
+            if (this.countdown == 0) {
+                clearInterval(inter)
+                this.goBack()
+            }
+        }, 1000)
+    },
     methods: {
         goBack() {
             this.$router.push('/')
