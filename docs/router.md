@@ -1,6 +1,6 @@
 # 路由
 
-> 请先阅读 vue-automation 的 [Vue-router](http://eoner.gitee.io/vue-automation/#/vue-router) 章节
+> 请先阅读 vue-automation 的 [Vue-router](https://eoner.gitee.io/vue-automation/#/vue-router) 章节
 
 ## 配置项
 

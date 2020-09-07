@@ -1,6 +1,6 @@
 # 配置
 
-> 请先阅读 vue-automation 的[配置](http://eoner.gitee.io/vue-automation/#/configure)章节
+> 请先阅读 vue-automation 的[配置](https://eoner.gitee.io/vue-automation/#/configure)章节
 
 模版的配置存放在 `src/setting.js` 文件里，如下：
 

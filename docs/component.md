@@ -1,6 +1,6 @@
 # 组件
 
-> 请先阅读 vue-automation 的[全局组件](http://eoner.gitee.io/vue-automation/#/global-component)章节
+> 请先阅读 vue-automation 的[全局组件](https://eoner.gitee.io/vue-automation/#/global-component)章节
 
 除了 Element UI 提供的组件外，模版另外封装的一些常用的全局组件。
 

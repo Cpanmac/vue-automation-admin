@@ -16,11 +16,11 @@ export default {
             name: 'linkExampleIframe',
             meta: {
                 title: '内嵌网页',
-                link: 'http://eoner.gitee.io/vue-automation-admin'
+                link: 'https://eoner.gitee.io/vue-automation-admin'
             }
         },
         {
-            path: 'http://eoner.gitee.io/vue-automation-admin',
+            path: 'https://eoner.gitee.io/vue-automation-admin',
             meta: {
                 title: '新窗口打开'
             }

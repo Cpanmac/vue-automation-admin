@@ -31,7 +31,7 @@
 
 [Github](https://hooray.github.io/vue-automation-admin)
 
-[Gitee](http://eoner.gitee.io/vue-automation-admin)（推荐国内用户访问）
+[Gitee](https://eoner.gitee.io/vue-automation-admin)（推荐国内用户访问）
 
 ## 支持
 
