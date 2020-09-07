@@ -31,7 +31,9 @@ meta: {
     // string 类型展示形式为文本，当值为空时隐藏
     // 如果标记需要动态更新，请设置为函数形式，并传入外部变量，例如搭配 vuex 一起使用
     // badge: () => store.state.global.number
-    badge: true
+    badge: true,
+    // 内嵌网页链接，如果要开启内嵌网页，component 需要设置为框架提供的 layoue/iframe.vue
+    link: ''
 }
 ```
 
