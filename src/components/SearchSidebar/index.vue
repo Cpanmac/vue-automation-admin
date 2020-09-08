@@ -6,25 +6,26 @@
                 <div class="tips">你可以使用快捷键<span>ctrl</span>+<span>s</span>唤醒搜索面板，按<span>esc</span>退出</div>
             </div>
             <div ref="search" class="result">
-                <!-- eslint-disable-next-line vue/require-component-is -->
-                <component v-for="item in resultList" :key="item.path" v-bind="linkProps(item.path)" class="item">
-                    <div class="icon">
-                        <svg-icon :name="item.icon" />
-                    </div>
-                    <div class="info">
-                        <div class="title">
-                            {{ item.title }}
-                            <svg-icon v-if="item.isExternal" name="external-link" />
+                <router-link v-for="item in resultList" :key="item.path" v-slot="{ href, route, navigate }" :to="item.path">
+                    <a :href="isExternal(item.path) ? item.path : href" class="item" :target="isExternal(item.path) ? '_blank' : '_self'" @click="navigate">
+                        <div class="icon">
+                            <svg-icon :name="item.icon" />
                         </div>
-                        <div class="breadcrumb">
-                            <span v-for="(bc, index) in item.breadcrumb" :key="index">
-                                {{ bc }}
-                                <i class="el-icon-arrow-right" />
-                            </span>
+                        <div class="info">
+                            <div class="title">
+                                {{ item.title }}
+                                <svg-icon v-if="item.isExternal" name="external-link" />
+                            </div>
+                            <div class="breadcrumb">
+                                <span v-for="(bc, index) in item.breadcrumb" :key="index">
+                                    {{ bc }}
+                                    <i class="el-icon-arrow-right" />
+                                </span>
+                            </div>
+                            <div class="path">{{ item.path }}</div>
                         </div>
-                        <div class="path">{{ item.path }}</div>
-                    </div>
-                </component>
+                    </a>
+                </router-link>
             </div>
         </div>
     </div>
@@ -85,20 +86,6 @@ export default {
     methods: {
         isExternal(path) {
             return /^(https?:|mailto:|tel:)/.test(path)
-        },
-        linkProps(url) {
-            if (this.isExternal(url)) {
-                return {
-                    is: 'a',
-                    href: url,
-                    target: '_blank',
-                    rel: 'noopener'
-                }
-            }
-            return {
-                is: 'router-link',
-                to: url
-            }
         },
         hasChildren(item) {
             let flag = true

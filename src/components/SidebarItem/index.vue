@@ -1,18 +1,19 @@
 <template>
     <div v-if="item.meta.sidebar !== false">
-        <!-- eslint-disable-next-line vue/require-component-is -->
-        <component v-if="!hasChildren" v-bind="linkProps(resolvePath(item.path))">
-            <el-menu-item :title="item.meta.title" :index="resolvePath(item.path)">
-                <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
-                <span>{{ item.meta.title }}</span>
-                <span v-if="badge(item.meta.badge).visible" :class="{
-                    'badge': true,
-                    'badge-dot': badge(item.meta.badge).type == 'dot',
-                    'badge-text': badge(item.meta.badge).type == 'text'
-                }"
-                >{{ badge(item.meta.badge).value }}</span>
-            </el-menu-item>
-        </component>
+        <router-link v-if="!hasChildren" v-slot="{ href, route, navigate, isActive, isExactActive }" :to="resolvePath(item.path)">
+            <a :href="isExternal(resolvePath(item.path)) ? resolvePath(item.path) : href" :class="[isActive && 'router-link-active', isExactActive && 'router-link-exact-active']" :target="isExternal(resolvePath(item.path)) ? '_blank' : '_self'" @click="navigate">
+                <el-menu-item :title="item.meta.title" :index="resolvePath(item.path)">
+                    <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
+                    <span>{{ item.meta.title }}</span>
+                    <span v-if="badge(item.meta.badge).visible" :class="{
+                        'badge': true,
+                        'badge-dot': badge(item.meta.badge).type == 'dot',
+                        'badge-text': badge(item.meta.badge).type == 'text'
+                    }"
+                    >{{ badge(item.meta.badge).value }}</span>
+                </el-menu-item>
+            </a>
+        </router-link>
         <el-submenu v-else :title="item.meta.title" :index="resolvePath(item.path)">
             <template slot="title">
                 <svg-icon v-if="item.meta.icon" :name="item.meta.icon" />
@@ -65,20 +66,6 @@ export default {
     methods: {
         isExternal(path) {
             return /^(https?:|mailto:|tel:)/.test(path)
-        },
-        linkProps(url) {
-            if (this.isExternal(url)) {
-                return {
-                    is: 'a',
-                    href: url,
-                    target: '_blank',
-                    rel: 'noopener'
-                }
-            }
-            return {
-                is: 'router-link',
-                to: url
-            }
         },
         resolvePath(routePath) {
             if (this.isExternal(routePath)) {
