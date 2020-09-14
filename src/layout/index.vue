@@ -233,7 +233,8 @@ header {
     }
     .main-sidebar-container,
     .sub-sidebar-container {
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
         overscroll-behavior: contain;
         // firefox隐藏滚动条
         scrollbar-width: none;
