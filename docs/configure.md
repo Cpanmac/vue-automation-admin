@@ -17,7 +17,9 @@ export default {
     copyrightCompany: '浙江易网科技股份有限公司',
     copyrightWebsite: 'http://1one.cn/',
     // 是否开启动态标题
-    dynamicTitle: false
+    dynamicTitle: false,
+    // 是否开启控制台
+    enableDashboard: true
 }
 ```
 
