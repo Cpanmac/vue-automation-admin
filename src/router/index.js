@@ -146,18 +146,23 @@ router.beforeEach(async(to, from, next) => {
     if (store.getters['token/isLogin']) {
         if (to.name) {
             if (to.matched.length !== 0) {
-                next()
-                NProgress.done()
+                // 如果未开启控制台页面，则默认进入侧边栏导航第一个模块
+                if (!store.state.global.enableDashboard && to.name == 'dashboard') {
+                    next({
+                        name: store.state.global.sidebarRoutes[0].name,
+                        replace: true
+                    })
+                } else {
+                    next()
+                }
             } else {
                 // 如果是通过 name 跳转，并且 name 对应的路由没有权限时，需要做这步处理，手动指向到 404 页面
                 next({
                     path: '/404'
                 })
-                NProgress.done()
             }
         } else {
             next()
-            NProgress.done()
         }
     } else {
         if (to.name != 'login') {
@@ -167,12 +172,11 @@ router.beforeEach(async(to, from, next) => {
                     redirect: to.fullPath
                 }
             })
-            NProgress.done()
         } else {
             next()
-            NProgress.done()
         }
     }
+    NProgress.done()
 })
 
 export default router
