@@ -134,7 +134,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ input[type=password]::-ms-reveal {
+::v-deep input[type=password]::-ms-reveal {
     display: none;
 }
 .bg-banner {
@@ -196,7 +196,7 @@ export default {
             }
         }
     }
-    /deep/ .el-input {
+    ::v-deep .el-input {
         display: inline-block;
         height: 48px;
         width: 100%;
@@ -210,7 +210,7 @@ export default {
             right: 10px;
         }
     }
-    /deep/ .el-checkbox {
+    .el-checkbox {
         margin: 20px 0;
     }
 }

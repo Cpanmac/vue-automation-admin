@@ -183,7 +183,7 @@ export default {
         filter: blur(10px);
         .search-box {
             margin-top: 50px;
-            /deep/ .el-input__inner {
+            ::v-deep .el-input__inner {
                 height: 52px;
                 line-height: 52px;
             }

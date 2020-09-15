@@ -51,14 +51,14 @@ export default {
 .el-image {
     border-radius: 5px;
     background-color: #ebeef5;
-    /deep/ .el-image__inner {
+    ::v-deep .el-image__inner {
         transition: all 0.3s;
         cursor: pointer;
         &:hover {
             transform: scale(1.2) rotateZ(-10deg);
         }
     }
-    /deep/ .image-slot {
+    ::v-deep .image-slot {
         display: flex;
         justify-content: center;
         align-items: center;

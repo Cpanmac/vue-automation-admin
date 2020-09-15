@@ -108,7 +108,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .el-tabs {
+::v-deep .el-tabs {
     .el-tabs__header .el-tabs__nav {
         .el-tabs__active-bar {
             z-index: 0;
@@ -131,7 +131,7 @@ h2 {
     font-weight: normal;
 }
 .basic {
-    /deep/ .headimg-upload {
+    ::v-deep .headimg-upload {
         > div {
             text-align: center;
         }

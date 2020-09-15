@@ -124,7 +124,7 @@ export default {
         z-index: 1;
         left: 72px;
         top: 15px;
-        /deep/ .el-input input {
+        ::v-deep .el-input input {
             box-shadow: 0 0 5px #999;
         }
     }

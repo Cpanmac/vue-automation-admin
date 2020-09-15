@@ -109,15 +109,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .el-menu-item,
-/deep/ .el-menu-item span,
-/deep/ .el-submenu__title,
-/deep/ .el-submenu__title span {
+::v-deep .el-menu-item,
+::v-deep .el-menu-item span,
+::v-deep .el-submenu__title,
+::v-deep .el-submenu__title span {
     vertical-align: inherit;
     @include text-overflow;
 }
-/deep/ .el-submenu,
-/deep/ .el-menu-item {
+::v-deep .el-submenu,
+::v-deep .el-menu-item {
     .el-menu {
         .el-submenu .el-submenu__title,
         .el-menu-item {

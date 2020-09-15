@@ -66,7 +66,7 @@ export default {
         width: calc(100% - #{$g_sidebar_width});
     }
 }
-/deep/ .el-form-item {
+::v-deep .el-form-item {
     margin-bottom: 0;
 }
 </style>

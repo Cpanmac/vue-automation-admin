@@ -179,7 +179,7 @@ header {
             width: 100%;
         }
     }
-    /deep/ .title {
+    ::v-deep .title {
         position: relative;
         width: inherit;
         height: inherit;
@@ -213,7 +213,7 @@ header {
             }
         }
     }
-    /deep/ .user {
+    ::v-deep .user {
         .user-container {
             color: #fff;
             font-size: 16px;
@@ -284,7 +284,7 @@ header {
             background: $g-sub-sidebar-bg;
             transition: box-shadow 0.5s;
             &:not(.sidebar-logo-bg) {
-                /deep/ span {
+                ::v-deep span {
                     color: $g-sub-sidebar-menu-color;
                 }
             }
@@ -328,7 +328,7 @@ header {
             &.shadow {
                 box-shadow: 0 10px 10px -10px #ccc;
             }
-            /deep/ .el-breadcrumb {
+            ::v-deep .el-breadcrumb {
                 .el-breadcrumb__item {
                     span {
                         font-weight: normal;

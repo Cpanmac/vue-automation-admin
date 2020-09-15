@@ -95,7 +95,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .tox-tinymce {
+::v-deep .tox-tinymce {
     border: 1px solid #dcdfe6;
     border-radius: 4px;
 }

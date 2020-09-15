@@ -68,7 +68,7 @@ export default {
         color: #909399;
         font-size: 13px;
     }
-    /deep/ .el-form {
+    ::v-deep .el-form {
         > .el-button {
             margin-right: 10px;
         }

@@ -88,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .el-upload-dragger {
+::v-deep .el-upload-dragger {
     width: auto;
     height: auto;
     overflow: unset;

@@ -218,7 +218,7 @@ export default {
 .images-upload {
     display: inline-block;
 }
-/deep/ .el-upload {
+::v-deep .el-upload {
     .el-upload-dragger {
         width: auto;
         height: auto;

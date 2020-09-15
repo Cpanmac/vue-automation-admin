@@ -39,7 +39,7 @@ export default {
     &:first-child {
         margin-top: 0;
     }
-    /deep/ .el-form {
+    ::v-deep .el-form {
         margin-bottom: -18px;
         .el-select {
             width: 100%;
