@@ -1,7 +1,7 @@
 <template>
     <div class="upload-container">
         <div v-for="(item, index) in url" :key="index" class="images">
-            <el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="fill" />
+            <el-image v-if="index < max" :src="item" :style="`width:${width}px;height:${height}px;`" fit="cover" />
             <div class="mask">
                 <div class="actions">
                     <span title="预览" @click="preview(index)">
