@@ -137,6 +137,11 @@ export default {
         font-size: 20px;
         margin-right: 10px;
         vertical-align: -0.25em;
+        transition: all 0.3s;
+    }
+    &:hover > .svg-icon,
+    .el-submenu__title:hover > .svg-icon {
+        transform: scale(1.2);
     }
 }
 a {

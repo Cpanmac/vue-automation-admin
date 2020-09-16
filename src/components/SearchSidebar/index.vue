@@ -215,10 +215,9 @@ export default {
                 &:hover {
                     transition: all 0.3s;
                     background-color: #f5f7fa;
-                    .icon {
+                    .icon .svg-icon {
                         color: #409eff;
                         transform: scale(1.2);
-                        transition: all 0.3s;
                     }
                     .info {
                         .title {
@@ -227,16 +226,16 @@ export default {
                         .breadcrumb,
                         .path {
                             color: #606266;
-                            transition: all 0.3s;
                         }
                     }
                 }
                 .icon {
                     width: 66px;
                     text-align: center;
-                    color: #999;
                     .svg-icon {
+                        color: #999;
                         font-size: 20px;
+                        transition: all 0.3s;
                     }
                 }
                 .info {
@@ -260,6 +259,7 @@ export default {
                         line-height: 14px;
                         font-size: 12px;
                         color: #c0c4cc;
+                        transition: all 0.3s;
                     }
                     .breadcrumb {
                         span:last-child i {
