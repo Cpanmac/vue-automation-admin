@@ -80,7 +80,7 @@
                     <Copyright :style="{'visibility': $store.state.global.showCopyright ? 'visible' : 'hidden'}" />
                 </div>
             </div>
-            <el-backtop />
+            <el-backtop :right="20" :bottom="20" title="回到顶部" />
         </div>
         <SearchSidebar />
     </div>
