@@ -1,1 +1,58 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=favicon.ico><title>后台框架模版</title><link href=css/chunk-245b94bf.e2d526a2.css rel=prefetch><link href=css/chunk-266d6ca4.1f987186.css rel=prefetch><link href=css/chunk-50743b10.30dcb6aa.css rel=prefetch><link href=css/chunk-795f1dab.d5bf4123.css rel=prefetch><link href=css/chunk-bdae9270.e1d89b4d.css rel=prefetch><link href=css/component_example.3e8363b9.css rel=prefetch><link href=css/keep_alive_example.d953339d.css rel=prefetch><link href=js/breadcrumb_example.bee2e61c.js rel=prefetch><link href=js/chunk-245b94bf.c8896a23.js rel=prefetch><link href=js/chunk-266d6ca4.b64ef7c5.js rel=prefetch><link href=js/chunk-2d0c7e72.81dc3ea3.js rel=prefetch><link href=js/chunk-50743b10.f1d50557.js rel=prefetch><link href=js/chunk-795f1dab.3d2d6914.js rel=prefetch><link href=js/chunk-bdae9270.08480344.js rel=prefetch><link href=js/component_example.243eac67.js rel=prefetch><link href=js/header_example.3f620dd8.js rel=prefetch><link href=js/keep_alive_example.6fe9d939.js rel=prefetch><link href=js/menu_badge_example.3b867e57.js rel=prefetch><link href=js/multilevel_menu_example.faa5a016.js rel=prefetch><link href=js/permission_example.c93c46d6.js rel=prefetch><link href=css/app.9cd615c3.css rel=preload as=style><link href=js/app.79cdf754.js rel=preload as=script><link href=css/app.9cd615c3.css rel=stylesheet></head><body><noscript><strong>We're sorry but 后台框架模版 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=js/app.79cdf754.js></script></body></html>
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=favicon.ico><title>后台框架模版</title><style>.vaa-home {
+            position: absolute;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            user-select: none;
+            color: #736477;
+            background-color: snow;
+        }
+        .vaa-home .loading {
+            position: relative;
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            color: inherit;
+            vertical-align: middle;
+            pointer-events: none;
+            transform: scale(3);
+        }
+        .vaa-home .loading::before,
+        .vaa-home .loading::after {
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: currentColor;
+            left: 50%;
+            right: 0;
+            top: 0;
+            bottom: 50%;
+            box-shadow: -0.5em 0 0 currentColor;
+            animation: loading 1s linear infinite;
+        }
+        .vaa-home .loading::after {
+            top: 50%;
+            bottom: 0;
+            animation-delay: 0.25s;
+        }
+        @keyframes loading {
+            0%,
+            100% {
+                box-shadow: -0.5em 0 0 transparent;
+                background-color: currentColor;
+            }
+            50% {
+                box-shadow: -0.5em 0 0 currentColor;
+                background-color: transparent;
+            }
+        }
+        .vaa-home .text {
+            font-size: 18px;
+            margin-top: 50px;
+        }</style><link href=css/chunk-0132ecb4.1bd4031b.css rel=prefetch><link href=css/chunk-245b94bf.7ee0bf56.css rel=prefetch><link href=css/chunk-4a7c7250.6e5f4c71.css rel=prefetch><link href=css/chunk-50743b10.30dcb6aa.css rel=prefetch><link href=css/chunk-9eedab50.51e446ba.css rel=prefetch><link href=css/component_example.3e8363b9.css rel=prefetch><link href=css/keep_alive_example.d953339d.css rel=prefetch><link href=js/breadcrumb_example.ab06c091.js rel=prefetch><link href=js/chunk-0132ecb4.0e350b7b.js rel=prefetch><link href=js/chunk-245b94bf.c2daab97.js rel=prefetch><link href=js/chunk-2d0c7e72.ee8c8bd3.js rel=prefetch><link href=js/chunk-4a7c7250.7a30156d.js rel=prefetch><link href=js/chunk-50743b10.c08ae221.js rel=prefetch><link href=js/chunk-9eedab50.dc1cfabe.js rel=prefetch><link href=js/component_example.fa570f3b.js rel=prefetch><link href=js/header_example.ea17ab63.js rel=prefetch><link href=js/keep_alive_example.a968680e.js rel=prefetch><link href=js/menu_badge_example.d896edc7.js rel=prefetch><link href=js/multilevel_menu_example.ed9690de.js rel=prefetch><link href=js/permission_example.f7e99faa.js rel=prefetch><link href=css/app.18436096.css rel=preload as=style><link href=js/app.647b9378.js rel=preload as=script><link href=css/app.18436096.css rel=stylesheet></head><body><noscript><strong>We're sorry but 后台框架模版 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app><div class=vaa-home><div class=loading></div><div class=text>后台框架模版载入中…</div></div></div><script src=js/app.647b9378.js></script></body></html>
