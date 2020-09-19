@@ -1,9 +1,14 @@
 <template>
     <div class="user">
         <div class="tools">
-            <el-tooltip effect="dark" content="搜索页面" placement="bottom">
+            <el-tooltip v-if="$store.state.global.enableNavSearch" effect="dark" content="搜索页面" placement="bottom">
                 <span class="item" @click="$store.commit('global/toggleSearch')">
-                    <i class="el-icon-search" />
+                    <svg-icon name="search" />
+                </span>
+            </el-tooltip>
+            <el-tooltip v-if="$store.state.global.enableThemeSetting" effect="dark" content="主题配置" placement="bottom">
+                <span class="item" @click="$store.commit('global/toggleTheme')">
+                    <svg-icon name="theme" />
                 </span>
             </el-tooltip>
         </div>
@@ -59,13 +64,12 @@ export default {
 .tools {
     margin-right: 20px;
     .item {
+        margin-left: 5px;
         padding: 6px 8px;
         border-radius: 5px;
+        outline: none;
         cursor: pointer;
         transition: all 0.3s;
-        &:hover {
-            background-color: rgba($color: #000, $alpha: 0.2);
-        }
     }
 }
 .user-container {

@@ -63,13 +63,13 @@ export default {
     watch: {
         '$store.state.global.openSearch'(val) {
             if (val) {
-                document.querySelector('body').setAttribute('style', 'overflow: hidden;')
+                document.querySelector('body').classList.add('hidden')
                 this.$refs.search.scrollTop = 0
                 setTimeout(() => {
                     this.$refs.input.$el.children[0].focus()
                 }, 100)
             } else {
-                document.querySelector('body').setAttribute('style', 'overflow: auto;')
+                document.querySelector('body').classList.remove('hidden')
                 setTimeout(() => {
                     this.search = ''
                 }, 500)

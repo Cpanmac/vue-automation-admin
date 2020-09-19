@@ -123,7 +123,7 @@ Router.prototype.replace = function replace(location) {
 }
 
 router.beforeEach(async(to, from, next) => {
-    NProgress.start()
+    store.state.global.enableProgress && NProgress.start()
     // 已经登录，但还没根据权限动态挂载路由
     if (store.getters['token/isLogin'] && !store.state.global.permissionInit) {
         /**
@@ -180,7 +180,7 @@ router.beforeEach(async(to, from, next) => {
             next()
         }
     }
-    NProgress.done()
+    store.state.global.enableProgress && NProgress.done()
 })
 
 export default router

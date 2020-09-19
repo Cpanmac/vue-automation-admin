@@ -50,8 +50,10 @@ const state = {
     sidebarRoutes: [],
     // 页面标题
     title: '',
-    // 是否显示搜索
-    openSearch: false
+    // 是否打开搜索
+    openSearch: false,
+    // 是否打开主题配置
+    openTheme: false
 }
 
 const getters = {
@@ -146,6 +148,9 @@ const mutations = {
     },
     toggleSearch(state) {
         state.openSearch = !state.openSearch
+    },
+    toggleTheme(state) {
+        state.openTheme = !state.openTheme
     }
 }
 
