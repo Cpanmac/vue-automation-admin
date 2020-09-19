@@ -1,43 +1,43 @@
 <template>
     <div>
-        <el-drawer title="主题配置" :visible.sync="$store.state.global.openTheme" direction="rtl" size="500px">
+        <el-drawer title="主题配置" :visible.sync="openTheme" direction="rtl" size="500px">
             <el-alert title="主题配置可实时预览效果，更多设置请在 src/setting.js 中进行设置，建议在生产环境隐藏主题配置功能" type="error" :closable="false" />
-            <el-form ref="form" :model="$store.state.global" label-width="100px" size="small">
-                <el-form-item label="显示头部">
-                    <el-radio-group v-model="$store.state.global.showHeader">
+            <el-form ref="form" label-width="100px" size="small">
+                <el-form-item label="头部">
+                    <el-radio-group v-model="showHeader">
                         <el-radio-button :label="true">显示</el-radio-button>
                         <el-radio-button :label="false">隐藏</el-radio-button>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="显示底部版权">
-                    <el-radio-group v-model="$store.state.global.showCopyright">
+                <el-form-item label="底部版权">
+                    <el-radio-group v-model="showCopyright">
                         <el-radio-button :label="true">显示</el-radio-button>
                         <el-radio-button :label="false">隐藏</el-radio-button>
                     </el-radio-group>
                 </el-form-item>
                 <el-form-item label="导航搜索">
-                    <el-radio-group v-model="$store.state.global.enableNavSearch">
+                    <el-radio-group v-model="enableNavSearch">
                         <el-radio-button :label="true">开启</el-radio-button>
                         <el-radio-button :label="false">关闭</el-radio-button>
                     </el-radio-group>
-                    <el-alert title="该功能位于页面右上角的搜索按钮，可对全局侧边栏导航快捷搜索" type="info" :closable="false" />
+                    <el-alert title="该功能为页面右上角的搜索按钮，可对侧边栏导航进行快捷搜索" type="info" :closable="false" />
                 </el-form-item>
-                <el-form-item label="载入进度条">
-                    <el-radio-group v-model="$store.state.global.enableProgress">
+                <el-form-item label="加载进度条">
+                    <el-radio-group v-model="enableProgress">
                         <el-radio-button :label="true">开启</el-radio-button>
                         <el-radio-button :label="false">关闭</el-radio-button>
                     </el-radio-group>
-                    <el-alert title="该功能开启时，路由跳转会看到页面顶部有条蓝色的进度条" type="info" :closable="false" />
+                    <el-alert title="该功能开启时，跳转路由会看到页面顶部有条蓝色的进度条" type="info" :closable="false" />
                 </el-form-item>
                 <el-form-item label="动态标题">
-                    <el-radio-group v-model="$store.state.global.dynamicTitle">
+                    <el-radio-group v-model="enableDynamicTitle">
                         <el-radio-button :label="true">开启</el-radio-button>
                         <el-radio-button :label="false">关闭</el-radio-button>
                     </el-radio-group>
                     <el-alert title="该功能开启时，页面标题会显示当前路由标题，格式为“页面标题 - 网站名称”；关闭时则显示网站名称，网站名称在项目根目录下 .env.* 文件里配置" type="info" :closable="false" />
                 </el-form-item>
                 <el-form-item label="启用控制台">
-                    <el-radio-group v-model="$store.state.global.enableDashboard">
+                    <el-radio-group v-model="enableDashboard">
                         <el-radio-button :label="true">开启</el-radio-button>
                         <el-radio-button :label="false">关闭</el-radio-button>
                     </el-radio-group>
@@ -54,6 +54,76 @@ export default {
     props: {},
     data() {
         return {}
+    },
+    computed: {
+        openTheme: {
+            get: function() {
+                return this.$store.state.global.openTheme
+            },
+            set: function() {
+                this.$store.commit('global/toggleTheme')
+            }
+        },
+        showHeader: {
+            get: function() {
+                return this.$store.state.global.showHeader
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'showHeader': newValue
+                })
+            }
+        },
+        showCopyright: {
+            get: function() {
+                return this.$store.state.global.showCopyright
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'showCopyright': newValue
+                })
+            }
+        },
+        enableNavSearch: {
+            get: function() {
+                return this.$store.state.global.enableNavSearch
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enableNavSearch': newValue
+                })
+            }
+        },
+        enableProgress: {
+            get: function() {
+                return this.$store.state.global.enableProgress
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enableProgress': newValue
+                })
+            }
+        },
+        enableDynamicTitle: {
+            get: function() {
+                return this.$store.state.global.enableDynamicTitle
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enableDynamicTitle': newValue
+                })
+            }
+        },
+        enableDashboard: {
+            get: function() {
+                return this.$store.state.global.enableDashboard
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enableDashboard': newValue
+                })
+            }
+        }
     },
     mounted() {},
     methods: {}

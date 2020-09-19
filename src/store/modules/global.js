@@ -151,6 +151,9 @@ const mutations = {
     },
     toggleTheme(state) {
         state.openTheme = !state.openTheme
+    },
+    updateThemeSetting(state, data) {
+        Object.assign(state, data)
     }
 }
 

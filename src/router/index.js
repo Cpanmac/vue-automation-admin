@@ -144,9 +144,7 @@ router.beforeEach(async(to, from, next) => {
     if (store.state.global.permissionInit) {
         store.commit('global/setHeaderActive', to.path)
     }
-    if (store.state.global.dynamicTitle) {
-        to.meta.title && store.commit('global/setTitle', to.meta.title)
-    }
+    to.meta.title && store.commit('global/setTitle', to.meta.title)
     if (store.getters['token/isLogin']) {
         if (to.name) {
             if (to.matched.length !== 0) {

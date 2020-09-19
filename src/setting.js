@@ -20,7 +20,7 @@ export default {
     // 是否开启载入进度条
     enableProgress: true,
     // 是否开启动态标题
-    dynamicTitle: false,
+    enableDynamicTitle: false,
     // 是否开启控制台
     enableDashboard: true,
     // 是否开启主题配置（建议在生产环境关闭）
