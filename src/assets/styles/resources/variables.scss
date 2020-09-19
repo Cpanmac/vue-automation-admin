@@ -1,3 +1,4 @@
+@use "sass:color";
 // 全局变量
 
 // 应用宽度，可设置自适应宽度或固定宽度：
@@ -33,21 +34,21 @@ $g-header-bg: #736477;
 // 头部导航文字颜色
 $g-header-menu-color: #fff;
 // 头部导航选中颜色
-$g-header-menu-active-bg: $g-header-bg + 20;
+$g-header-menu-active-bg: lighten($g-header-bg, 10);
 
 // 主侧边栏背景色
 $g-main-sidebar-bg: #736477;
 // 主侧边栏文字颜色
 $g-main-sidebar-menu-color: #fff;
 // 主侧边栏菜单选中背景色
-$g-main-sidebar-menu-active-bg: $g-main-sidebar-bg + 20;
+$g-main-sidebar-menu-active-bg: lighten($g-main-sidebar-bg, 10);
 
 // 次侧边栏背景色
 $g-sub-sidebar-bg: #ddcdcd;
 // 次侧边栏菜单文字颜色
 $g-sub-sidebar-menu-color: #89768f;
 // 次侧边栏菜单文字选中颜色
-$g-sub-sidebar-menu-active-color: $g-sub-sidebar-menu-color - 50;
+$g-sub-sidebar-menu-active-color: darken($g-sub-sidebar-menu-color, 30);
 // 次侧边栏菜单选中背景色
 $g-sub-sidebar-menu-active-bg: #b5a5a5;
 

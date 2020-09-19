@@ -294,7 +294,7 @@ header {
                 background: $g-main-sidebar-bg;
             }
             &.shadow {
-                box-shadow: 0 10px 10px -10px $g-sub-sidebar-bg - 50;
+                box-shadow: 0 10px 10px -10px darken($g-sub-sidebar-bg, 20);
             }
         }
         .el-menu {
@@ -309,7 +309,7 @@ header {
         min-height: 100%;
         margin-left: $g-sidebar-width;
         background-color: #f5f7f9;
-        box-shadow: 1px 0 0 0 $g-main-bg - 20;
+        box-shadow: 1px 0 0 0 darken($g-main-bg, 10);
         .breadcrumb-container {
             position: fixed;
             z-index: 999;

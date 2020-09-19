@@ -121,9 +121,9 @@ export default {
     .el-menu {
         .el-submenu .el-submenu__title,
         .el-menu-item {
-            background-color: $g-sub-sidebar-bg - 20 !important;
+            background-color: darken($g-sub-sidebar-bg, 7) !important;
             &:hover {
-                background-color: $g-sub-sidebar-bg - 40 !important;
+                background-color: darken($g-sub-sidebar-bg, 10) !important;
             }
             &.is-active {
                 background-color: $g-sub-sidebar-menu-active-bg !important;
