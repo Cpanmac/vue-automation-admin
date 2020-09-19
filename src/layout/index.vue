@@ -317,7 +317,6 @@ header {
             right: 0;
             left: 50%;
             width: calc(#{$g_app_width} - #{$g_sidebar_width});
-            /* stylelint-disable-next-line function-calc-no-invalid */
             transform: translateX(calc(-50% + #{$g_sidebar_width} * 0.5));
             display: flex;
             align-items: center;
