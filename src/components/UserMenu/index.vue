@@ -7,14 +7,14 @@
                 </span>
             </el-tooltip>
         </div>
-        <el-dropdown class="user-container" trigger="click" @command="handleCommand">
+        <el-dropdown class="user-container" @command="handleCommand">
             <div class="user-wrapper">
                 <el-avatar size="medium" />
                 {{ $store.state.token.account }}
                 <i class="el-icon-caret-bottom" />
             </div>
             <el-dropdown-menu slot="dropdown" class="user-dropdown">
-                <el-dropdown-item command="dashboard">控制台</el-dropdown-item>
+                <el-dropdown-item v-if="$store.state.global.enableDashboard" command="dashboard">控制台</el-dropdown-item>
                 <el-dropdown-item command="setting">个人设置</el-dropdown-item>
                 <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>

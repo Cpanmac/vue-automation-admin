@@ -15,12 +15,77 @@
     <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
         <link href="<%= htmlWebpackPlugin.options.cdn.js[i] %>" rel="external nofollow preload" as="script">
     <% } %>
+    <style>
+        .vaa-home {
+            position: absolute;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            user-select: none;
+            color: #736477;
+            background-color: snow;
+        }
+        .vaa-home .loading {
+            position: relative;
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            color: inherit;
+            vertical-align: middle;
+            pointer-events: none;
+            transform: scale(3);
+        }
+        .vaa-home .loading::before,
+        .vaa-home .loading::after {
+            content: '';
+            display: block;
+            position: absolute;
+            background-color: currentColor;
+            left: 50%;
+            right: 0;
+            top: 0;
+            bottom: 50%;
+            box-shadow: -0.5em 0 0 currentColor;
+            animation: loading 1s linear infinite;
+        }
+        .vaa-home .loading::after {
+            top: 50%;
+            bottom: 0;
+            animation-delay: 0.25s;
+        }
+        @keyframes loading {
+            0%,
+            100% {
+                box-shadow: -0.5em 0 0 transparent;
+                background-color: currentColor;
+            }
+            50% {
+                box-shadow: -0.5em 0 0 currentColor;
+                background-color: transparent;
+            }
+        }
+        .vaa-home .text {
+            font-size: 18px;
+            margin-top: 50px;
+        }
+    </style>
   </head>
   <body>
     <noscript>
         <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+        <div class="vaa-home">
+            <div class="loading"></div>
+            <div class="text"><%= htmlWebpackPlugin.options.title %>载入中…</div>
+        </div>
+    </div>
     <!-- built files will be auto injected -->
     <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
         <script src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
