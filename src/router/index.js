@@ -68,7 +68,6 @@ import KeepAliveExample from './modules/keep.alive.example'
 import menuBadgeExample from './modules/menu.badge.example'
 import ComponentExample from './modules/component.example'
 import PermissionExample from './modules/permission.example'
-import HeaderExample from './modules/header.example'
 import ExTernalLinkExample from './modules/external.link.example'
 
 // 当 children 不为空的主导航只有一项时，则隐藏
@@ -84,8 +83,7 @@ let asyncRoutes = [
             KeepAliveExample,
             menuBadgeExample,
             ComponentExample,
-            PermissionExample,
-            HeaderExample
+            PermissionExample
         ]
     },
     {
