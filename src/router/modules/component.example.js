@@ -67,6 +67,14 @@ export default {
             }
         },
         {
+            path: 'tableautoheight',
+            name: 'componentExampleTableautoheight',
+            component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/table.autoheight'),
+            meta: {
+                title: '表格自适应'
+            }
+        },
+        {
             path: 'upload',
             name: 'componentExampleUpload',
             component: () => import(/* webpackChunkName: 'component_example' */ '@/views/component_example/upload'),
