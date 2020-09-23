@@ -107,7 +107,7 @@ export default {
             let matched = this.$route.matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
             if (this.$store.state.global.enableDashboard) {
                 if (!(matched[0].name == 'dashboard' && matched[0].path == '/dashboard')) {
-                    matched = [{ path: '/dashboard', meta: { title: '控制台' }}].concat(matched)
+                    matched = [{ path: '/dashboard', meta: { title: this.$store.state.global.dashboardTitle }}].concat(matched)
                 }
             }
             return matched
@@ -302,6 +302,7 @@ header {
             width: inherit;
             border-right: 0;
             padding-top: $g-breadcrumb-height;
+            padding-bottom: 30px;
         }
     }
     .main-container {

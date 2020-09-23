@@ -28,7 +28,7 @@ const constantRoutes = [
                 name: 'dashboard',
                 component: () => import('@/views/index'),
                 meta: {
-                    title: '控制台'
+                    title: store.state.global.dashboardTitle
                 }
             },
             {

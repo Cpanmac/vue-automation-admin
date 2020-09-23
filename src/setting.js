@@ -23,6 +23,8 @@ export default {
     enableDynamicTitle: false,
     // 是否开启控制台
     enableDashboard: true,
+    // 控制台名称
+    dashboardTitle: '控制台',
     // 是否开启主题配置（建议在生产环境关闭）
     enableThemeSetting: true
 }
