@@ -7,6 +7,7 @@ module.exports = {
     globals: {
         process: true,
         require: true,
+        module: true,
         AMap: true
     },
     extends: [
