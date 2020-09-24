@@ -4,6 +4,7 @@ import IframeLayout from '@/layout/iframe'
 export default {
     path: '/link',
     component: Layout,
+    redirect: '/link/iframe',
     name: 'externalLinkExample',
     meta: {
         title: '官网',
