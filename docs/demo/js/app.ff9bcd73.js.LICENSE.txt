@@ -13,6 +13,12 @@
  * @license MIT
  */
 
+/*!
+* screenfull
+* v5.0.2 - 2020-02-13
+* (c) Sindre Sorhus; MIT License
+*/
+
 /**
  * Checks if an event is supported in the current execution environment.
  *
