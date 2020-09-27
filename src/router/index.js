@@ -57,6 +57,11 @@ const constantRoutes = [
                         }
                     }
                 ]
+            },
+            {
+                path: 'reload',
+                name: 'reload',
+                component: () => import('@/views/reload')
             }
         ]
     }

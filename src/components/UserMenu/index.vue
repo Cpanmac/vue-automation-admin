@@ -6,6 +6,16 @@
                     <svg-icon name="search" />
                 </span>
             </el-tooltip>
+            <el-tooltip v-if="isFullscreenEnable && $store.state.global.enableFullscreen" effect="dark" content="全屏" placement="bottom">
+                <span class="item" @click="fullscreen">
+                    <svg-icon :name="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" />
+                </span>
+            </el-tooltip>
+            <el-tooltip v-if="$store.state.global.enablePageReload" effect="dark" content="刷新页面" placement="bottom">
+                <span class="item" @click="reload(2)">
+                    <svg-icon name="reload" />
+                </span>
+            </el-tooltip>
             <el-tooltip v-if="$store.state.global.enableThemeSetting" effect="dark" content="主题配置" placement="bottom">
                 <span class="item" @click="$store.commit('global/toggleTheme')">
                     <svg-icon name="theme" />
@@ -28,9 +38,34 @@
 </template>
 
 <script>
+import screenfull from 'screenfull'
+
 export default {
+    inject: ['reload'],
     name: 'UserMenu',
+    data() {
+        return {
+            isFullscreenEnable: screenfull.isEnabled,
+            isFullscreen: false
+        }
+    },
+    mounted() {
+        if (screenfull.isEnabled) {
+            screenfull.on('change', this.fullscreenChange)
+        }
+    },
+    beforeDestroy() {
+        if (screenfull.isEnabled) {
+            screenfull.off('change', this.fullscreenChange)
+        }
+    },
     methods: {
+        fullscreen() {
+            screenfull.toggle()
+        },
+        fullscreenChange() {
+            this.isFullscreen = screenfull.isFullscreen
+        },
         handleCommand(command) {
             switch (command) {
                 case 'dashboard':

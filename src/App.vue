@@ -23,9 +23,15 @@ export default {
         }
     },
     methods: {
-        reload() {
-            this.isRouterAlive = false
-            this.$nextTick(() => (this.isRouterAlive = true))
+        reload(type = 1) {
+            if (type == 1) {
+                this.isRouterAlive = false
+                this.$nextTick(() => (this.isRouterAlive = true))
+            } else {
+                this.$router.push({
+                    name: 'reload'
+                })
+            }
         },
         routeChange(newVal, oldVal) {
             if (newVal.name == oldVal.name) {

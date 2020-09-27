@@ -17,6 +17,10 @@ export default {
     copyrightWebsite: 'http://1one.cn/',
     // 是否开启导航搜索
     enableNavSearch: true,
+    // 是否开启全屏
+    enableFullscreen: false,
+    // 是否开启页面刷新
+    enablePageReload: false,
     // 是否开启载入进度条
     enableProgress: true,
     // 是否开启动态标题

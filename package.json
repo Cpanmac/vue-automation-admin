@@ -19,6 +19,7 @@
         "element-ui": "^2.13.2",
         "hotkeys-js": "^3.8.1",
         "nprogress": "^0.2.0",
+        "screenfull": "^5.0.2",
         "swiper": "6.2.0",
         "tinymce": "^5.4.2",
         "vue": "^2.6.12",

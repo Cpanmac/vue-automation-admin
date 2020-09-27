@@ -22,6 +22,22 @@
                     </el-radio-group>
                     <el-alert title="该功能为页面右上角的搜索按钮，可对侧边栏导航进行快捷搜索" type="info" :closable="false" />
                 </el-form-item>
+                <el-form-item label="全屏">
+                    <el-radio-group v-model="enableFullscreen">
+                        <el-radio-button :label="true">开启</el-radio-button>
+                        <el-radio-button :label="false">关闭</el-radio-button>
+                    </el-radio-group>
+                    <el-alert title="该功能为页面右上角的全屏按钮" type="info" :closable="false" />
+                    <el-alert title="不建议开启，该功能使用场景极少，用户习惯于通过窗口“最大化”功能来扩大显示区域，以显示更多内容，并且使用 F11 键也可以进入全屏效果" type="warning" :closable="false" />
+                </el-form-item>
+                <el-form-item label="页面刷新">
+                    <el-radio-group v-model="enablePageReload">
+                        <el-radio-button :label="true">开启</el-radio-button>
+                        <el-radio-button :label="false">关闭</el-radio-button>
+                    </el-radio-group>
+                    <el-alert title="该功能为页面右上角的刷新按钮" type="info" :closable="false" />
+                    <el-alert title="不建议开启，该功能使用场景极少，用户习惯于通过浏览器上的刷新按钮，或者 F5 键进行页面刷新" type="warning" :closable="false" />
+                </el-form-item>
                 <el-form-item label="加载进度条">
                     <el-radio-group v-model="enableProgress">
                         <el-radio-button :label="true">开启</el-radio-button>
@@ -91,6 +107,26 @@ export default {
             set: function(newValue) {
                 this.$store.commit('global/updateThemeSetting', {
                     'enableNavSearch': newValue
+                })
+            }
+        },
+        enableFullscreen: {
+            get: function() {
+                return this.$store.state.global.enableFullscreen
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enableFullscreen': newValue
+                })
+            }
+        },
+        enablePageReload: {
+            get: function() {
+                return this.$store.state.global.enablePageReload
+            },
+            set: function(newValue) {
+                this.$store.commit('global/updateThemeSetting', {
+                    'enablePageReload': newValue
                 })
             }
         },
